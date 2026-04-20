@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>КиберПраво — цифровые права в сети</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─── */
+:root {
+  --bg:           oklch(97%   0.008 72);
+  --bg-raised:    oklch(99%   0.004 72);
+  --bg-sunken:    oklch(93.5% 0.014 72);
+  --border:       oklch(87%   0.015 72);
+  --border-hi:    oklch(76%   0.020 72);
+
+  --text:         oklch(20%   0.016 265);
+  --text-2:       oklch(43%   0.014 265);
+  --text-3:       oklch(63%   0.010 265);
+
+  --accent:       oklch(56%   0.130 52);
+  --accent-h:     oklch(48%   0.130 52);
+  --accent-bg:    oklch(93%   0.040 72);
+  --accent-fg:    oklch(33%   0.095 52);
+
+  --ok:           oklch(52%   0.130 148);
+  --ok-bg:        oklch(95%   0.040 148);
+  --err:          oklch(52%   0.130 25);
+  --err-bg:       oklch(96%   0.038 25);
+
+  --fd: 'Yeseva One', Georgia, serif;
+  --fb: 'Nunito', system-ui, sans-serif;
+
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px;
+  --s6:24px; --s8:32px; --s12:48px; --s16:64px; --s24:96px;
+
+  --r: 8px; --r-sm: 4px;
+  --ease: cubic-bezier(0.4,0,0.2,1);
+  --t: 0.22s;
+  --mw: 860px;
+  --pad: clamp(1rem, 5vw, 3rem);
+}
+
+/* ─── RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--fb);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  -webkit-font-smoothing:antialiased;
+}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-hi);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--text-3)}
+
+/* ─── HEADER ─── */
+header{
+  position:sticky;top:0;z-index:100;
+  background:oklch(97% 0.008 72 / 0.93);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.hdr{
+  max-width:var(--mw);margin:0 auto;
+  padding:0 var(--pad);
+  height:60px;
+  display:flex;align-items:center;gap:var(--s8);
+}
+.logo{
+  display:flex;align-items:center;gap:var(--s3);
+  text-decoration:none;flex-shrink:0;
+}
+.logo-mark{
+  width:32px;height:32px;
+  background:var(--accent);
+  border-radius:var(--r-sm);
+  display:grid;place-items:center;
+  font-family:var(--fb);font-weight:800;font-size:0.68rem;
+  color:var(--bg-raised);letter-spacing:0.02em;
+}
+.logo-name{
+  font-family:var(--fd);font-size:1.05rem;
+  color:var(--text);line-height:1;
+}
+.nav{
+  display:flex;flex:1;justify-content:flex-end;
+  overflow-x:auto;scrollbar-width:none;
+}
+.nav::-webkit-scrollbar{display:none}
+.ntab{
+  flex-shrink:0;
+  padding:0 var(--s4);height:60px;
+  display:flex;align-items:center;
+  background:none;border:none;
+  border-bottom:2px solid transparent;
+  color:var(--text-3);
+  font-family:var(--fb);font-size:0.875rem;font-weight:600;
+  cursor:pointer;white-space:nowrap;margin-bottom:-1px;
+  transition:color var(--t) var(--ease),border-color var(--t) var(--ease);
+}
+.ntab:hover{color:var(--text-2)}
+.ntab.on{color:var(--text);border-bottom-color:var(--accent);font-weight:700}
+
+/* ─── HERO ─── */
+.hero{
+  max-width:var(--mw);margin:0 auto;
+  padding:var(--s16) var(--pad) var(--s12);
+}
+.hero-eye{
+  display:inline-flex;align-items:center;gap:var(--s2);
+  font-size:0.72rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--accent-fg);margin-bottom:var(--s6);
+}
+.hero-eye::before{
+  content:'';display:block;
+  width:20px;height:2px;
+  background:var(--accent);flex-shrink:0;
+}
+h1.hero-title{
+  font-family:var(--fd);
+  font-size:clamp(2.6rem,7vw,4.5rem);
+  line-height:1.04;letter-spacing:-0.01em;
+  color:var(--text);
+  margin-bottom:var(--s6);max-width:16ch;
+}
+.hero-sub{
+  font-size:1.05rem;color:var(--text-2);
+  line-height:1.65;max-width:54ch;
+  margin-bottom:var(--s8);
+}
+.hero-act{display:flex;gap:var(--s3);flex-wrap:wrap;align-items:center}
+
+/* ─── BUTTONS ─── */
+.btn{
+  display:inline-flex;align-items:center;gap:var(--s2);
+  padding:var(--s3) var(--s6);
+  border-radius:var(--r);
+  font-family:var(--fb);font-size:0.9rem;font-weight:700;
+  cursor:pointer;border:none;text-decoration:none;
+  transition:transform var(--t) var(--ease),background var(--t) var(--ease),color var(--t) var(--ease),border-color var(--t) var(--ease);
+}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn-p{background:var(--accent);color:var(--bg-raised)}
+.btn-p:hover{background:var(--accent-h)}
+.btn-g{
+  background:transparent;color:var(--text-2);
+  border:1px solid var(--border-hi);
+}
+.btn-g:hover{color:var(--text);border-color:var(--text-3)}
+
+/* ─── CONTENT ─── */
+.content{
+  max-width:var(--mw);margin:0 auto;
+  padding:0 var(--pad) var(--s24);
+  flex:1;
+}
+.panel{display:none;animation:fu 0.28s var(--ease) both}
+.panel.on{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.ptitle{
+  font-family:var(--fd);
+  font-size:clamp(1.6rem,4vw,2.4rem);
+  color:var(--text);margin-bottom:var(--s3);line-height:1.1;
+}
+.psub{color:var(--text-2);margin-bottom:var(--s12);max-width:60ch}
+
+/* ─── ABOUT ─── */
+.about-lead{
+  font-size:1.08rem;line-height:1.72;
+  max-width:68ch;margin-bottom:var(--s12);
+}
+.about-stats{
+  display:flex;gap:var(--s12);flex-wrap:wrap;
+  padding:var(--s8) 0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  margin-bottom:var(--s12);
+}
+.astat-val{
+  font-family:var(--fd);font-size:2.6rem;
+  color:var(--accent);line-height:1;
+}
+.astat-lbl{
+  font-size:0.75rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.08em;
+  color:var(--text-3);margin-top:var(--s1);
+}
+.about-topics{margin-bottom:var(--s12)}
+.atopic{
+  display:flex;align-items:flex-start;gap:var(--s6);
+  padding:var(--s5,20px) 0;
+  border-bottom:1px solid var(--border);
+}
+.atopic:first-child{border-top:1px solid var(--border)}
+.atopic-n{
+  font-family:var(--fd);font-size:2rem;
+  color:var(--border-hi);line-height:1;
+  min-width:44px;flex-shrink:0;
+  transition:color var(--t) var(--ease);
+}
+.atopic:hover .atopic-n{color:var(--accent)}
+.atopic-title{font-weight:700;margin-bottom:var(--s2)}
+.atopic-desc{font-size:0.875rem;color:var(--text-2);line-height:1.6;max-width:60ch}
+.about-author{
+  display:flex;align-items:flex-start;gap:var(--s4);
+  padding:var(--s6);
+  background:var(--bg-sunken);border-radius:var(--r);
+}
+.author-avatar{
+  width:44px;height:44px;
+  background:var(--accent-bg);border:1px solid var(--border);
+  border-radius:50%;display:grid;place-items:center;
+  font-size:1.2rem;flex-shrink:0;
+}
+.author-text{font-size:0.875rem;color:var(--text-2);line-height:1.6}
+.author-name{font-weight:700;color:var(--text);display:block;margin-bottom:var(--s1)}
+
+/* ─── QUIZ ─── */
+.quiz-wrap{
+  background:var(--bg-raised);
+  border:1px solid var(--border);border-radius:var(--r);
+  overflow:hidden;
+}
+.quiz-hdr{
+  padding:var(--s4) var(--s8);
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s4);
+  border-bottom:1px solid var(--border);
+}
+.quiz-lbl{
+  font-size:0.75rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.08em;
+  color:var(--text-3);white-space:nowrap;
+}
+.quiz-track{
+  flex:1;max-width:180px;
+  height:3px;background:var(--bg-sunken);
+  border-radius:99px;overflow:hidden;
+}
+.quiz-fill{
+  height:100%;background:var(--accent);
+  border-radius:99px;transition:width 0.4s var(--ease);
+}
+.quiz-sc{font-size:0.875rem;font-weight:700;color:var(--text-2);white-space:nowrap}
+.quiz-sc em{color:var(--accent);font-style:normal}
+.quiz-body{padding:var(--s8)}
+.quiz-qn{
+  font-family:var(--fd);font-size:4rem;
+  color:var(--border-hi);line-height:1;
+  margin-bottom:var(--s4);user-select:none;
+}
+.quiz-qt{
+  font-size:1.15rem;font-weight:600;line-height:1.5;
+  margin-bottom:var(--s6);max-width:66ch;
+}
+.quiz-ans{display:flex;flex-direction:column;gap:var(--s2)}
+.qbtn{
+  display:flex;align-items:center;gap:var(--s4);
+  width:100%;padding:var(--s4) var(--s5,20px);
+  background:var(--bg);border:1px solid var(--border);border-radius:var(--r);
+  color:var(--text);font-family:var(--fb);font-size:0.95rem;font-weight:500;
+  text-align:left;cursor:pointer;
+  transition:background var(--t) var(--ease),border-color var(--t) var(--ease),transform var(--t) var(--ease);
+}
+.qbtn:hover:not(:disabled){
+  background:var(--bg-sunken);border-color:var(--border-hi);
+  transform:translateX(3px);
+}
+.qbtn:disabled{cursor:default}
+.qltr{
+  width:26px;height:26px;border-radius:var(--r-sm);
+  background:var(--bg-sunken);border:1px solid var(--border);
+  display:grid;place-items:center;
+  font-size:0.72rem;font-weight:800;color:var(--text-3);
+  flex-shrink:0;
+  transition:background var(--t) var(--ease),color var(--t) var(--ease),border-color var(--t) var(--ease);
+}
+.qbtn.ok{background:var(--ok-bg);border-color:var(--ok)}
+.qbtn.ok .qltr{background:var(--ok);border-color:var(--ok);color:var(--bg-raised)}
+.qbtn.bad{background:var(--err-bg);border-color:var(--err);color:var(--text-2)}
+.qbtn.bad .qltr{background:var(--err);border-color:var(--err);color:var(--bg-raised)}
+
+/* accordion explain */
+.quiz-xp{display:grid;grid-template-rows:0fr;transition:grid-template-rows 0.32s var(--ease)}
+.quiz-xp.open{grid-template-rows:1fr}
+.quiz-xp>div{overflow:hidden}
+.xp-inner{padding-top:var(--s6)}
+.xp-box{
+  padding:var(--s4) var(--s6);
+  background:var(--bg-sunken);border-radius:var(--r);
+  font-size:0.9rem;color:var(--text-2);line-height:1.65;
+}
+.xp-box strong{
+  display:block;margin-bottom:var(--s1);
+  font-size:0.72rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:0.07em;color:var(--text-3);
+}
+.quiz-ft{
+  padding:var(--s4) var(--s8);
+  border-top:1px solid var(--border);
+  display:flex;justify-content:flex-end;min-height:60px;align-items:center;
+}
+.quiz-result{padding:var(--s16) var(--s8);text-align:center}
+.qr-em{font-size:3.5rem;display:block;margin-bottom:var(--s4)}
+.qr-title{font-family:var(--fd);font-size:2rem;margin-bottom:var(--s3)}
+.qr-sub{color:var(--text-2);margin-bottom:var(--s8)}
+.qr-sub em{color:var(--accent);font-style:normal;font-weight:700}
+
+/* ─── KB ─── */
+.kb-search-wrap{margin-bottom:var(--s8)}
+.kb-search{
+  width:100%;padding:var(--s3) var(--s4);
+  background:var(--bg-raised);border:1px solid var(--border);border-radius:var(--r);
+  color:var(--text);font-family:var(--fb);font-size:0.95rem;outline:none;
+  transition:border-color var(--t) var(--ease),box-shadow var(--t) var(--ease);
+}
+.kb-search:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-bg)}
+.kb-search::placeholder{color:var(--text-3)}
+.kb-list{display:flex;flex-direction:column;gap:var(--s2)}
+.kb-art{
+  background:var(--bg-raised);
+  border:1px solid var(--border);border-radius:var(--r);overflow:hidden;
+  transition:border-color var(--t) var(--ease);
+}
+.kb-art:hover{border-color:var(--border-hi)}
+.kb-art.open{border-color:var(--accent)}
+.kb-tog{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--s4);
+  padding:20px var(--s6);background:none;border:none;cursor:pointer;
+  font-family:var(--fb);font-size:0.95rem;font-weight:600;color:var(--text);text-align:left;
+  transition:background var(--t) var(--ease);
+}
+.kb-tog:hover{background:var(--bg-sunken)}
+.kb-tl{display:flex;align-items:center;gap:var(--s3)}
+.kb-ico{font-size:1.1rem;flex-shrink:0}
+.kb-chv{
+  width:16px;height:16px;flex-shrink:0;
+  color:var(--text-3);
+  transition:transform 0.25s var(--ease),color 0.25s var(--ease);
+}
+.kb-art.open .kb-chv{transform:rotate(180deg);color:var(--accent)}
+.kb-bd{display:grid;grid-template-rows:0fr;transition:grid-template-rows 0.32s var(--ease)}
+.kb-art.open .kb-bd{grid-template-rows:1fr}
+.kb-bd>div{overflow:hidden}
+.kb-bdi{
+  padding:0 var(--s6) var(--s6);
+  border-top:1px solid var(--border);padding-top:var(--s4);
+  font-size:0.9rem;color:var(--text-2);line-height:1.7;
+}
+
+/* ─── METHODS ─── */
+.mlist{display:flex;flex-direction:column}
+.mitem{
+  display:flex;align-items:flex-start;gap:var(--s6);
+  padding:var(--s6) 0;border-bottom:1px solid var(--border);
+}
+.mitem:last-child{border-bottom:none}
+.mnum{
+  font-family:var(--fd);font-size:2.2rem;
+  color:var(--border-hi);line-height:1;
+  flex-shrink:0;min-width:48px;padding-top:2px;
+  transition:color var(--t) var(--ease);
+}
+.mitem:hover .mnum{color:var(--accent)}
+.mtitle{font-weight:700;font-size:0.98rem;margin-bottom:var(--s2)}
+.mdesc{font-size:0.875rem;color:var(--text-2);line-height:1.6;margin-bottom:var(--s3);max-width:60ch}
+.mtags{display:flex;gap:var(--s2);flex-wrap:wrap}
+.mtag{
+  padding:2px 10px;border-radius:100px;
+  border:1px solid var(--border);
+  font-size:0.7rem;font-weight:700;color:var(--text-3);
+  text-transform:uppercase;letter-spacing:0.05em;
+}
+
+/* ─── FOOTER ─── */
+footer{margin-top:auto;border-top:1px solid var(--border);background:var(--bg-raised)}
+.ftr{
+  max-width:var(--mw);margin:0 auto;
+  padding:var(--s6) var(--pad);
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;
+}
+.fcopy{font-size:0.8rem;color:var(--text-3)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:600px){
+  .hdr{gap:var(--s4)}
+  .logo-name{font-size:0.9rem}
+  .ntab{padding:0 var(--s3);font-size:0.8rem}
+  .hero{padding-top:var(--s12)}
+  h1.hero-title{max-width:none}
+  .quiz-body{padding:var(--s6)}
+  .quiz-qn{font-size:2.8rem}
+  .quiz-hdr,.quiz-ft{padding-left:var(--s6);padding-right:var(--s6)}
+  .about-stats{gap:var(--s8)}
+  .mitem{gap:var(--s4)}
+  .mnum{font-size:1.6rem;min-width:36px}
+  .atopic{gap:var(--s4)}
+  .atopic-n{font-size:1.5rem;min-width:36px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<noscript><p style="background:#f5e4c0;color:#5c3a00;padding:12px;text-align:center;font-size:0.875rem">Без JavaScript тренажёр и аккордеон не работают. Включите JavaScript.</p></noscript>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="#" onclick="openTab('about');return false">
+      <div class="logo-mark">КП</div>
+      <span class="logo-name">КиберПраво</span>
+    </a>
+    <nav class="nav" role="tablist">
+      <button class="ntab on"  data-tab="about"     role="tab">О проекте</button>
+      <button class="ntab"     data-tab="trainer"   role="tab">Тренажёр</button>
+      <button class="ntab"     data-tab="knowledge" role="tab">База знаний</button>
+      <button class="ntab"     data-tab="methods"   role="tab">Материалы</button>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-eye">Школьный проект · 2026</div>
+  <h1 class="hero-title">Цифровые права начинаются со знаний</h1>
+  <p class="hero-sub">Сайт о кибербезопасности и правовой защите в интернете. Пройди тест, прочитай статьи — узнай, как защитить себя в сети и что делать, если что-то пошло не так.</p>
+  <div class="hero-act">
+    <button class="btn btn-p" onclick="openTab('trainer')">Пройти тест →</button>
+    <button class="btn btn-g" onclick="openTab('knowledge')">База знаний</button>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- О ПРОЕКТЕ -->
+  <section class="panel on" id="tab-about" role="tabpanel">
+
+    <div class="about-stats">
+      <div><div class="astat-val">12</div><div class="astat-lbl">тем</div></div>
+      <div><div class="astat-val">80+</div><div class="astat-lbl">вопросов</div></div>
+      <div><div class="astat-val">5</div><div class="astat-lbl">разделов</div></div>
+    </div>
+
+    <p class="about-lead">
+      Когда начал изучать тему для проекта, оказалось: большинство людей не знают даже основ —
+      что за взлом чужого аккаунта в Беларуси можно получить реальный срок, что есть закон
+      о персональных данных и государственный орган, куда можно подать жалобу.
+      Этот сайт — попытка собрать важное в одном месте и объяснить понятно, без юридического словаря.
+    </p>
+
+    <div class="about-topics">
+      <div class="atopic">
+        <div class="atopic-n">01</div>
+        <div>
+          <div class="atopic-title">Законы, которые работают</div>
+          <div class="atopic-desc">Закон РБ № 99-З о персональных данных, статьи 349 и 212 УК — реальные нормы с реальными последствиями. Разбираем на примерах.</div>
+        </div>
+      </div>
+      <div class="atopic">
+        <div class="atopic-n">02</div>
+        <div>
+          <div class="atopic-title">Тренажёр с объяснениями</div>
+          <div class="atopic-desc">5 вопросов с развёрнутыми комментариями. Не просто «правильно/неправильно» — каждый ответ объясняет, почему именно так.</div>
+        </div>
+      </div>
+      <div class="atopic">
+        <div class="atopic-n">03</div>
+        <div>
+          <div class="atopic-title">База знаний</div>
+          <div class="atopic-desc">Статьи о фишинге, 2FA, авторском праве, кибербуллинге и безопасных паролях. Написано нормальным языком, без канцелярита.</div>
+        </div>
+      </div>
+      <div class="atopic">
+        <div class="atopic-n">04</div>
+        <div>
+          <div class="atopic-title">Методические материалы</div>
+          <div class="atopic-desc">Программа курса, презентации, карточки-сценарии и тесты для педагогов и образовательных организаций.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-author">
+      <div class="author-avatar">🧑‍💻</div>
+      <div class="author-text">
+        <span class="author-name">Об авторе</span>
+        Школьник. Делал как учебный и конкурсный проект. Тема оказалась важнее, чем думал изначально.
+        Если найдёте ошибку или неточность — напишите, исправлю.
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ТРЕНАЖЁР -->
+  <section class="panel" id="tab-trainer" role="tabpanel">
+    <p class="ptitle">Тренажёр</p>
+    <p class="psub">Проверь знания в области кибербезопасности и цифрового права Беларуси</p>
+    <div class="quiz-wrap" id="quiz">
+      <div class="quiz-hdr">
+        <span class="quiz-lbl" id="qlbl">Вопрос 1 из 5</span>
+        <div class="quiz-track"><div class="quiz-fill" id="qfill" style="width:20%"></div></div>
+        <span class="quiz-sc">Счёт: <em id="qsc">0</em></span>
+      </div>
+      <div class="quiz-body" id="qbody">
+        <div class="quiz-qn" id="qqn">01</div>
+        <p class="quiz-qt" id="qqt"></p>
+        <div class="quiz-ans" id="qans"></div>
+        <div class="quiz-xp" id="qxp">
+          <div><div class="xp-inner">
+            <div class="xp-box">
+              <strong>Объяснение</strong>
+              <span id="qxt"></span>
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="quiz-ft" id="qft">
+        <button class="btn btn-p" id="qnext" style="display:none" onclick="qNext()">Следующий →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- БАЗА ЗНАНИЙ -->
+  <section class="panel" id="tab-knowledge" role="tabpanel">
+    <p class="ptitle">База знаний</p>
+    <p class="psub">Ключевые понятия о кибербезопасности и цифровом праве</p>
+    <div class="kb-search-wrap">
+      <input class="kb-search" type="search" id="kbin" placeholder="Поиск по базе знаний…" oninput="kbSearch()" autocomplete="off">
+    </div>
+    <div class="kb-list" id="kblist">
+
+      <div class="kb-art" id="kb0">
+        <button class="kb-tog" onclick="kbTog(0)" aria-expanded="false">
+          <span class="kb-tl"><span class="kb-ico">🔒</span><span>Персональные данные: что это и как защитить</span></span>
+          <svg class="kb-chv" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="kb-bd"><div><div class="kb-bdi">
+          Персональные данные — любая информация, которая прямо или косвенно идентифицирует человека: ФИО, адрес, телефон, email, фото. В Беларуси защита регулируется Законом № 99-З «О защите персональных данных» (2021). Основные принципы: данные собираются только с согласия, только в нужных объёмах и хранятся не дольше необходимого. Вы вправе запросить удаление своих данных у любой организации.
+        </div></div></div>
+      </div>
+
+      <div class="kb-art" id="kb1">
+        <button class="kb-tog" onclick="kbTog(1)" aria-expanded="false">
+          <span class="kb-tl"><span class="kb-ico">🎣</span><span>Фишинг: виды и защита</span></span>
+          <svg class="kb-chv" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="kb-bd"><div><div class="kb-bdi">
+          Фишинг — вид мошенничества, когда злоумышленники создают поддельные страницы или рассылают письма, имитируя известные сервисы. Цель — похитить логин, пароль или данные карты. Признаки: срочность, подозрительный адрес отправителя, ссылка не совпадает с официальным сайтом. Защита: двухфакторная аутентификация, проверка адресной строки, антивирус.
+        </div></div></div>
+      </div>
+
+      <div class="kb-art" id="kb2">
+        <button class="kb-tog" onclick="kbTog(2)" aria-expanded="false">
+          <span class="kb-tl"><span class="kb-ico">©️</span><span>Авторское право в интернете</span></span>
+          <svg class="kb-chv" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="kb-bd"><div><div class="kb-bdi">
+          Любой контент в сети — текст, фото, видео, музыка — защищён авторским правом с момента создания. Использование без разрешения правообладателя является нарушением. Исключения: цитирование с указанием автора, использование в учебных целях в установленных пределах. Creative Commons — система лицензий, позволяющая авторам разрешать определённые виды использования.
+        </div></div></div>
+      </div>
+
+      <div class="kb-art" id="kb3">
+        <button class="kb-tog" onclick="kbTog(3)" aria-expanded="false">
+          <span class="kb-tl"><span class="kb-ico">🛡️</span><span>Двухфакторная аутентификация (2FA)</span></span>
+          <svg class="kb-chv" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="kb-bd"><div><div class="kb-bdi">
+          2FA — метод защиты аккаунта, при котором для входа требуется два подтверждения: пароль и одноразовый код (через SMS, приложение-аутентификатор или аппаратный ключ). Даже если злоумышленник узнает пароль, без второго фактора он не войдёт. Рекомендуется использовать приложения (Google Authenticator, Яндекс.Ключ), а не SMS.
+        </div></div></div>
+      </div>
+
+      <div class="kb-art" id="kb4">
+        <button class="kb-tog" onclick="kbTog(4)" aria-expanded="false">
+          <span class="kb-tl"><span class="kb-ico">💬</span><span>Кибербуллинг и ответственность</span></span>
+          <svg class="kb-chv" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="kb-bd"><div><div class="kb-bdi">
+          Кибербуллинг — систематическое преследование, оскорбления или угрозы через интернет. В Беларуси за систематические оскорбления предусмотрена административная и уголовная ответственность. Если вы стали жертвой: сохраните скриншоты, заблокируйте агрессора, сообщите администрации платформы, при угрозах — обратитесь в полицию.
+        </div></div></div>
+      </div>
+
+      <div class="kb-art" id="kb5">
+        <button class="kb-tog" onclick="kbTog(5)" aria-expanded="false">
+          <span class="kb-tl"><span class="kb-ico">🔑</span><span>Безопасные пароли: правила создания</span></span>
+          <svg class="kb-chv" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="4 6 8 10 12 6"/></svg>
+        </button>
+        <div class="kb-bd"><div><div class="kb-bdi">
+          Надёжный пароль содержит не менее 12 символов, включает буквы разных регистров, цифры и спецсимволы. Не используйте личные данные, словарные слова или одинаковые пароли для разных сервисов. Менеджеры паролей (Bitwarden, KeePass) позволяют хранить сложные уникальные пароли безопасно.
+        </div></div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- МЕТОДИЧЕСКИЕ МАТЕРИАЛЫ -->
+  <section class="panel" id="tab-methods" role="tabpanel">
+    <p class="ptitle">Методические материалы</p>
+    <p class="psub">Ресурсы для педагогов и образовательных учреждений</p>
+    <div class="mlist">
+      <div class="mitem">
+        <div class="mnum">01</div>
+        <div>
+          <div class="mtitle">Рабочая программа «КиберПраво» (5–9 класс)</div>
+          <div class="mdesc">Полная программа курса с тематическим планированием, учебными целями и ожидаемыми результатами. Рассчитана на 34 урока в год. Соответствует ФГОС.</div>
+          <div class="mtags"><span class="mtag">PDF · 1.2 МБ</span><span class="mtag">5–9 класс</span><span class="mtag">34 урока</span></div>
+        </div>
+      </div>
+      <div class="mitem">
+        <div class="mnum">02</div>
+        <div>
+          <div class="mtitle">Презентации к урокам (12 тем)</div>
+          <div class="mdesc">Готовые слайды в формате PPTX для каждой темы курса. Включают иллюстрации, схемы, кейсы и задания для обсуждения. Легко адаптируются под любой уровень.</div>
+          <div class="mtags"><span class="mtag">PPTX архив</span><span class="mtag">12 презентаций</span></div>
+        </div>
+      </div>
+      <div class="mitem">
+        <div class="mnum">03</div>
+        <div>
+          <div class="mtitle">Карточки-сценарии (ролевые игры)</div>
+          <div class="mdesc">Комплект карточек для разыгрывания ситуаций: фишинговая атака, утечка данных, кибербуллинг. Помогают выработать модели безопасного поведения через практику.</div>
+          <div class="mtags"><span class="mtag">Распечатай и играй</span><span class="mtag">30 карточек</span></div>
+        </div>
+      </div>
+      <div class="mitem">
+        <div class="mnum">04</div>
+        <div>
+          <div class="mtitle">Тесты и контрольные задания</div>
+          <div class="mdesc">Банк тестовых заданий с ответами для промежуточного и итогового контроля. Доступны в форматах Word и Google Forms.</div>
+          <div class="mtags"><span class="mtag">DOCX / Google Forms</span><span class="mtag">80+ вопросов</span></div>
+        </div>
+      </div>
+      <div class="mitem">
+        <div class="mnum">05</div>
+        <div>
+          <div class="mtitle">Методические рекомендации для учителей</div>
+          <div class="mdesc">Пошаговое руководство по проведению занятий, советы по работе с разными возрастными группами и рекомендации по работе с родителями.</div>
+          <div class="mtags"><span class="mtag">PDF · 800 КБ</span><span class="mtag">Для педагогов</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="ftr">
+    <span class="fcopy">© 2026 КиберПраво — школьный проект</span>
+  </div>
+</footer>
+
+<script>
+// ── TABS ──
+function openTab(name) {
+  document.querySelectorAll('.ntab').forEach(b => {
+    const a = b.dataset.tab === name;
+    b.classList.toggle('on', a);
+    b.setAttribute('aria-selected', a);
+  });
+  document.querySelectorAll('.panel').forEach(p => {
+    p.classList.toggle('on', p.id === 'tab-' + name);
+  });
+  if (name === 'trainer' && !qInited) qInit();
+}
+document.querySelectorAll('.ntab').forEach(b => b.addEventListener('click', () => openTab(b.dataset.tab)));
+
+// ── QUIZ ──
+const QS = [
+  {
+    q: 'Какой закон Республики Беларусь регулирует защиту персональных данных?',
+    a: ['Закон «Об информации, информатизации и защите информации»','Закон «О защите персональных данных» (№ 99-З от 2021 г.)','Закон «Об электронном документе и электронной цифровой подписи»','Закон «О связи»'],
+    c: 1,
+    e: 'Закон РБ № 99-З «О защите персональных данных» (2021) — основной нормативный акт, регулирующий обработку персональных данных граждан. Вступил в силу в 2022 году.'
+  },
+  {
+    q: 'Какой орган в Беларуси уполномочен осуществлять контроль в сфере защиты персональных данных?',
+    a: ['Министерство внутренних дел РБ','Национальный центр защиты персональных данных (НЦЗПД)','Комитет государственной безопасности','Министерство связи и информатизации'],
+    c: 1,
+    e: 'НЦЗПД создан в 2022 году как уполномоченный орган по контролю за соблюдением законодательства о персональных данных. Принимает жалобы граждан онлайн.'
+  },
+  {
+    q: 'Какая статья Уголовного кодекса РБ предусматривает ответственность за несанкционированный доступ к компьютерной информации?',
+    a: ['Статья 349 УК РБ','Статья 212 УК РБ','Статья 339 УК РБ','Статья 428 УК РБ'],
+    c: 0,
+    e: 'Статья 349 УК РБ «Несанкционированный доступ к компьютерной информации» предусматривает наказание вплоть до лишения свободы на срок до 7 лет в зависимости от тяжести последствий.'
+  },
+  {
+    q: 'По какой статье УК РБ квалифицируется хищение денег через интернет-банкинг с использованием фишинга?',
+    a: ['Статья 205 УК РБ (кража)','Статья 212 УК РБ (хищение путём использования компьютерной техники)','Статья 209 УК РБ (мошенничество)','Статья 349 УК РБ (несанкционированный доступ)'],
+    c: 1,
+    e: 'Статья 212 УК РБ специально предусматривает ответственность за хищение с использованием компьютерной техники, в том числе через фишинг и взлом аккаунтов интернет-банкинга.'
+  },
+  {
+    q: 'Куда следует обратиться гражданину РБ, если его персональные данные обрабатываются без его согласия?',
+    a: ['В районный суд с иском о возмещении ущерба','В Национальный центр защиты персональных данных (НЦЗПД) с жалобой','В прокуратуру с заявлением','В Министерство юстиции РБ'],
+    c: 1,
+    e: 'Первичная инстанция для жалоб на нарушение законодательства о персональных данных в РБ — НЦЗПД. Обратиться можно онлайн через официальный сайт центра.'
+  }
+];
+
+let qi = 0, qs = 0, qa = false, qInited = false;
+const LT = ['А','Б','В','Г'];
+
+function qInit() {
+  qInited = true; qi = 0; qs = 0; qa = false;
+  // restore body/foot in case we're reiniting from result
+  document.getElementById('qbody').innerHTML = `
+    <div class="quiz-qn" id="qqn">01</div>
+    <p class="quiz-qt" id="qqt"></p>
+    <div class="quiz-ans" id="qans"></div>
+    <div class="quiz-xp" id="qxp"><div><div class="xp-inner"><div class="xp-box"><strong>Объяснение</strong><span id="qxt"></span></div></div></div></div>`;
+  document.getElementById('qft').innerHTML = '<button class="btn btn-p" id="qnext" style="display:none" onclick="qNext()">Следующий →</button>';
+  qRender();
+}
+
+function qRender() {
+  const q = QS[qi];
+  document.getElementById('qqn').textContent = String(qi+1).padStart(2,'0');
+  document.getElementById('qqt').textContent = q.q;
+  document.getElementById('qlbl').textContent = `Вопрос ${qi+1} из ${QS.length}`;
+  document.getElementById('qfill').style.width = ((qi+1)/QS.length*100)+'%';
+  document.getElementById('qsc').textContent = qs;
+  document.getElementById('qnext').style.display = 'none';
+  document.getElementById('qxp').classList.remove('open');
+  qa = false;
+  const c = document.getElementById('qans');
+  c.innerHTML = '';
+  q.a.forEach((txt, i) => {
+    const b = document.createElement('button');
+    b.className = 'qbtn';
+    b.innerHTML = `<span class="qltr">${LT[i]}</span><span>${txt}</span>`;
+    b.addEventListener('click', () => qPick(i, b));
+    c.appendChild(b);
+  });
+}
+
+function qPick(idx, btn) {
+  if (qa) return;
+  qa = true;
+  const q = QS[qi];
+  document.querySelectorAll('.qbtn').forEach((b, i) => {
+    b.disabled = true;
+    if (i === q.c) b.classList.add('ok');
+    else if (i === idx && idx !== q.c) b.classList.add('bad');
+  });
+  if (idx === q.c) qs++;
+  document.getElementById('qsc').textContent = qs;
+  document.getElementById('qxt').textContent = q.e;
+  requestAnimationFrame(() => document.getElementById('qxp').classList.add('open'));
+  const nb = document.getElementById('qnext');
+  nb.textContent = qi === QS.length-1 ? 'Посмотреть результат →' : 'Следующий →';
+  nb.style.display = '';
+}
+
+function qNext() {
+  if (qi < QS.length-1) { qi++; qRender(); }
+  else qResult();
+}
+
+function qResult() {
+  const pct = Math.round(qs/QS.length*100);
+  const em = pct>=80?'🏆':pct>=60?'👍':'📚';
+  const t  = pct>=80?'Отлично!':pct>=60?'Хороший результат':'Нужно повторить';
+  document.getElementById('qbody').innerHTML = `
+    <div class="quiz-result">
+      <span class="qr-em">${em}</span>
+      <div class="qr-title">${t}</div>
+      <p class="qr-sub">Правильных ответов: <em>${qs} из ${QS.length}</em> (${pct}%)</p>
+      <button class="btn btn-p" onclick="qInit()">↩ Пройти снова</button>
+    </div>`;
+  document.getElementById('qft').innerHTML = '';
+}
+
+// ── KB ──
+function kbTog(i) {
+  const a = document.getElementById('kb'+i);
+  const open = a.classList.toggle('open');
+  a.querySelector('.kb-tog').setAttribute('aria-expanded', open);
+}
+
+function kbSearch() {
+  const v = document.getElementById('kbin').value.toLowerCase();
+  document.querySelectorAll('.kb-art').forEach(a => {
+    a.style.display = a.textContent.toLowerCase().includes(v) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

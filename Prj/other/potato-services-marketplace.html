@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PotatoHub — маркетплейс услуг и ресурсов для картофельного бизнеса</title>
+  <meta name="description" content="Маркетплейс для покупки и продажи услуг, техники, персонала, логистики и семенного картофеля." />
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=zodiak@400,700&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+      --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+      --space-12: 3rem; --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
+      --color-bg: #f7f6f2; --color-surface: #f9f8f5; --color-surface-2: #fbfbf9;
+      --color-surface-offset: #edeae5; --color-border: #d4d1ca; --color-divider:#dcd9d5;
+      --color-text: #28251d; --color-text-muted: #6f6c65; --color-text-faint: #9d9a92;
+      --color-text-inverse: #f9f8f4; --color-primary: #01696f; --color-primary-hover: #0c4e54;
+      --color-primary-highlight: #cedcd8; --color-success: #437a22; --color-warning: #964219;
+      --color-blue: #006494; --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.9rem;
+      --radius-xl: 1.25rem; --radius-full: 9999px; --shadow-sm: 0 1px 2px rgba(20,20,20,.06);
+      --shadow-md: 0 8px 24px rgba(20,20,20,.08); --shadow-lg: 0 20px 48px rgba(20,20,20,.12);
+      --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1); --content: 1200px;
+      --font-display: 'Zodiak', Georgia, serif; --font-body: 'General Sans', Arial, sans-serif;
+    }
+    [data-theme="dark"] {
+      --color-bg: #171614; --color-surface: #1c1b19; --color-surface-2: #201f1d;
+      --color-surface-offset: #252320; --color-border: #393836; --color-divider:#2b2a28;
+      --color-text: #cdccca; --color-text-muted: #9a9894; --color-text-faint: #706f6c;
+      --color-text-inverse: #1c1b19; --color-primary: #4f98a3; --color-primary-hover: #227f8b;
+      --color-primary-highlight: #313b3b; --color-success: #79b154; --color-warning: #c67b52;
+      --color-blue: #6aaedb; --shadow-sm: 0 1px 2px rgba(0,0,0,.25);
+      --shadow-md: 0 8px 24px rgba(0,0,0,.3); --shadow-lg: 0 20px 48px rgba(0,0,0,.35);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100dvh; font-family: var(--font-body); font-size: var(--text-base); line-height: 1.6;
+      color: var(--color-text); background:
+      radial-gradient(circle at top right, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent 28%),
+      radial-gradient(circle at bottom left, color-mix(in srgb, var(--color-warning) 8%, transparent), transparent 30%),
+      var(--color-bg);
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; border: 0; }
+    :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+    .container { width: min(calc(100% - 2rem), var(--content)); margin-inline: auto; }
+    .skip-link {
+      position: absolute; left: -9999px; top: 1rem; background: var(--color-primary); color: var(--color-text-inverse);
+      padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); z-index: 1000;
+    }
+    .skip-link:focus { left: 1rem; }
+    .site-header {
+      position: sticky; top: 0; z-index: 30; backdrop-filter: blur(12px);
+      background: color-mix(in srgb, var(--color-bg) 88%, transparent); border-bottom: 1px solid var(--color-divider);
+    }
+    .header-row {
+      display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) 0;
+    }
+    .brand { display:flex; align-items:center; gap: var(--space-3); font-weight:700; }
+    .brand-mark {
+      width: 2.75rem; height: 2.75rem; padding: .45rem; border-radius: var(--radius-lg); background: var(--color-surface);
+      box-shadow: var(--shadow-sm); color: var(--color-primary);
+    }
+    .brand-name { display:flex; flex-direction:column; line-height:1.1; }
+    .brand-name strong { font-size: var(--text-lg); }
+    .brand-name span { font-size: var(--text-xs); color: var(--color-text-muted); }
+    .nav { display:none; gap: var(--space-4); align-items:center; }
+    .nav a { font-size: var(--text-sm); color: var(--color-text-muted); }
+    .nav a:hover { color: var(--color-text); }
+    .header-actions { display:flex; align-items:center; gap: var(--space-2); }
+    .theme-toggle, .ghost-btn, .chip {
+      min-height: 44px; padding: 0 var(--space-4); border-radius: var(--radius-full);
+      background: var(--color-surface); color: var(--color-text); border: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+    }
+    .theme-toggle { width: 44px; padding: 0; display:grid; place-items:center; }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; gap: .6rem; min-height: 48px; padding: 0 var(--space-5);
+      border-radius: var(--radius-full); font-size: var(--text-sm); font-weight: 600; transition: all var(--transition);
+    }
+    .btn-primary { background: var(--color-primary); color: var(--color-text-inverse); }
+    .btn-primary:hover { background: var(--color-primary-hover); transform: translateY(-1px); }
+    .btn-secondary { background: var(--color-surface); color: var(--color-text); border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent); }
+    .hero { padding: clamp(var(--space-12), 8vw, var(--space-24)) 0 var(--space-16); }
+    .hero-grid { display:grid; gap: var(--space-8); align-items: center; }
+    .eyebrow {
+      display:inline-flex; align-items:center; gap: .5rem; padding: .45rem .8rem; border-radius: var(--radius-full);
+      background: var(--color-primary-highlight); color: var(--color-primary); font-size: var(--text-xs); font-weight:700; text-transform: uppercase; letter-spacing: .06em;
+    }
+    h1, h2, h3 { font-family: var(--font-display); line-height: 1.05; letter-spacing: -0.03em; }
+    h1 { font-size: var(--text-2xl); max-width: 12ch; margin-top: var(--space-4); }
+    .hero p { max-width: 62ch; margin-top: var(--space-4); color: var(--color-text-muted); }
+    .hero-actions, .hero-stats { display:flex; flex-wrap:wrap; gap: var(--space-3); margin-top: var(--space-6); }
+    .stat {
+      padding: var(--space-4); border-radius: var(--radius-lg); background: color-mix(in srgb, var(--color-surface) 80%, transparent);
+      border: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent); min-width: 170px;
+    }
+    .stat strong { display:block; font-size: var(--text-lg); }
+    .stat span { color: var(--color-text-muted); font-size: var(--text-sm); }
+    .hero-panel {
+      background: linear-gradient(180deg, var(--color-surface), var(--color-surface-2)); border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+      border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-lg);
+    }
+    .search-box { display:grid; gap: var(--space-4); }
+    .field { display:grid; gap: .35rem; }
+    .field label { font-size: var(--text-xs); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: .06em; font-weight:700; }
+    .field input, .field select, .field textarea {
+      min-height: 48px; width:100%; padding: 0 var(--space-4); border-radius: var(--radius-md); border:1px solid var(--color-border);
+      background: var(--color-bg); color: var(--color-text);
+    }
+    .field textarea { min-height: 120px; padding-block: var(--space-3); resize: vertical; }
+    section { padding: clamp(var(--space-10), 5vw, var(--space-20)) 0; }
+    .section-head { display:flex; flex-wrap:wrap; align-items:end; justify-content:space-between; gap: var(--space-4); margin-bottom: var(--space-8); }
+    .section-head p { max-width: 60ch; color: var(--color-text-muted); }
+    .grid { display:grid; gap: var(--space-4); }
+    .categories { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .card {
+      background: var(--color-surface); border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+      border-radius: var(--radius-xl); padding: var(--space-5); box-shadow: var(--shadow-sm);
+    }
+    .category-card { display:grid; gap: var(--space-3); }
+    .icon-box {
+      width: 52px; height: 52px; display:grid; place-items:center; border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface)); color: var(--color-primary);
+    }
+    .meta { display:flex; flex-wrap:wrap; gap: .5rem; color: var(--color-text-muted); font-size: var(--text-sm); }
+    .badge {
+      display:inline-flex; align-items:center; min-height: 32px; padding: 0 .75rem; border-radius: var(--radius-full);
+      background: color-mix(in srgb, var(--color-success) 12%, var(--color-surface)); color: var(--color-success); font-size: var(--text-xs); font-weight:700;
+    }
+    .listing-grid { grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+    .listing-card { display:grid; gap: var(--space-4); }
+    .listing-top { display:flex; justify-content:space-between; gap: var(--space-3); align-items:start; }
+    .price { font-size: var(--text-lg); font-weight:700; color: var(--color-primary); }
+    .feature-list { list-style:none; display:grid; gap: .5rem; color: var(--color-text-muted); font-size: var(--text-sm); }
+    .feature-list li::before { content: '• '; color: var(--color-primary); }
+    .how-grid, .roles-grid, .forms-grid, .trust-grid, .footer-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .step-number {
+      width: 40px; height:40px; display:grid; place-items:center; border-radius:50%;
+      background: var(--color-primary); color: var(--color-text-inverse); font-weight:700; margin-bottom: var(--space-3);
+    }
+    .split {
+      display:grid; gap: var(--space-6); grid-template-columns: 1.2fr .8fr;
+    }
+    .panel-accent {
+      background: linear-gradient(180deg, color-mix(in srgb, var(--color-primary) 8%, var(--color-surface)), var(--color-surface));
+    }
+    .faq details {
+      background: var(--color-surface); border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
+      border-radius: var(--radius-lg); padding: var(--space-4) var(--space-5);
+    }
+    .faq details + details { margin-top: var(--space-3); }
+    .faq summary { cursor:pointer; font-weight:600; }
+    .faq p { color: var(--color-text-muted); margin-top: var(--space-3); }
+    .cta {
+      background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 14%, var(--color-surface)), var(--color-surface-2));
+      border:1px solid color-mix(in srgb, var(--color-text) 10%, transparent); border-radius: calc(var(--radius-xl) + .2rem);
+      padding: clamp(var(--space-6), 4vw, var(--space-12)); box-shadow: var(--shadow-md);
+    }
+    footer { padding: var(--space-10) 0 var(--space-12); border-top: 1px solid var(--color-divider); }
+    .muted { color: var(--color-text-muted); }
+    .small { font-size: var(--text-sm); }
+    @media (min-width: 900px) {
+      .nav { display:flex; }
+      .hero-grid { grid-template-columns: 1.15fr .85fr; }
+      .search-box { grid-template-columns: 1fr 1fr; }
+      .search-box .full { grid-column: 1 / -1; }
+    }
+    @media (max-width: 899px) {
+      .split { grid-template-columns: 1fr; }
+      .header-row { align-items:flex-start; flex-wrap:wrap; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="#top" aria-label="PotatoHub — на главную">
+        <svg class="brand-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <rect x="8" y="8" width="48" height="48" rx="16" stroke="currentColor" stroke-width="3"></rect>
+          <path d="M22 38C22 28 29 20 38 20C42 20 46 22 48 25C46 37 38 44 29 44C25 44 22 42 22 38Z" fill="currentColor" opacity=".18"></path>
+          <path d="M24 38C24 29 30 22 38.5 22C41.8 22 44.9 23.4 47 25.9C45.5 35.7 38.1 42 29.7 42C26.3 42 24 40.4 24 38Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+          <circle cx="34" cy="31" r="2.2" fill="currentColor"></circle>
+          <circle cx="39.5" cy="28" r="1.8" fill="currentColor"></circle>
+          <circle cx="32" cy="36.5" r="1.6" fill="currentColor"></circle>
+        </svg>
+        <span class="brand-name"><strong>PotatoHub</strong><span>Маркетплейс картофельных услуг и ресурсов</span></span>
+      </a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#categories">Категории</a>
+        <a href="#listings">Объявления</a>
+        <a href="#roles">Кабинеты</a>
+        <a href="#mvp">MVP</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Переключить тему">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a class="btn btn-secondary" href="#publish">Разместить услугу</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Площадка для картофельной отрасли</span>
+          <h1>Покупка и продажа услуг, техники, персонала и ресурсов для работы с картофелем</h1>
+          <p>Этот прототип объединяет поставщиков семян, владельцев техники, сезонные бригады, логистические компании и фермеров в одном каталоге. Пользователь может искать нужную услугу по категории, региону и бюджету, а поставщик — быстро публиковать предложение и получать заявки.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#listings">Найти предложение</a>
+            <a class="btn btn-secondary" href="#publish">Опубликовать объявление</a>
+          </div>
+          <div class="hero-stats" aria-label="Ключевые показатели прототипа">
+            <div class="stat"><strong>6</strong><span>стартовых категорий</span></div>
+            <div class="stat"><strong>2 роли</strong><span>покупатель и продавец</span></div>
+            <div class="stat"><strong>MVP</strong><span>без сложной оплаты на старте</span></div>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Форма быстрого поиска">
+          <h2 style="font-size:var(--text-xl); margin-bottom:var(--space-4);">Быстрый поиск по площадке</h2>
+          <form class="search-box">
+            <div class="field">
+              <label for="service">Что ищете</label>
+              <input id="service" type="text" placeholder="Например: уборка картофеля" />
+            </div>
+            <div class="field">
+              <label for="region">Регион</label>
+              <select id="region">
+                <option>Гомельская область</option>
+                <option>Минская область</option>
+                <option>Брестская область</option>
+                <option>Вся Беларусь</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="category">Категория</label>
+              <select id="category">
+                <option>Техника</option>
+                <option>Семенной картофель</option>
+                <option>Персонал</option>
+                <option>Логистика</option>
+                <option>Хранение и сортировка</option>
+                <option>Полевые работы</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="budget">Бюджет</label>
+              <input id="budget" type="text" placeholder="До 500 BYN / смена" />
+            </div>
+            <div class="full">
+              <button class="btn btn-primary" type="button" style="width:100%;">Показать подходящие предложения</button>
+            </div>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+    <section id="categories">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 style="font-size:var(--text-xl);">Категории маркетплейса</h2>
+            <p>Структура сфокусирована на полном цикле картофельного бизнеса: от закупки семян и техники до логистики, хранения и найма персонала.</p>
+          </div>
+          <span class="chip">Стартовая структура MVP</span>
+        </div>
+        <div class="grid categories">
+          <article class="card category-card">
+            <div class="icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 20h10"/><path d="M12 20V4"/><path d="M8 8c0-2 1.8-4 4-4s4 2 4 4-1.8 4-4 4-4-2-4-4Z"/></svg>
+            </div>
+            <h3 style="font-size:var(--text-lg);">Семенной картофель</h3>
+            <p class="muted">Продажа семян по сортам, объёмам, репродукции, сертификации и условиям поставки.</p>
+            <div class="meta"><span>Сорта</span><span>•</span><span>Фасовка</span><span>•</span><span>Документы</span></div>
+          </article>
+          <article class="card category-card">
+            <div class="icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13h12l3 3v3h-3"/><path d="M5 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/><path d="M16 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/><path d="M3 6h11v7H3z"/></svg>
+            </div>
+            <h3 style="font-size:var(--text-lg);">Техника</h3>
+            <p class="muted">Аренда тракторов, картофелесажалок, копалок, сортировочных линий и вспомогательных машин.</p>
+            <div class="meta"><span>Аренда</span><span>•</span><span>Смена</span><span>•</span><span>С экипажем</span></div>
+          </article>
+          <article class="card category-card">
+            <div class="icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 style="font-size:var(--text-lg);">Персонал</h3>
+            <p class="muted">Поиск механизаторов, сезонных рабочих, бригадиров, сортировщиков и временных бригад.</p>
+            <div class="meta"><span>Бригады</span><span>•</span><span>Сезон</span><span>•</span><span>Оплата за смену</span></div>
+          </article>
+          <article class="card category-card">
+            <div class="icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18h18"/><path d="M6 18V8l6-4 6 4v10"/><path d="M9 18v-5h6v5"/></svg>
+            </div>
+            <h3 style="font-size:var(--text-lg);">Хранение и сортировка</h3>
+            <p class="muted">Услуги склада, холодильного хранения, переборки, мойки, фасовки и подготовки к отгрузке.</p>
+            <div class="meta"><span>Склад</span><span>•</span><span>Фасовка</span><span>•</span><span>Подготовка партии</span></div>
+          </article>
+          <article class="card category-card">
+            <div class="icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 16V8a2 2 0 0 1 2-2h5v10h-5a2 2 0 0 0-2 2Z"/><path d="M3 6h5a2 2 0 0 1 2 2v8a2 2 0 0 0-2-2H3V6Z"/></svg>
+            </div>
+            <h3 style="font-size:var(--text-lg);">Полевые работы</h3>
+            <p class="muted">Посадка, обработка, окучивание, уборка, агроконсалтинг и отдельные сезонные операции.</p>
+            <div class="meta"><span>Посадка</span><span>•</span><span>Уборка</span><span>•</span><span>Сервис под ключ</span></div>
+          </article>
+          <article class="card category-card">
+            <div class="icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 17h4V5H2v12h3"/><path d="M14 8h4l4 4v5h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            </div>
+            <h3 style="font-size:var(--text-lg);">Логистика</h3>
+            <p class="muted">Перевозка с поля, доставка на склад, межрегиональная логистика, вывоз малых и больших партий.</p>
+            <div class="meta"><span>Грузоперевозки</span><span>•</span><span>Рейсы</span><span>•</span><span>Регион</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="listings">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 style="font-size:var(--text-xl);">Примеры объявлений</h2>
+            <p>Так могут выглядеть карточки услуг на старте. У каждой карточки есть категория, регион, цена, набор параметров и кнопка отклика.</p>
+          </div>
+          <span class="badge">Карточки с отраслевыми полями</span>
+        </div>
+        <div class="grid listing-grid">
+          <article class="card listing-card">
+            <div class="listing-top">
+              <div>
+                <span class="badge">Техника</span>
+                <h3 style="font-size:var(--text-lg); margin-top:var(--space-3);">Аренда картофелеуборочного комбайна Grimme</h3>
+              </div>
+              <div class="price">от 750 BYN</div>
+            </div>
+            <div class="meta"><span>Гомельская область</span><span>•</span><span>С экипажем</span><span>•</span><span>Минимум 1 смена</span></div>
+            <ul class="feature-list">
+              <li>Производительность: до 6 гектаров в день</li>
+              <li>Доступно: август — октябрь</li>
+              <li>Входит выезд и первичный осмотр поля</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contact">Запросить цену</a>
+          </article>
+          <article class="card listing-card">
+            <div class="listing-top">
+              <div>
+                <span class="badge">Персонал</span>
+                <h3 style="font-size:var(--text-lg); margin-top:var(--space-3);">Сезонная бригада на переборку и фасовку</h3>
+              </div>
+              <div class="price">35 BYN/чел.</div>
+            </div>
+            <div class="meta"><span>Работа по Беларуси</span><span>•</span><span>12 человек</span><span>•</span><span>Посменно</span></div>
+            <ul class="feature-list">
+              <li>Опыт на складах и сортировочных линиях</li>
+              <li>Возможен выезд с проживанием</li>
+              <li>Оплата за смену или по объёму партии</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contact">Связаться с исполнителем</a>
+          </article>
+          <article class="card listing-card">
+            <div class="listing-top">
+              <div>
+                <span class="badge">Семенной картофель</span>
+                <h3 style="font-size:var(--text-lg); margin-top:var(--space-3);">Продажа семенного картофеля сорта Ред Скарлет</h3>
+              </div>
+              <div class="price">от 1.25 BYN/кг</div>
+            </div>
+            <div class="meta"><span>Сертификация</span><span>•</span><span>Фасовка 25 кг</span><span>•</span><span>Опт</span></div>
+            <ul class="feature-list">
+              <li>Репродукция, документы и история хранения</li>
+              <li>Минимальный заказ — 500 кг</li>
+              <li>Доставка или самовывоз</li>
+            </ul>
+            <a class="btn btn-secondary" href="#contact">Оставить заявку</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 style="font-size:var(--text-xl);">Как это работает</h2>
+            <p>На первом этапе платформа может запускаться без сложной корзины и безопасной сделки: вместо этого используются формы отклика, запросы цены и прямой контакт через кабинет.</p>
+          </div>
+        </div>
+        <div class="grid how-grid">
+          <article class="card">
+            <div class="step-number">1</div>
+            <h3 style="font-size:var(--text-lg);">Поставщик размещает предложение</h3>
+            <p class="muted">Заполняет форму, выбирает категорию, регион, цену, описание, фото, условия работы и контакты.</p>
+          </article>
+          <article class="card">
+            <div class="step-number">2</div>
+            <h3 style="font-size:var(--text-lg);">Покупатель ищет и фильтрует</h3>
+            <p class="muted">Сравнивает предложения по региону, бюджету, доступности техники, объёму партии или числу работников.</p>
+          </article>
+          <article class="card">
+            <div class="step-number">3</div>
+            <h3 style="font-size:var(--text-lg);">Отправляется заявка</h3>
+            <p class="muted">Покупатель оставляет запрос цены или бронирует контакт, а продавец отвечает в кабинете или напрямую.</p>
+          </article>
+          <article class="card">
+            <div class="step-number">4</div>
+            <h3 style="font-size:var(--text-lg);">Сделка фиксируется</h3>
+            <p class="muted">На следующем этапе можно добавить отзывы, рейтинг, документы, счёт и защищённый сценарий сделки.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="roles">
+      <div class="container split">
+        <div class="card panel-accent">
+          <h2 style="font-size:var(--text-xl); margin-bottom:var(--space-4);">Функции кабинета продавца</h2>
+          <div class="grid roles-grid">
+            <article>
+              <h3 style="font-size:var(--text-lg);">Объявления</h3>
+              <p class="muted">Создание, редактирование, остановка и повторная публикация услуги или товара.</p>
+            </article>
+            <article>
+              <h3 style="font-size:var(--text-lg);">Календарь доступности</h3>
+              <p class="muted">Отметки по свободным датам для техники, людей и партий семян.</p>
+            </article>
+            <article>
+              <h3 style="font-size:var(--text-lg);">Входящие заявки</h3>
+              <p class="muted">Просмотр запросов, быстрый ответ, изменение цены и перевод лида в сделку.</p>
+            </article>
+            <article>
+              <h3 style="font-size:var(--text-lg);">Профиль компании</h3>
+              <p class="muted">Регион работы, документы, фото техники, опыт, отзывы и контактные лица.</p>
+            </article>
+          </div>
+        </div>
+        <div class="card">
+          <h2 style="font-size:var(--text-xl); margin-bottom:var(--space-4);">Функции кабинета покупателя</h2>
+          <div class="grid roles-grid">
+            <article>
+              <h3 style="font-size:var(--text-lg);">Избранное</h3>
+              <p class="muted">Сохранение интересных предложений и быстрый возврат к ним позже.</p>
+            </article>
+            <article>
+              <h3 style="font-size:var(--text-lg);">Запросы</h3>
+              <p class="muted">Создание запросов на услуги, если подходящего объявления ещё нет в каталоге.</p>
+            </article>
+            <article>
+              <h3 style="font-size:var(--text-lg);">Сравнение</h3>
+              <p class="muted">Сравнение исполнителей по цене, региону, доступности и условиям работы.</p>
+            </article>
+            <article>
+              <h3 style="font-size:var(--text-lg);">История откликов</h3>
+              <p class="muted">Контроль всех поданных заявок и статусов ответов от поставщиков.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publish">
+      <div class="container split">
+        <div class="card">
+          <h2 style="font-size:var(--text-xl); margin-bottom:var(--space-4);">Разместить объявление</h2>
+          <form class="grid forms-grid">
+            <div class="field">
+              <label for="title">Название услуги</label>
+              <input id="title" type="text" placeholder="Например: аренда картофелесажалки" />
+            </div>
+            <div class="field">
+              <label for="type">Категория</label>
+              <select id="type">
+                <option>Техника</option>
+                <option>Персонал</option>
+                <option>Полевые работы</option>
+                <option>Семенной картофель</option>
+                <option>Логистика</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="price">Цена</label>
+              <input id="price" type="text" placeholder="Например: 600 BYN / смена" />
+            </div>
+            <div class="field">
+              <label for="area">Регион работы</label>
+              <input id="area" type="text" placeholder="Гомельская область" />
+            </div>
+            <div class="field full">
+              <label for="desc">Описание и условия</label>
+              <textarea id="desc" placeholder="Укажите характеристики, объёмы, график, что входит в цену, минимальный заказ"></textarea>
+            </div>
+            <div class="field">
+              <label for="contact-name">Контактное лицо</label>
+              <input id="contact-name" type="text" placeholder="Имя или компания" />
+            </div>
+            <div class="field">
+              <label for="contact-phone">Телефон / Telegram</label>
+              <input id="contact-phone" type="text" placeholder="+375 ..." />
+            </div>
+            <div class="full">
+              <button class="btn btn-primary" type="button">Отправить на модерацию</button>
+            </div>
+          </form>
+        </div>
+        <aside class="card panel-accent">
+          <h2 style="font-size:var(--text-xl); margin-bottom:var(--space-4);">Поля, которые полезно добавить по категориям</h2>
+          <ul class="feature-list">
+            <li>Для семян: сорт, репродукция, калибр, фасовка, документы</li>
+            <li>Для техники: модель, производительность, экипаж, цена за смену</li>
+            <li>Для персонала: количество человек, навыки, график, выезд</li>
+            <li>Для логистики: тип транспорта, тоннаж, маршрут, сроки</li>
+            <li>Для склада: температура хранения, сортировка, фасовка, минимальная партия</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="mvp">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 style="font-size:var(--text-xl);">План MVP на запуск</h2>
+            <p>Чтобы не усложнять разработку, сначала стоит проверить спрос на каталог и заявки, а уже потом внедрять рейтинги, оплату и защищённые сделки.</p>
+          </div>
+        </div>
+        <div class="grid trust-grid">
+          <article class="card">
+            <h3 style="font-size:var(--text-lg);">Что должно быть сразу</h3>
+            <ul class="feature-list">
+              <li>Главная страница и каталог</li>
+              <li>6 тематических категорий</li>
+              <li>Фильтр по региону и типу услуги</li>
+              <li>Форма размещения объявления</li>
+              <li>Форма запроса цены</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 style="font-size:var(--text-lg);">Что добавить во 2-й очереди</h3>
+            <ul class="feature-list">
+              <li>Регистрация и авторизация</li>
+              <li>Личный кабинет покупателя и продавца</li>
+              <li>Модерация объявлений</li>
+              <li>Отзывы и рейтинг поставщиков</li>
+              <li>Уведомления о новых заявках</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 style="font-size:var(--text-lg);">Что оставить на будущее</h3>
+            <ul class="feature-list">
+              <li>Онлайн-оплата и безопасная сделка</li>
+              <li>Договоры и счета внутри системы</li>
+              <li>Интеграция с логистикой</li>
+              <li>Аналитика спроса по регионам</li>
+              <li>Продвижение платных объявлений</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container cta">
+        <div class="section-head" style="margin-bottom:var(--space-5);">
+          <div>
+            <h2 style="font-size:var(--text-xl);">Зачем такой формат лучше обычного сайта-визитки</h2>
+            <p>Сайт-визитка продаёт только ваши собственные услуги, а маркетплейс создаёт отраслевую экосистему, в которой растёт количество объявлений, заявок и повторных обращений.</p>
+          </div>
+        </div>
+        <div class="grid trust-grid">
+          <article>
+            <h3 style="font-size:var(--text-lg);">Для покупателя</h3>
+            <p class="muted">Можно сравнить предложения, найти исполнителя по региону и быстро закрыть конкретную операционную задачу.</p>
+          </article>
+          <article>
+            <h3 style="font-size:var(--text-lg);">Для продавца</h3>
+            <p class="muted">Есть постоянный канал входящих заявок без необходимости создавать собственный сложный сайт с нуля.</p>
+          </article>
+          <article>
+            <h3 style="font-size:var(--text-lg);">Для платформы</h3>
+            <p class="muted">Появляется масштабируемая модель с подпиской, платными объявлениями или комиссией за лиды.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 style="font-size:var(--text-xl);">Частые вопросы</h2>
+            <p>Этот блок помогает объяснить модель площадки и снизить число однотипных обращений в поддержку.</p>
+          </div>
+        </div>
+        <details>
+          <summary>Можно ли начать без онлайн-оплаты?</summary>
+          <p>Да. Для MVP достаточно формы отклика, телефона, мессенджера и модерации заявок. Это позволит проверить интерес рынка без сложной разработки.</p>
+        </details>
+        <details>
+          <summary>Нужна ли регистрация на старте?</summary>
+          <p>Не обязательно для всех. Можно разрешить просмотр каталога без входа, а публикацию объявлений и работу с заявками оставить для зарегистрированных пользователей.</p>
+        </details>
+        <details>
+          <summary>Как монетизировать платформу?</summary>
+          <p>Через платные размещения, подписку для компаний, выделение объявлений, платные лиды или комиссию за закрытую сделку на более позднем этапе.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container footer-grid grid">
+      <div>
+        <div class="brand" style="margin-bottom:var(--space-3);">
+          <svg class="brand-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <rect x="8" y="8" width="48" height="48" rx="16" stroke="currentColor" stroke-width="3"></rect>
+            <path d="M24 38C24 29 30 22 38.5 22C41.8 22 44.9 23.4 47 25.9C45.5 35.7 38.1 42 29.7 42C26.3 42 24 40.4 24 38Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path>
+          </svg>
+          <span class="brand-name"><strong>PotatoHub</strong><span>Прототип отраслевого маркетплейса</span></span>
+        </div>
+        <p class="muted small">Этот HTML-файл можно использовать как основу для презентации идеи, тестирования структуры и последующей доработки в полноценный веб-сервис.</p>
+      </div>
+      <div>
+        <h3 style="font-size:var(--text-lg); margin-bottom:var(--space-3);">Что делать дальше</h3>
+        <ul class="feature-list">
+          <li>Подключить backend и базу данных</li>
+          <li>Сделать реальные фильтры и поиск</li>
+          <li>Добавить регистрацию и модерацию</li>
+          <li>Собрать первые 20–50 объявлений вручную</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size:var(--text-lg); margin-bottom:var(--space-3);">Контактный блок</h3>
+        <p class="muted small">Телефон: +375 XX XXX-XX-XX</p>
+        <p class="muted small">Email: hello@potatohub.by</p>
+        <p class="muted small">Telegram: @potatohub</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function(){
+      const root = document.documentElement;
+      const toggle = document.querySelector('[data-theme-toggle]');
+      let theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.setAttribute('data-theme', theme);
+      const renderIcon = () => {
+        toggle.innerHTML = theme === 'dark'
+          ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+          : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      };
+      renderIcon();
+      toggle.addEventListener('click', function(){
+        theme = theme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', theme);
+        renderIcon();
+      });
+    })();
+  </script>
+</body>
+</html>
