@@ -1,5 +1,6 @@
 //Начальный экран
 //Смена цветов фона
+/*
 {
 document.getElementById('change_col_body_dark').addEventListener("click", change_col_dark)
 document.getElementById('change_col_body_gray').addEventListener("click", change_col_gray)
@@ -17,3 +18,4 @@ function change_col_white() {
     main.style.backgroundColor= "#d6d9dd";
 }
 }
+*/
