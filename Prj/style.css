@@ -20,11 +20,23 @@
     --white:#fff;
     --lig-gr: #d6d9dd;
     --nav_col: #afc4bb;
-    /*Dark_theme*/
-    --bg: #2a2b2c;
 }
-.dark{
-
+body.dark-theme{
+    --dark: #ffffff;
+    --gray: #292a2c;
+    --green:#50a173; 
+    --white:#000000;
+    --lig-gr: #383a3d;
+    --nav_col: #d1dad6;
+    
+}
+body{
+    font-family: "Montserrat", sans-serif ;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--dark);
+    background-color: var(--lig-gr);
+    transition: 750ms;
 }
 
 *{
@@ -33,16 +45,8 @@
     box-sizing: border-box;
 }
 html {
-    font-family: "Montserrat", sans-serif ;
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--dark);
     scroll-padding: 100px;
     scroll-behavior: smooth;
-}
-body{
-    background-color: var(--lig-gr);
-
 }
 button{
     font-family: "Montserrat", sans-serif ;
@@ -96,6 +100,12 @@ h1.title:hover{
 }
 .btn{
     order: 3;
+    display: flex;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
 }
 .header__list{
     display: inline-flex;
@@ -103,7 +113,6 @@ h1.title:hover{
     gap: 20px;
 }
 .header__list-item{
-    
     display: inline-block;
 }
 .header__list-link{
@@ -147,16 +156,24 @@ h1.title:hover{
     margin-inline: auto;
     z-index: 2;
 }
+
 .btn_c{
     display: flex;
-
 }
+/*.btn img:last-child{
+    display: none;
+}
+.dark .btn img:first-child{
+    display: none;
+}
+.dark .btn img:last-child{
+    display: block;
+}*/
+
 div button:hover{
     scale: 1.4;
     transition: 250ms ease;
 }
-
-
 footer { 
     display: flex;
     justify-content: center;
