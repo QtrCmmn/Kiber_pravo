@@ -1,13 +1,11 @@
 const checkbox = document.getElementById('theme-checkbox');
 const root = document.documentElement;
-
 // Проверка сохраненной темы при загрузке страницы
 const currentTheme = localStorage.getItem('theme');
 if (currentTheme === 'dark') {
     root.setAttribute('data-theme', 'dark');
     checkbox.checked = true;
 }
-
 // Изменение темы при клике
 checkbox.addEventListener('change', () => {
     if (checkbox.checked) {
