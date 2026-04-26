@@ -13,12 +13,20 @@
         <header class="header", id="head">
             <div class="header__container">
                 <nav class="header__nav">
-                    <div class="btn">
-                        <button id="theme-toggle">
-                        <img src="/Prj/Picture/sunny_27dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg">
-                        <img src="/Prj/Picture/dark_mode_27dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg">
-                        </button>
-                    </div>
+                    <label class="theme-toggle" aria-label="Переключить тему">
+                            <input type="checkbox" id="theme-checkbox">
+                            <div class="toggle-decor"></div>
+                            <div class="slider-knob">
+                                <!-- Иконка солнца -->
+                                <svg class="icon icon-sun" viewBox="0 0 24 24">
+                <path d="M12 4.5V2m0 20v-2.5M2 12h2.5m15 0H22m-4.95-7.05l1.768-1.768M5.182 18.818l1.768-1.768m10.606 0l1.768 1.768M5.182 5.182l1.768 1.768M12 8a4 4 0 100 8 4 4 0 000-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                </svg>
+                                <!-- Иконка луны -->
+                                <svg class="icon icon-moon" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                        </label>
                     <h1 class="title">КиберПраво:твой щит в сети</h1>
                     <ul class="header__list">
                         <li class="header__list-item">

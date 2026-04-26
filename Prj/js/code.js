@@ -1,12 +1,20 @@
-const btn = document.getElementById('theme-toggle');
-const body = document.body;
+const checkbox = document.getElementById('theme-checkbox');
+const root = document.documentElement;
 
-// Загрузка сохранённой темы
-if (localStorage.getItem('theme') === 'dark') {
-    body.classList.add('dark-theme');
+// Проверка сохраненной темы при загрузке страницы
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+    root.setAttribute('data-theme', 'dark');
+    checkbox.checked = true;
 }
 
-btn.addEventListener('click', () => {
-    const isDark = body.classList.toggle('dark-theme');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+// Изменение темы при клике
+checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+        root.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        root.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }
 });
