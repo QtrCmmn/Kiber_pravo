@@ -20,6 +20,9 @@
     --white:#fff;
     --lig-gr: #d6d9dd;
     --nav_col: #afc4bb;
+    --s1:4px; --s2:8px; --s3:12px; --s4:16px;
+    --s6:24px; --s8:32px; --s12:48px; --s16:64px; --s24:96px;
+    --wl:400; --wm:600; --wb:800; --wex:900;
 }
 [data-theme="dark"]{
     --dark: #ffffff;
@@ -103,8 +106,8 @@
 
 body{
     font-family: "Montserrat", sans-serif ;
-    font-size: 16px;
-    font-weight: 400;
+    font-size: var(--s4);
+    font-weight: var(--wl);
     color: var(--dark);
     background-color: var(--lig-gr);
     transition: 750ms;
@@ -227,11 +230,14 @@ h1.title:hover{
     margin-inline: auto;
     z-index: 2;
 }
-
-.btn_c{
-    display: flex;
-
+.hero_text{
+    font-size: var(--s12);
+    font-weight: 800;
 }
+.hero_text_sub{
+    font-size: var(s);
+}
+
 footer { 
     display: flex;
     justify-content: center;
