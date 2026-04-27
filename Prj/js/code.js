@@ -1,21 +1,46 @@
-//Начальный экран
-//Смена цветов фона
-/*
-{
-document.getElementById('change_col_body_dark').addEventListener("click", change_col_dark)
-document.getElementById('change_col_body_gray').addEventListener("click", change_col_gray)
-document.getElementById('change_col_body_white').addEventListener("click", change_col_white)
-function change_col_dark() {
-    var main = document.getElementById('body');
-    main.style.backgroundColor= "#292b29";
+const checkbox = document.getElementById('theme-checkbox');
+const root = document.documentElement;
+// Проверка сохраненной темы при загрузке страницы
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+    root.setAttribute('data-theme', 'dark');
+    checkbox.checked = true;
 }
-function change_col_gray() {
-    var main = document.getElementById('body');
-    main.style.backgroundColor= "#626770";
+// Изменение темы при клике
+checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+        root.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        root.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+const burger = document.getElementById('burger');
+const navList = document.querySelector('.header__list');
+const overlay = document.getElementById('menuOverlay');
+
+burger.addEventListener('click', toggleMenu);
+overlay.addEventListener('click', closeMenu);
+
+// Закрыть при клике на пункт меню
+navList.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+});
+
+function toggleMenu() {
+    const isOpen = navList.classList.toggle('open');
+    burger.classList.toggle('active');
+    overlay.classList.toggle('open');
+    burger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : ''; // блок скролла
 }
-function change_col_white() {
-    var main = document.getElementById('body');
-    main.style.backgroundColor= "#d6d9dd";
+
+function closeMenu() {
+    navList.classList.remove('open');
+    burger.classList.remove('active');
+    overlay.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
 }
-}
-*/
