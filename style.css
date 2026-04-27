@@ -6,8 +6,10 @@
     --white:#fff;
     --lig-gr: #d6d9dd;
     --nav_col: #afc4bb;
+
     --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:18px;
-    --s6:24px; --s8:32px; --s12:48px; --s16:64px; --s24:96px;
+    --s6:24px; --s8:36px; --s12:48px; --s16:64px; --s24:96px;
+
     --wl:400; --wm:600; --wb:800; --wex:900;
 }
 [data-theme="dark"]{
@@ -129,12 +131,6 @@ a{
     font-weight: var(--wb);
     transition:700ms 150ms;
 }
-.title:hover{
-    color: var(--green);
-    scale: 1.1;
-}
-
-
 .header{
     /*margin: 0px 3vw;*/
     padding: 20px 4vw;
@@ -175,24 +171,16 @@ a{
     display: inline-block;
     transition:400ms 100ms linear;
     }
-.header__list-link:hover{
-    scale: 1.1; color: var(--white);
-}
-.header__list-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 2px;
-    background: var(--dark);
-    transition: 400ms linear;
-}
-.header__list-link:hover::after {
-    width: 100%;
-}
 
 .hero_main{
+    padding: 3vw 0;
+    max-width: 90vw;
+    display: flex;
+    justify-content:space-between;
+    margin-inline: auto;
+    z-index: 2;
+}
+.road_map{
     padding: 3vw 0;
     max-width: 90vw;
     display: flex;
@@ -255,8 +243,17 @@ footer {
 }
 
 @media (max-width: 1320px) {
+:root{
+    --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:14px;
+    --s6:24px; --s8:32px; --s12:40px; --s16:64px; --s24:96px;
 }
-@media (max-width: 768px) {
+
+}
+@media (max-width: 1070px) {
+    :root{
+    --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:14px;
+    --s6:24px; --s8:28px; --s12:36px; --s16:64px; --s24:96px;
+    }
     .burger {
         display: flex;
         order: 3;
@@ -297,8 +294,28 @@ footer {
     
 
 }
-@media (hover: none) {
-    button:active {
-    opacity: 0.7; 
-    }
+
+@media (hover: hover) {
+
+    .header__list-link:hover{
+    scale: 1.1; color: var(--white);
+}
+.header__list-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background: var(--dark);
+    transition: 400ms linear;
+}
+.header__list-link:hover::after {
+    width: 100%;
+}
+.title:hover{
+    color: var(--green);
+    scale: 1.1;
+}
+
 }
