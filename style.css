@@ -6,6 +6,7 @@
     --white:#fff;
     --lig-gr: #d6d9dd;
     --nav_col: #afc4bb;
+    --road_mp:#2e7a46;
 
     --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:18px;
     --s6:24px; --s8:36px; --s12:48px; --s16:64px; --s24:96px;
@@ -244,11 +245,8 @@ footer {
     z-index: 2;
     
 }
-[class^="circle_"]{
-    background-color: #FF3D00;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+[class^="road_map_"]{
+    transition: 750ms;
 }
 
 #loader_body{
@@ -390,4 +388,333 @@ footer {
 }
 @media (max-width: 420px) {
     
+}
+/* ================================================
+   ROADMAP — вертикальный таймлайн
+   ================================================ */
+
+/* Переопределяем старый .road_map (был display:grid) */
+.road_map {
+    padding: clamp(32px, 5vw, 64px) 0;
+    max-width: 90vw;
+    display: block;
+    gap: unset;
+    margin-inline: auto;
+}
+
+.road_map__header {
+    margin-bottom: clamp(24px, 4vw, 44px);
+    max-width: 680px;
+}
+
+.road_map__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(80, 161, 115, 0.15);
+    color: var(--green);
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.road_map__title {
+    font-size: var(--s8);
+    font-weight: var(--wb);
+    color: var(--dark);
+    line-height: 1.15;
+    margin-bottom: 10px;
+}
+
+.road_map__desc {
+    font-size: var(--s5);
+    color: var(--dark);
+    line-height: 1.65;
+    max-width: 62ch;
+}
+
+/* --- Список этапов --- */
+.road_map__list {
+    position: relative;
+    display: grid;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Вертикальная линия */
+.road_map__list::before {
+    content: "";
+    position: absolute;
+    left: 23px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+        to bottom,
+        rgba(80, 161, 115, 0.1),
+        rgba(80, 161, 115, 0.4) 12%,
+        rgba(80, 161, 115, 0.4) 88%,
+        rgba(80, 161, 115, 0.1)
+    );
+    border-radius: 2px;
+}
+
+/* Строка этапа */
+.road_map__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+/* --- Переопределяем глобальный [class^="circle_"] внутри roadmap --- */
+.road_map .road_map__point {
+    position: relative;
+    z-index: 1;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--lig-gr);
+    border: 2.5px solid var(--green);
+    box-shadow: 0 0 0 7px var(--lig-gr);
+    flex-shrink: 0;
+    /* Сброс цвета от глобального правила */
+    background-color: var(--lig-gr);
+}
+
+.road_map .road_map__point::after {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border-radius: 50%;
+    background: var(--green);
+}
+
+/* --- Карточка --- */
+.road_map__card {
+    padding: 20px 24px;
+    background: var(--white);
+    border: 1px solid rgba(80, 161, 115, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    transition:
+        transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 280ms cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 280ms;
+}
+
+.road_map__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.road_map__phase,
+.road_map__date {
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.road_map__phase {
+    background: var(--green);
+    color: #fff;
+}
+
+.road_map__date {
+    background: rgba(98, 103, 112, 0.12);
+    color: var(--gray);
+}
+
+.road_map__item-title {
+    margin: 0 0 8px;
+    font-size: var(--s6);
+    font-weight: var(--wb);
+    color: var(--dark);
+    line-height: 1.25;
+}
+
+.road_map__text {
+    margin: 0 0 14px;
+    color: var(--gray);
+    font-size: var(--s4);
+    color: var(--dark);
+    line-height: 1.7;
+    max-width: 64ch;
+}
+
+.road_map__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.road_map__tag {
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: rgba(80, 161, 115, 0.1);
+    color: var(--green);
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* === Статусы === */
+
+/* Выполнено */
+.road_map__item.is-done .road_map__point {
+    border-color: #2e7a46;
+}
+.road_map__item.is-done .road_map__point::after {
+    background: #2e7a46;
+}
+.road_map__item.is-done .road_map__phase {
+    background: #2e7a46;
+}
+
+/* В процессе */
+.road_map__item.is-active .road_map__point {
+    border-color: #FF3D00;
+    box-shadow: 0 0 0 7px var(--lig-gr);
+    overflow: visible;
+}
+.road_map__item.is-active .road_map__point::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 61, 0, 0.5);
+    animation: ripple-ring 1.6s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+.road_map__item.is-active .road_map__point::after {
+    background: #FF3D00;
+    animation: dot-breathe 1.6s ease-in-out infinite;
+}
+.road_map__item.is-active .road_map__phase {
+    background: #FF3D00;
+}
+.road_map__item.is-active .road_map__card {
+    border-color: rgba(255, 61, 0, 0.22);
+}
+
+@keyframes ripple-ring {
+    0%   { transform: scale(0.85); opacity: 0.8; }
+    70%  { transform: scale(1.55); opacity: 0; }
+    100% { transform: scale(1.55); opacity: 0; }
+}
+
+@keyframes dot-breathe {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(0.75); }
+}
+
+/* Запланировано */
+.road_map__item.is-future .road_map__point {
+    border-color: var(--gray);
+}
+.road_map__item.is-future .road_map__point::after {
+    background: var(--gray);
+    opacity: 0.5;
+}
+.road_map__item.is-future .road_map__phase {
+    background: var(--gray);
+}
+.road_map__item.is-future .road_map__card {
+    opacity: 0.65;
+}
+
+/* === Hover (только на устройствах с мышью) === */
+@media (hover: hover) {
+    .road_map__card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+        border-color: rgba(80, 161, 115, 0.38);
+    }
+    .road_map__item.is-active .road_map__card:hover {
+        border-color: rgba(255, 61, 0, 0.35);
+    }
+    .road_map__item.is-future .road_map__card:hover {
+        opacity: 1;
+    }
+}
+
+/* === Тёмная тема === */
+[data-theme="dark"] .road_map .road_map__point {
+    background: var(--lig-gr);
+    background-color: var(--lig-gr);
+    box-shadow: 0 0 0 7px var(--lig-gr);
+}
+
+[data-theme="dark"] .road_map__card {
+    background: #252729;
+    border-color: rgba(80, 161, 115, 0.18);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+}
+
+[data-theme="dark"] .road_map__date {
+    background: rgba(255, 255, 255, 0.08);
+    color: #9a9b9e;
+}
+
+[data-theme="dark"] .road_map__tag {
+    background: rgba(80, 161, 115, 0.15);
+}
+
+[data-theme="dark"] .road_map__list::before {
+    background: linear-gradient(
+        to bottom,
+        rgba(80, 161, 115, 0.08),
+        rgba(80, 161, 115, 0.28) 12%,
+        rgba(80, 161, 115, 0.28) 88%,
+        rgba(80, 161, 115, 0.08)
+    );
+}
+
+[data-theme="dark"] .road_map__item.is-active .road_map__point {
+    box-shadow: 0 0 0 7px var(--lig-gr);
+}
+
+/* === Мобильные (<= 600px) === */
+@media (max-width: 600px) {
+    .road_map__list::before {
+        left: 19px;
+    }
+    .road_map__item {
+        grid-template-columns: 40px 1fr;
+        gap: 14px;
+    }
+    .road_map .road_map__point {
+        width: 40px;
+        height: 40px;
+        box-shadow: 0 0 0 6px var(--lig-gr);
+    }
+    .road_map .road_map__point::after {
+        inset: 9px;
+    }
+    .road_map__card {
+        padding: 16px 16px;
+        border-radius: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .road_map__card { transition: none; }
+    .road_map__card:hover { transform: none; }
+    .road_map__item.is-active .road_map__point::before { animation: none; }
+    .road_map__item.is-active .road_map__point::after { animation: none; }
 }
