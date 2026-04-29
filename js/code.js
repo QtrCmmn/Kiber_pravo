@@ -1,3 +1,11 @@
+window.onload = function() {
+    let preloader = document.getElementById('loader_body');
+    preloader.classList.add('hide-preloader');
+    setInterval(function() {
+    preloader.classList.add('preloader-hidden');
+    }, 990);
+}
+
 const checkbox = document.getElementById('theme-checkbox');
 const root = document.documentElement;
 // Проверка сохраненной темы при загрузке страницы
