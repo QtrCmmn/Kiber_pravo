@@ -337,10 +337,11 @@ footer {
         position: fixed;
         top: 0;
         right: 0;
-        width: 33vw;
-        height: 85vh;
+        width: 100vw;
+        height: 100vh;
         background: var(--lig-gr);
-        padding: 80px 24px 24px;
+        /*padding: 80px 24px 24px;*/
+        padding: 80px 50px;
         box-shadow: -4px 0 20px rgba(0,0,0,0.12);
         gap: 8px;
         z-index: 10;
