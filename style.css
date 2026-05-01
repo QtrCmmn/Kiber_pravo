@@ -7,7 +7,7 @@
     --lig-gr: #d6d9dd;
     --nav_col: #afc4bb;
     --road_mp:#2e7a46;
-
+    --toggle-bg:#00000000;
     --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:18px;
     --s6:24px; --s8:36px; --s12:48px; --s16:64px; --s24:96px;
 
@@ -321,6 +321,9 @@ footer {
     --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:14px;
     --s6:24px; --s8:28px; --s12:36px; --s16:64px; --s24:96px;
     }
+    .header__list-link{
+        font-size: var(--s6);
+    }
     .burger {
         display: flex;
         order: 3;
@@ -341,7 +344,7 @@ footer {
         height: 100vh;
         background: var(--lig-gr);
         /*padding: 80px 24px 24px;*/
-        padding: 80px 50px;
+        padding: 80px 50px 100px;
         box-shadow: -4px 0 20px rgba(0,0,0,0.12);
         gap: 8px;
         z-index: 10;
@@ -363,6 +366,34 @@ footer {
 
 }
 
+@media (max-width: 420px) {
+    .theme-toggle {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        justify-content: center;
+        background-color: transparent;
+        box-shadow: none;
+    }
+    .slider-knob {
+        width: 44px;
+        height: 44px;
+        left: 0;
+        position: relative;
+        transition: transform 750ms ease-out, background-color 1s ease;
+    }
+    input:checked ~ .slider-knob {
+        transform: translateX(0) rotate(360deg); 
+        background-color: var(--toggle-bg); 
+    }
+    .theme-toggle:active .slider-knob {
+        transform: scale(0.9);
+    }
+    
+    input:checked:active ~ .slider-knob {
+        transform: scale(0.9) rotate(360deg);
+    }
+}
 @media (hover: hover) {
 
     .header__list-link:hover{
@@ -387,14 +418,7 @@ footer {
 }
 
 }
-@media (max-width: 420px) {
-    
-}
-/* ================================================
-   ROADMAP — вертикальный таймлайн
-   ================================================ */
 
-/* Переопределяем старый .road_map (был display:grid) */
 .road_map {
     padding: clamp(32px, 5vw, 64px) 0;
     max-width: 90vw;
