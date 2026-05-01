@@ -160,18 +160,99 @@
             </div>
         </main>
 
-        <footer>
-            <section class="info" id="">
-                <p>Автор проекта: Руденко Арсений Дмитриевич
-                Учащийся ГУО «СШ № 10 г. Жлобина»</p>
-                <p>Aftor</p>
-            </div>
-            <div class="link">
-                <p>&copy; 2026 </p>
-                <a href="mailto:kiberpravo.shield.edu@gmail.com">kiberpravo.shield.edu@gmail.com</a>
-                <p>Если у вас есть свои предложения или нашли ошибку, то сообщите:</p>
-                <a href="https://github.com/QtrCmmn/Kiber_pravo">Репозиторий с исходным кодом</a>
-            </section>
+        <footer class="site-footer">
+  <div class="footer-inner">
+
+    <!-- Бренд -->
+    <div class="footer-brand">
+      <div class="footer-brand__logo">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-label="КиберЩит">
+          <path d="M16 3L4 8v8c0 6.627 5.149 11.843 12 13 6.851-1.157 12-6.373 12-13V8L16 3z" fill="var(--green)" opacity="0.15"/>
+          <path d="M16 3L4 8v8c0 6.627 5.149 11.843 12 13 6.851-1.157 12-6.373 12-13V8L16 3z" stroke="var(--green)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M11 16l3.5 3.5L21 12" stroke="var(--green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="footer-brand__name">КиберЩит</span>
+      </div>
+      <p class="footer-brand__desc">Образовательная платформа по кибербезопасности для детей, подростков и педагогов Беларуси.</p>
+      <span class="footer-badge">🇧🇾 Беларусь · 2026</span>
+    </div>
+
+    <!-- Статус разработки -->
+    <div class="footer-progress">
+      <h5>Статус разработки</h5>
+      <div class="footer-progress__bar-wrap">
+        <div class="footer-progress__bar" data-progress="25"></div>
+      </div>
+      <div class="footer-progress__phases">
+        <div class="footer-phase is-active">
+          <span class="footer-phase__dot"></span>
+          <span class="footer-phase__label">Базовая модель</span>
+        </div>
+        <div class="footer-phase is-future">
+          <span class="footer-phase__dot"></span>
+          <span class="footer-phase__label">Геймификация</span>
+        </div>
+        <div class="footer-phase is-future">
+          <span class="footer-phase__dot"></span>
+          <span class="footer-phase__label">База кейсов</span>
+        </div>
+        <div class="footer-phase is-future">
+          <span class="footer-phase__dot"></span>
+          <span class="footer-phase__label">Интеграция в школы</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Контакты -->
+    <div class="footer-contact">
+      <h5>Контакты</h5>
+
+      <a class="footer-contact__link footer-contact__email"
+         href="mailto:kiberpravo.shield.edu@gmail.com"
+         title="Написать на почту">
+        <span class="footer-contact__link-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </span>
+        <span class="footer-contact__link-body">
+          <span class="footer-contact__link-label">Gmail</span>
+          <span class="footer-contact__link-val">kiberpravo.shield.edu@gmail.com</span>
+        </span>
+        <span class="footer-contact__link-arrow">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </span>
+      </a>
+
+      <a class="footer-contact__link footer-contact__repo"
+         href="#" target="_blank" rel="noopener noreferrer"
+         title="Открыть репозиторий">
+        <span class="footer-contact__link-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </span>
+        <span class="footer-contact__link-body">
+          <span class="footer-contact__link-label">GitHub</span>
+          <span class="footer-contact__link-val">Репозиторий проекта</span>
+        </span>
+        <span class="footer-contact__link-arrow">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Нижняя полоса -->
+  <div class="footer-bottom">
+    <span>© 2026 КиберЩит</span>
+    <div class="footer-bottom__shield">
+      <svg width="12" height="12" viewBox="0 0 32 32" fill="none"><path d="M16 3L4 8v8c0 6.627 5.149 11.843 12 13 6.851-1.157 12-6.373 12-13V8L16 3z" stroke="var(--green)" stroke-width="2.5" stroke-linejoin="round"/><path d="M11 16l3.5 3.5L21 12" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Для безопасного интернета
+    </div>
+  </div>
         </footer>
 
         <script src="js/code.js"></script>
