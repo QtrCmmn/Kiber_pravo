@@ -108,8 +108,11 @@ body{
     box-sizing: border-box;
 }
 html {
-    
     scroll-behavior: smooth;
+    scroll-padding-top: 80.8;
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
 }
 button{
     font-family: "Montserrat", sans-serif ;
@@ -322,7 +325,10 @@ footer {
     --s6:24px; --s8:28px; --s12:36px; --s16:64px; --s24:96px;
     }
     .header__list-link{
-        font-size: var(--s6);
+        font-size: var(--s8);
+    }
+    .header__list-item{
+        padding: 10px 20px;
     }
     .burger {
         display: flex;
@@ -335,7 +341,8 @@ footer {
         order: 1;
     }
     .header__list {
-        display: none;              
+        display: none; 
+        padding: 70px 20px;             
         flex-direction: column;
         position: fixed;
         top: 0;
@@ -343,10 +350,7 @@ footer {
         width: 100vw;
         height: 100vh;
         background: var(--lig-gr);
-        /*padding: 80px 24px 24px;*/
-        padding: 80px 50px 100px;
         box-shadow: -4px 0 20px rgba(0,0,0,0.12);
-        gap: 8px;
         z-index: 10;
     }
 
@@ -368,16 +372,16 @@ footer {
 
 @media (max-width: 420px) {
     .theme-toggle {
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
         padding: 0;
         justify-content: center;
         background-color: transparent;
         box-shadow: none;
     }
     .slider-knob {
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
         left: 0;
         position: relative;
         transition: transform 750ms ease-out, background-color 1s ease;
