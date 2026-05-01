@@ -101,7 +101,6 @@ body{
     background-color: var(--lig-gr);
     transition: 750ms;
 }
-
 *{
     margin: 0;
     padding: 0;
@@ -752,11 +751,11 @@ footer {
 /* =====================================================================
    ТРЕНАЖЁР — секция-обёртка
    ===================================================================== */
-.trainer-section { background: var(--lig-gr); }
+.trainer-section { background: var(--lig-gr); max-width: 90vw;padding: 3vw 0;}
 [data-theme="dark"] .trainer-section { background: var(--lig-gr); }
 
 /* стили самого тренажёра */
-#trainer { padding: clamp(24px,4vw,48px) 24px; max-width: 960px; margin-inline: auto; }
+#trainer { /*padding: clamp(24px,4vw,48px) 24px0;*/ max-width: 90vw; padding: 3vw 0; margin-inline: auto; }
 .tr_head { max-width: 720px; margin-bottom: clamp(20px,4vw,40px); }
 .tr_eyebrow {
   display: inline-flex; align-items: center; margin-bottom: 10px;
