@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Справочник по кибербезопасности — Руденко А.Д. 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===== ПЕРЕМЕННЫЕ ===== */
+:root {
+  --color-bg: #f5f4f0;
+  --color-surface: #ffffff;
+  --color-surface-2: #f9f8f5;
+  --color-border: #d6d2c8;
+  --color-divider: #e2dfd8;
+  --color-text: #1a1814;
+  --color-text-muted: #5c5a54;
+  --color-text-faint: #9c9a94;
+  --color-primary: #003f6b;
+  --color-primary-light: #e8f0f7;
+  --color-accent: #c0392b;
+  --color-accent-light: #fdf0ef;
+  --color-warn: #d4880a;
+  --color-warn-light: #fef7e8;
+  --color-success: #1e6b3c;
+  --color-success-light: #eaf5ef;
+  --color-gold: #b8860b;
+  --font-display: 'Montserrat', sans-serif;
+  --font-body: 'PT Serif', Georgia, serif;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px;
+  --space-12: 48px; --space-16: 64px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== ВОДЯНОЙ ЗНАК ===== */
+.watermark-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.back-link {
+      display: inline-block;
+      margin-top: 30px;
+      background: var(--color-primary);
+      color: #0a3b28;
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .back-link:hover {
+      background: var(--color-primary-light);
+      text-decoration: none;
+    }
+.watermark-bg::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 120px,
+    rgba(0,63,107,0.028) 120px,
+    rgba(0,63,107,0.028) 121px
+  );
+}
+.watermark-text {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(-35deg);
+  font-family: var(--font-display);
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 700;
+  color: rgba(0,63,107,0.06);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+  letter-spacing: 0.08em;
+  text-align: center;
+  line-height: 2.5;
+}
+
+/* ===== ОСНОВНОЙ КОНТЕЙНЕР ===== */
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6);
+}
+
+/* ===== ОБЛОЖКА ===== */
+.cover {
+  background: linear-gradient(160deg, var(--color-primary) 0%, #001d35 100%);
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-16) var(--space-12);
+  margin-bottom: var(--space-12);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cover::before {
+  content: '🔒';
+  position: absolute;
+  top: -20px; right: -20px;
+  font-size: 200px;
+  opacity: 0.04;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-accent), var(--color-gold));
+}
+.cover-eyebrow {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: var(--space-4);
+}
+.cover-title {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 44px);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #fff;
+  margin-bottom: var(--space-3);
+}
+.cover-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: var(--space-8);
+  max-width: 560px;
+}
+.cover-meta {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.cover-meta-item {
+  display: flex;
+  flex-direction: column;
+}
+.cover-meta-label {
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 2px;
+}
+.cover-meta-value {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+.cover-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 99px;
+  padding: var(--space-1) var(--space-3);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-6);
+  width: fit-content;
+}
+.cover-wm {
+  position: absolute;
+  bottom: var(--space-6);
+  right: var(--space-8);
+  font-family: var(--font-display);
+  font-size: 10px;
+  color: rgba(255,255,255,0.18);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ===== ОГЛАВЛЕНИЕ ===== */
+.toc-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  margin-bottom: var(--space-10);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+.toc-title {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--color-primary-light);
+}
+.toc-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2) var(--space-8);
+  list-style: none;
+}
+.toc-list li a {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.18s;
+  padding: 3px 0;
+}
+.toc-list li a:hover { color: var(--color-primary); }
+.toc-num {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-primary);
+  min-width: 20px;
+}
+.toc-dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--color-border);
+  margin: 0 var(--space-2);
+  min-width: 20px;
+  position: relative;
+  top: -3px;
+}
+
+/* ===== СЕКЦИИ ===== */
+.section {
+  margin-bottom: var(--space-10);
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 2px solid var(--color-primary);
+}
+.section-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  background: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 800;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+/* ===== КАРТОЧКИ УГРОЗ ===== */
+.threat-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  margin-bottom: var(--space-5);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s;
+}
+.threat-card:hover { box-shadow: var(--shadow-md); }
+.threat-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-primary);
+  color: white;
+}
+.threat-icon {
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.threat-id {
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  display: block;
+}
+.threat-name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+.threat-body {
+  padding: var(--space-5);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+.threat-col-full { grid-column: 1 / -1; }
+.threat-field-label {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  margin-bottom: 4px;
+}
+.threat-field-value {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-text);
+}
+
+/* Цветные заголовки карточек по типу */
+.threat-card.type-phone .threat-card-header { background: linear-gradient(90deg,#003f6b,#005b9f); }
+.threat-card.type-net .threat-card-header { background: linear-gradient(90deg,#1a3a5c,#2d6a9f); }
+.threat-card.type-social .threat-card-header { background: linear-gradient(90deg,#4a235a,#7d3c98); }
+.threat-card.type-finance .threat-card-header { background: linear-gradient(90deg,#7b341e,#c0392b); }
+.threat-card.type-service .threat-card-header { background: linear-gradient(90deg,#1a4a2e,#239b56); }
+.threat-card.type-tech .threat-card-header { background: linear-gradient(90deg,#2c3e50,#566573); }
+.threat-card.type-work .threat-card-header { background: linear-gradient(90deg,#5d4037,#a1887f); }
+
+/* ===== АЛЕРТ-БЛОКИ ===== */
+.alert {
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-4);
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+.alert-danger { background: var(--color-accent-light); border-left: 3px solid var(--color-accent); }
+.alert-warn { background: var(--color-warn-light); border-left: 3px solid var(--color-warn); }
+.alert-success { background: var(--color-success-light); border-left: 3px solid var(--color-success); }
+.alert-info { background: var(--color-primary-light); border-left: 3px solid var(--color-primary); }
+.alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.alert-text { font-size: 14px; line-height: 1.55; color: var(--color-text); }
+.alert-text strong { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; display: block; margin-bottom: 2px; }
+
+/* ===== ТЕГИ/БЕЙДЖИ ===== */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.tag-danger { background: #fde8e6; color: var(--color-accent); }
+.tag-info { background: var(--color-primary-light); color: var(--color-primary); }
+.tag-warn { background: var(--color-warn-light); color: var(--color-warn); }
+.tag-success { background: var(--color-success-light); color: var(--color-success); }
+.tag-neutral { background: #f0ede8; color: var(--color-text-muted); }
+
+/* ===== ТАБЛИЦЫ ===== */
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: var(--color-surface);
+}
+thead tr { background: var(--color-primary); color: #fff; }
+thead th {
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: left;
+}
+tbody tr:nth-child(even) { background: var(--color-surface-2); }
+tbody tr:hover { background: var(--color-primary-light); }
+tbody td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-divider);
+  vertical-align: top;
+  line-height: 1.5;
+}
+tbody tr:last-child td { border-bottom: none; }
+
+/* ===== ПРАВИЛА / ЧЕКЛИСТЫ ===== */
+.rules-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.rules-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.rule-num {
+  min-width: 26px; height: 26px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.rule-text { color: var(--color-text); }
+.rule-text strong { color: var(--color-primary); font-family: var(--font-display); font-size: 13px; }
+
+/* ===== КАРТОЧКА АЛГОРИТМА ===== */
+.algorithm-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  margin-bottom: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+.algorithm-title {
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.algorithm-steps {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.algo-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+.algo-step-num {
+  min-width: 28px; height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 12px; font-weight: 800;
+  flex-shrink: 0;
+}
+.algo-step-body { font-size: 14px; line-height: 1.55; }
+.algo-step-body strong { font-family: var(--font-display); color: var(--color-primary); font-size: 13px; }
+
+/* ===== РАЗДЕЛ ЗАКОНОВ ===== */
+.law-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+.law-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+.law-article {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: var(--space-1);
+}
+.law-name {
+  font-family: var(--font-display);
+  font-size: 12px; font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.law-penalty {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+.law-age {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-divider);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+/* ===== ПАМЯТКА-БЛОК ===== */
+.memo-box {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-primary);
+  padding: var(--space-6);
+  margin-bottom: var(--space-5);
+  position: relative;
+}
+.memo-box-title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: var(--color-surface);
+  position: absolute;
+  top: -10px;
+  left: var(--space-5);
+  padding: 0 var(--space-2);
+}
+.memo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3) var(--space-6);
+}
+.memo-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.memo-check { color: var(--color-success); font-size: 15px; flex-shrink: 0; }
+.memo-cross { color: var(--color-accent); font-size: 15px; flex-shrink: 0; }
+
+/* ===== КОНТАКТЫ ===== */
+.contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+.contact-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  padding: var(--space-4);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.contact-icon { font-size: 28px; margin-bottom: var(--space-2); }
+.contact-name {
+  font-family: var(--font-display);
+  font-size: 12px; font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-1);
+}
+.contact-number {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 800;
+  color: var(--color-primary);
+}
+.contact-sub {
+  font-size: 12px;
+  color: var(--color-text-faint);
+  margin-top: 2px;
+}
+
+/* ===== ФУТЕР ===== */
+.footer {
+  text-align: center;
+  padding: var(--space-10) var(--space-6);
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-12);
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+.footer-copy {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+.footer-wm {
+  display: inline-block;
+  margin-top: var(--space-4);
+  padding: var(--space-2) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: 99px;
+  font-family: var(--font-display);
+  font-size: 11px; font-weight: 600;
+  color: var(--color-text-faint);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ===== УТИЛИТЫ ===== */
+.prose { font-size: 15px; line-height: 1.75; color: var(--color-text); margin-bottom: var(--space-5); max-width: 70ch; }
+.prose strong { font-weight: 700; color: var(--color-primary); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
+.subheading {
+  font-family: var(--font-display);
+  font-size: 16px; font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+  margin-top: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.subheading::before {
+  content: '';
+  display: inline-block;
+  width: 4px; height: 18px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ===== ПЕЧАТЬ ===== */
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .page-wrapper { max-width: 100%; padding: 0; }
+  .cover { border-radius: 0; page-break-after: always; }
+  .section { page-break-inside: avoid; }
+  .threat-card { page-break-inside: avoid; }
+  .watermark-text { color: rgba(0,63,107,0.04) !important; }
+  .toc-card { page-break-after: always; }
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 640px) {
+  .page-wrapper { padding: var(--space-4); }
+  .cover { padding: var(--space-8) var(--space-5); min-height: auto; }
+  .toc-list { grid-template-columns: 1fr; }
+  .threat-body { grid-template-columns: 1fr; }
+  .threat-col-full { grid-column: 1; }
+  .memo-grid { grid-template-columns: 1fr; }
+  .law-grid { grid-template-columns: 1fr; }
+  .contacts-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ВОДЯНОЙ ЗНАК -->
+<div class="watermark-bg"></div>
+<div class="watermark-text">
+  © Руденко А.Д. 2026 &nbsp;&nbsp; © Руденко А.Д. 2026 &nbsp;&nbsp; © Руденко А.Д. 2026<br>
+  КИБЕРБЕЗОПАСНОСТЬ РБ &nbsp;&nbsp; КИБЕРБЕЗОПАСНОСТЬ РБ &nbsp;&nbsp; КИБЕРБЕЗОПАСНОСТЬ РБ<br>
+  © Руденко А.Д. 2026 &nbsp;&nbsp; © Руденко А.Д. 2026 &nbsp;&nbsp; © Руденко А.Д. 2026<br>
+  КИБЕРБЕЗОПАСНОСТЬ РБ &nbsp;&nbsp; КИБЕРБЕЗОПАСНОСТЬ РБ &nbsp;&nbsp; КИБЕРБЕЗОПАСНОСТЬ РБ<br>
+  © Руденко А.Д. 2026 &nbsp;&nbsp; © Руденко А.Д. 2026 &nbsp;&nbsp; © Руденко А.Д. 2026
+</div>
+
+<div class="page-wrapper">
+
+  <!-- ===== ОБЛОЖКА ===== -->
+  <div class="cover">
+    <div class="cover-eyebrow">Республика Беларусь · Образовательное издание</div>
+    <div class="cover-badge">📋 Справочно-методическое пособие</div>
+    <div class="cover-title">Справочник по кибербезопасности</div>
+    <div class="cover-subtitle">Актуальные киберугрозы и схемы мошенничества<br>на территории Республики Беларусь: анализ, профилактика, защита</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Автор</span>
+        <span class="cover-meta-value">Руденко А.Д.</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Год издания</span>
+        <span class="cover-meta-value">2026</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Адресат</span>
+        <span class="cover-meta-value">Педагоги, родители, учащиеся</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Версия</span>
+        <span class="cover-meta-value">Части I–II · Полная редакция</span>
+      </div>
+      <a class="back-link" href="../index.html">← На главную</a>
+    </div>
+    <div class="cover-wm">© Руденко А.Д. 2026 · Все права защищены</div>
+  </div>
+
+  <!-- ===== ОГЛАВЛЕНИЕ ===== -->
+  <div class="toc-card" id="toc">
+    <div class="toc-title">📑 Содержание</div>
+    <ul class="toc-list">
+      <li><a href="#intro"><span class="toc-num">01</span>Введение: масштаб угроз в РБ<span class="toc-dots"></span></a></li>
+      <li><a href="#phone"><span class="toc-num">02</span>Телефонные и мессенджер-схемы<span class="toc-dots"></span></a></li>
+      <li><a href="#internet"><span class="toc-num">03</span>Интернет, фишинг, соцсети<span class="toc-dots"></span></a></li>
+      <li><a href="#finance"><span class="toc-num">04</span>Финансовые и инвестиционные схемы<span class="toc-dots"></span></a></li>
+      <li><a href="#services"><span class="toc-num">05</span>Социальная инженерия / услуги<span class="toc-dots"></span></a></li>
+      <li><a href="#other"><span class="toc-num">06</span>Занятость, шантаж, вымогательство<span class="toc-dots"></span></a></li>
+      <li><a href="#lessons"><span class="toc-num">07</span>Сценарии классных часов<span class="toc-dots"></span></a></li>
+      <li><a href="#parents"><span class="toc-num">08</span>Работа с родителями<span class="toc-dots"></span></a></li>
+      <li><a href="#law"><span class="toc-num">09</span>Юридическая ответственность<span class="toc-dots"></span></a></li>
+      <li><a href="#contacts"><span class="toc-num">10</span>Куда обращаться: горячие линии<span class="toc-dots"></span></a></li>
+    </ul>
+  </div>
+
+  <!-- ===== РАЗДЕЛ 1: ВВЕДЕНИЕ ===== -->
+  <div class="section" id="intro">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2 class="section-title">Введение: масштаб киберугроз в Республике Беларусь</h2>
+    </div>
+    <p class="prose">
+      Кибермошенничество занимает одно из ключевых мест в структуре преступности в Беларуси. По данным МВД и Следственного комитета, <strong>более 35% всех хищений</strong> совершается с применением телефона, интернета и методов социальной инженерии. За последние годы зафиксирован <strong>рост на 42%</strong>, а каждый пятый соучастник подобных преступлений — несовершеннолетний.
+    </p>
+    <div class="table-wrap mb-6">
+      <table>
+        <thead>
+          <tr>
+            <th>Категория угроз</th>
+            <th>Доля от всех киберпреступлений</th>
+            <th>Основные каналы</th>
+            <th>Группы риска</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Телефонное мошенничество (вишинг)</td><td>~28%</td><td>Мобильный / Viber / WhatsApp</td><td>Пожилые, пенсионеры</td></tr>
+          <tr><td>Фишинг (поддельные сайты)</td><td>~22%</td><td>SMS, e-mail, соцсети</td><td>Все возрасты</td></tr>
+          <tr><td>Фейковые интернет-магазины</td><td>~18%</td><td>Instagram, Telegram, OLX</td><td>Молодёжь, 18–35 лет</td></tr>
+          <tr><td>Псевдоинвестиции / лжеброкеры</td><td>~14%</td><td>Реклама, соцсети, звонки</td><td>25–55 лет</td></tr>
+          <tr><td>Дропперство (соучастие)</td><td>~8%</td><td>Telegram, объявления</td><td>14–22 года</td></tr>
+          <tr><td>Шантаж и вымогательство</td><td>~6%</td><td>Instagram, Telegram</td><td>Подростки, молодёжь</td></tr>
+          <tr><td>Прочие схемы</td><td>~4%</td><td>Разные</td><td>Разные</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-danger">
+      <span class="alert-icon">🔴</span>
+      <div class="alert-text"><strong>Ключевой факт</strong>За 2025 год выявлено порядка 14 700 мошеннических интернет-ресурсов. Среднестатистическая жертва телефонного мошенничества теряет от 500 до 15 000 белорусских рублей.</div>
+    </div>
+    <div class="alert alert-warn">
+      <span class="alert-icon">⚠️</span>
+      <div class="alert-text"><strong>Для педагогов и родителей</strong>Уголовная ответственность за мошенничество (дропперство) наступает с 14 лет. «Не знал» — не является основанием для освобождения от ответственности.</div>
+    </div>
+  </div>
+
+  <!-- ===== РАЗДЕЛ 2: ТЕЛЕФОН ===== -->
+  <div class="section" id="phone">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2 class="section-title">Телефонные и мессенджер-схемы</h2>
+    </div>
+
+    <!-- 2.1 -->
+    <div class="threat-card type-phone">
+      <div class="threat-card-header">
+        <div class="threat-icon">🏦</div>
+        <div>
+          <span class="threat-id">Схема 2.1 · Телефон / Вишинг</span>
+          <div class="threat-name">«Служба безопасности банка / правоохранительные органы»</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div>
+          <div class="threat-field-label">Легенда</div>
+          <div class="threat-field-value">«По вашей карте проходят подозрительные операции. Нужно срочно защитить деньги.»</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Цель мошенника</div>
+          <div class="threat-field-value">Получить коды из SMS, логины/пароли, перевод на «безопасный счёт», оформление кредита.</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Каналы</div>
+          <div class="tag-list">
+            <span class="tag tag-info">📞 Мобильный звонок</span>
+            <span class="tag tag-info">💬 Viber / WhatsApp</span>
+            <span class="tag tag-danger">☎️ Подмена номера банка</span>
+          </div>
+        </div>
+        <div>
+          <div class="threat-field-label">Психологические крючки</div>
+          <div class="threat-field-value">Страх потери денег · Срочность · Авторитет банка или МВД · Псевдопомощь</div>
+        </div>
+        <div class="threat-col-full">
+          <div class="threat-field-label">Красные флаги (признаки мошенничества)</div>
+          <div class="tag-list">
+            <span class="tag tag-danger">Просят код из SMS</span>
+            <span class="tag tag-danger">Называют CVV/PIN</span>
+            <span class="tag tag-danger">Просят установить AnyDesk / TeamViewer</span>
+            <span class="tag tag-danger">«Никому не говорите»</span>
+            <span class="tag tag-danger">Предлагают «безопасный счёт»</span>
+          </div>
+        </div>
+        <div class="threat-col-full">
+          <div class="alert alert-success" style="margin-top:8px;margin-bottom:0">
+            <span class="alert-icon">✅</span>
+            <div class="alert-text"><strong>Правильные действия</strong>Положить трубку → самостоятельно набрать официальный номер банка (на карте) → никаких кодов по телефону не называть.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.2 -->
+    <div class="threat-card type-phone">
+      <div class="threat-card-header">
+        <div class="threat-icon">👮</div>
+        <div>
+          <span class="threat-id">Схема 2.2 · Телефон / Многоступенчатый сценарий</span>
+          <div class="threat-name">«Банк + МВД/КГБ/прокуратура» — "секретная операция"</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div>
+          <div class="threat-field-label">Легенда</div>
+          <div class="threat-field-value">Первый звонок — «банк», второй — «оперативник»: «нужна ваша помощь в поимке преступников».</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Цель</div>
+          <div class="threat-field-value">Заставить взять кредит, перевести деньги на «спецсчёт», передать наличные курьеру.</div>
+        </div>
+        <div class="threat-col-full">
+          <div class="alert alert-danger" style="margin-bottom:0">
+            <span class="alert-icon">🚫</span>
+            <div class="alert-text"><strong>Главное правило</strong>Настоящие правоохранители НИКОГДА не просят граждан брать кредиты и переводить деньги «для оперативных мероприятий». Секретность — главный признак мошенничества.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.3 -->
+    <div class="threat-card type-phone">
+      <div class="threat-card-header">
+        <div class="threat-icon">😭</div>
+        <div>
+          <span class="threat-id">Схема 2.3 · Телефон</span>
+          <div class="threat-name">«Алло, мама!» / «Родственник в беде»</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div>
+          <div class="threat-field-label">Легенда</div>
+          <div class="threat-field-value">Плачущий голос: «Мама, я попал в аварию / задержан / в больнице. Срочно нужны деньги.»</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Схема передачи денег</div>
+          <div class="threat-field-value">Перевод на карту · Наличные курьеру · «Закладка» по инструкции</div>
+        </div>
+        <div class="threat-col-full">
+          <div class="alert alert-success" style="margin-bottom:0">
+            <span class="alert-icon">✅</span>
+            <div class="alert-text"><strong>Алгоритм</strong>Сбросить звонок → перезвонить родственнику по его настоящему номеру → при сомнениях звонить 102. Никогда не передавать деньги без официальных документов.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.4 -->
+    <div class="threat-card type-phone">
+      <div class="threat-card-header">
+        <div class="threat-icon">📱</div>
+        <div>
+          <span class="threat-id">Схема 2.4 · Телефон / Мессенджер</span>
+          <div class="threat-name">Псевдосотрудники мобильного оператора (A1, МТС, life:))</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div>
+          <div class="threat-field-label">Легенда</div>
+          <div class="threat-field-value">«Проблема с вашим номером / бонусы истекают / нужно подтвердить данные / установить приложение.»</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Цель</div>
+          <div class="threat-field-value">Кража SMS-кодов, SIM-своп, доступ к личному кабинету банка, установка вредоносного APK.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== РАЗДЕЛ 3: ИНТЕРНЕТ ===== -->
+  <div class="section" id="internet">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2 class="section-title">Интернет, фишинг и социальные сети</h2>
+    </div>
+
+    <div class="threat-card type-net">
+      <div class="threat-card-header">
+        <div class="threat-icon">🎣</div>
+        <div>
+          <span class="threat-id">Схема 3.1 · Фишинг</span>
+          <div class="threat-name">Поддельные сайты банков, маркетплейсов, «Белпочты», госуслуг</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div>
+          <div class="threat-field-label">Типичный сценарий</div>
+          <div class="threat-field-value">SMS/письмо: «Доплатите 3 рубля за доставку». Ссылка ведёт на фальшивый сайт — визуально идентичный оригиналу.</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Признаки поддельного сайта</div>
+          <div class="threat-field-value">Изменён домен (одна-две буквы) · Нет HTTPS · Требуют CVV и SMS-код одновременно</div>
+        </div>
+        <div class="threat-col-full">
+          <div class="alert alert-info" style="margin-bottom:0">
+            <span class="alert-icon">🔍</span>
+            <div class="alert-text"><strong>Правило проверки</strong>Всегда открывать сайт вручную через браузер — вбивать адрес самостоятельно, а не переходить по ссылке из SMS или сообщения в мессенджере.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="threat-card type-net">
+      <div class="threat-card-header">
+        <div class="threat-icon">🛒</div>
+        <div>
+          <span class="threat-id">Схема 3.2 · Интернет-мошенничество</span>
+          <div class="threat-name">Поддельные интернет-магазины и объявления о продаже</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div>
+          <div class="threat-field-label">Легенда</div>
+          <div class="threat-field-value">«Суперцена» на технику, стройматериалы, билеты, запчасти через Instagram, Telegram, OLX.</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Результат</div>
+          <div class="threat-field-value">После предоплаты продавец исчезает. Товара нет. Аккаунт удалён. До 30% всех киберпреступлений в РБ.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="threat-card type-social">
+      <div class="threat-card-header">
+        <div class="threat-icon">🔓</div>
+        <div>
+          <span class="threat-id">Схема 3.3 · Взлом аккаунтов</span>
+          <div class="threat-name">Взлом Telegram / Viber / Instagram + «одолжи денег»</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div>
+          <div class="threat-field-label">Схема</div>
+          <div class="threat-field-value">Через фишинговую ссылку угоняют аккаунт → рассылают друзьям: «Срочно переведи денег, верну вечером».</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Защита</div>
+          <div class="threat-field-value">Двухфакторная аутентификация · Проверять звонком по голосу · Никому не пересылать код из SMS.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="threat-card type-tech">
+      <div class="threat-card-header">
+        <div class="threat-icon">📲</div>
+        <div>
+          <span class="threat-id">Схема 3.4 · Вредоносное ПО</span>
+          <div class="threat-name">Поддельные приложения (APK) — банк, оператор, VPN</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div>
+          <div class="threat-field-label">Механизм</div>
+          <div class="threat-field-value">Ссылка на «официальное приложение банка/оператора» → APK-файл → запрашивает доступ к SMS → перехват кодов.</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Правило</div>
+          <div class="threat-field-value">Устанавливать приложения ТОЛЬКО из Google Play или App Store. Никаких APK по ссылкам из сообщений.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== РАЗДЕЛ 4: ФИНАНСЫ ===== -->
+  <div class="section" id="finance">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2 class="section-title">Финансовые и инвестиционные схемы</h2>
+    </div>
+
+    <div class="threat-card type-finance">
+      <div class="threat-card-header">
+        <div class="threat-icon">📈</div>
+        <div>
+          <span class="threat-id">Схема 4.1 · Псевдоинвестиции</span>
+          <div class="threat-name">Лжеброкеры и фейковые инвестплатформы</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div class="threat-col-full">
+          <div class="threat-field-label">Этапы схемы</div>
+        </div>
+        <div class="threat-col-full">
+          <div class="algorithm-card" style="margin-bottom:0">
+            <div class="algorithm-title">🔄 Воронка лжеброкера — 5 этапов</div>
+            <div class="algorithm-steps">
+              <div class="algo-step"><div class="algo-step-num">1</div><div class="algo-step-body"><strong>Захват.</strong> Таргет-реклама с брендами «Белоруснефть», «Белэнерго», криптобиржи. Фейковые статьи «БелТА».</div></div>
+              <div class="algo-step"><div class="algo-step-num">2</div><div class="algo-step-body"><strong>«Куратор».</strong> После регистрации — звонок «личного менеджера». Дружелюбный, знает тему. Первый депозит 100–500 $.</div></div>
+              <div class="algo-step"><div class="algo-step-num">3</div><div class="algo-step-body"><strong>Рисование прибыли.</strong> В «личном кабинете» — красивые графики, +30% за неделю. Иногда дают снять 50–200 BYN для доверия.</div></div>
+              <div class="algo-step"><div class="algo-step-num">4</div><div class="algo-step-body"><strong>Раскрутка.</strong> Советуют увеличить депозит, взять кредит. Жертвы вкладывают 10 000–40 000 $.</div></div>
+              <div class="algo-step"><div class="algo-step-num">5</div><div class="algo-step-body"><strong>Блокировка и исчезновение.</strong> При попытке вывода — «налог», «страховка», «разблокировка». Затем платформа исчезает.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="threat-col-full" style="margin-top:8px">
+          <div class="tag-list">
+            <span class="tag tag-danger">Нет лицензии НБРБ</span>
+            <span class="tag tag-danger">Гарантированная доходность</span>
+            <span class="tag tag-danger">Нельзя вывести без «комиссии»</span>
+            <span class="tag tag-danger">Давление на срочность</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="threat-card type-finance">
+      <div class="threat-card-header">
+        <div class="threat-icon">💳</div>
+        <div>
+          <span class="threat-id">Схема 4.2 · Дропперство</span>
+          <div class="threat-name">«Лёгкая подработка» — транзитный счёт для мошенников</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div>
+          <div class="threat-field-label">Предложение</div>
+          <div class="threat-field-value">«Оформи карту, получай переводы, пересылай нам — твои 20%. Это «криптоарбитраж», всё легально.»</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Реальность</div>
+          <div class="threat-field-value">Дропперство — соучастие в мошенничестве (ст. 209 УК РБ). Уголовная ответственность с 14 лет.</div>
+        </div>
+        <div class="threat-col-full">
+          <div class="alert alert-danger" style="margin-bottom:0">
+            <span class="alert-icon">⛔</span>
+            <div class="alert-text"><strong>Особая опасность для подростков</strong>Именно молодёжь 14–22 лет является основной целевой аудиторией вербовщиков в дропперские схемы через Telegram и ВКонтакте.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== РАЗДЕЛ 5: УСЛУГИ ===== -->
+  <div class="section" id="services">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2 class="section-title">Социальная инженерия под видом коммунальных услуг</h2>
+    </div>
+
+    <div class="threat-card type-service">
+      <div class="threat-card-header">
+        <div class="threat-icon">⚡</div>
+        <div>
+          <span class="threat-id">Схема 5.1 · Коммунальные службы</span>
+          <div class="threat-name">«Замена электросчётчика / водомера / счётчика газа»</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div>
+          <div class="threat-field-label">Легенда</div>
+          <div class="threat-field-value">«Обязательная плановая замена счётчика. Нужно подтвердить данные.» — Звонят от имени «Белэнерго», «водоканал», «газовая служба».</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Что просят</div>
+          <div class="threat-field-value">Паспортные данные · Номер телефона · SMS-коды «для договора» · Оплату «госпошлины» по ссылке.</div>
+        </div>
+        <div class="threat-col-full">
+          <div class="alert alert-info" style="margin-bottom:0">
+            <span class="alert-icon">ℹ️</span>
+            <div class="alert-text"><strong>Факт</strong>Организации (Белэнерго, водоканал и др.) по телефону не запрашивают паспортные данные для замены счётчиков. Информация о плановой замене публикуется через ЖЭС или приходит в почтовый ящик.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="threat-card type-service">
+      <div class="threat-card-header">
+        <div class="threat-icon">🚪</div>
+        <div>
+          <span class="threat-id">Схема 5.2 · Домофон</span>
+          <div class="threat-name">«Замена домофона / новые ключи / чипы»</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div>
+          <div class="threat-field-label">Схема</div>
+          <div class="threat-field-value">Объявления в подъезде или звонок о «плановой замене» → сбор денег «на ремонт» на личную карту мастера.</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Скрытая цель (доп. вариант)</div>
+          <div class="threat-field-value">Осмотр квартир, выяснение состава жильцов — разведка для последующих краж.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== РАЗДЕЛ 6: ШАНТАЖ ===== -->
+  <div class="section" id="other">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2 class="section-title">Занятость, шантаж и вымогательство</h2>
+    </div>
+
+    <div class="threat-card type-work">
+      <div class="threat-card-header">
+        <div class="threat-icon">✈️</div>
+        <div>
+          <span class="threat-id">Схема 6.1 · Трудоустройство</span>
+          <div class="threat-name">«Высокооплачиваемая работа за рубежом» с предоплатой</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div>
+          <div class="threat-field-label">Легенда</div>
+          <div class="threat-field-value">«Зарплата 3000 € в Польше / Германии. Осталось 2 места! Нужно оплатить визу и билеты — 500 $.»</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Признаки обмана</div>
+          <div class="threat-field-value">Предоплата за трудоустройство · Давление срочностью · Нет официального договора · Telegram-канал без юрлица</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="threat-card type-social">
+      <div class="threat-card-header">
+        <div class="threat-icon">📸</div>
+        <div>
+          <span class="threat-id">Схема 6.2 · Интим-шантаж</span>
+          <div class="threat-name">«Отправь деньги, иначе разошлю твои фото»</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div>
+          <div class="threat-field-label">Схема</div>
+          <div class="threat-field-value">Знакомство в соцсети → просят фото → угрозы разослать знакомым, требование выкупа (500–2000 $).</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Особенности</div>
+          <div class="threat-field-value">Часто жертвами становятся подростки. Оплата — криптокошелёк. После оплаты угрозы продолжаются.</div>
+        </div>
+        <div class="threat-col-full">
+          <div class="alert alert-danger" style="margin-bottom:0">
+            <span class="alert-icon">🚫</span>
+            <div class="alert-text"><strong>Главное правило</strong>НЕ ПЛАТИТЬ. Оплата не прекращает шантаж, а провоцирует новые требования. Сохранить скриншоты → заблокировать → обратиться в милицию (102).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="threat-card type-tech">
+      <div class="threat-card-header">
+        <div class="threat-icon">🔐</div>
+        <div>
+          <span class="threat-id">Схема 6.3 · Вымогательство</span>
+          <div class="threat-name">Кибервымогательство: блокировка устройства / iCloud / шифрование данных</div>
+        </div>
+      </div>
+      <div class="threat-body">
+        <div>
+          <div class="threat-field-label">Схема</div>
+          <div class="threat-field-value">«Ваш компьютер/iCloud взломан. Переведите выкуп криптовалютой — иначе все данные удалены/опубликованы.»</div>
+        </div>
+        <div>
+          <div class="threat-field-label">Действия</div>
+          <div class="threat-field-value">Не платить · Обратиться в сервис поддержки Apple/Google · Подать заявление 102 · Сохранить скриншоты угроз.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== РАЗДЕЛ 7: КЛАССНЫЕ ЧАСЫ ===== -->
+  <div class="section" id="lessons">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2 class="section-title">Сценарии классных часов</h2>
+    </div>
+
+    <div class="subheading">7.1 Для 5–8 классов: «Как не попасться на уловки мошенников»</div>
+    <div class="table-wrap mb-6">
+      <table>
+        <thead><tr><th>Этап</th><th>Время</th><th>Деятельность</th></tr></thead>
+        <tbody>
+          <tr><td>1. Разминка-опрос</td><td>5 мин</td><td>Кто получал странные SMS? Видел предложения «лёгкого заработка»?</td></tr>
+          <tr><td>2. Разбор 6 схем</td><td>15 мин</td><td>Фишинг, кешбэк, «друг в мессенджере», лёгкий заработок, домофон, «Алло, мама» — карточки-памятки</td></tr>
+          <tr><td>3. Работа в группах</td><td>10 мин</td><td>4–5 групп, каждая решает кейс (см. ниже)</td></tr>
+          <tr><td>4. Обсуждение</td><td>10 мин</td><td>Разбор ответов. «5 золотых правил кибербезопасности»</td></tr>
+          <tr><td>5. Домашнее задание</td><td>5 мин</td><td>Объяснить одну схему родителям</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subheading">7.2 Для 9–11 классов: «Деньги, ответственность, безопасность»</div>
+    <div class="table-wrap mb-6">
+      <table>
+        <thead><tr><th>Этап</th><th>Время</th><th>Деятельность</th></tr></thead>
+        <tbody>
+          <tr><td>1. Актуализация</td><td>5 мин</td><td>Реклама «заработка на крипте»? Предложения с переводами? Шантаж?</td></tr>
+          <tr><td>2. Схемы: лжеброкеры, дропперство, шантаж</td><td>15 мин</td><td>Примеры из практики РБ + статьи УК</td></tr>
+          <tr><td>3. Юридический блок</td><td>10 мин</td><td>Ст. 209, 212, 208, 210 УК РБ. Ответственность с 14 лет</td></tr>
+          <tr><td>4. Кейсы для групп</td><td>10 мин</td><td>Лжеброкер, дропперство, шантаж, фишинг, работа за рубежом</td></tr>
+          <tr><td>5–6. Закрепление</td><td>10 мин</td><td>Главные правила. Раздача памяток и шаблона заявления в милицию</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="memo-box">
+      <div class="memo-box-title">5 золотых правил кибербезопасности</div>
+      <ul class="rules-list">
+        <li><div class="rule-num">1</div><div class="rule-text"><strong>Ссылки из SMS/сообщений</strong> — не переходить. Открывать сайт вручную в браузере.</div></li>
+        <li><div class="rule-num">2</div><div class="rule-text"><strong>Код из SMS</strong> — не называть никому, даже «другу» или «администратору игры».</div></li>
+        <li><div class="rule-num">3</div><div class="rule-text"><strong>Звонят и пугают</strong> — сбросить, перезвонить родным или в 102.</div></li>
+        <li><div class="rule-num">4</div><div class="rule-text"><strong>Лёгких денег не бывает</strong> — подработка с переводами = уголовное преступление.</div></li>
+        <li><div class="rule-num">5</div><div class="rule-text"><strong>Обманули или шантажируют</strong> — не молчать: сказать родителям, позвонить 102.</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== РАЗДЕЛ 8: РОДИТЕЛИ ===== -->
+  <div class="section" id="parents">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2 class="section-title">Работа с родителями</h2>
+    </div>
+
+    <div class="algorithm-card mb-6">
+      <div class="algorithm-title">📋 Алгоритм действий при инциденте</div>
+      <div class="algorithm-steps">
+        <div class="algo-step"><div class="algo-step-num">1</div><div class="algo-step-body"><strong>Сохраните спокойствие</strong> — паника мешает правильным действиям.</div></div>
+        <div class="algo-step"><div class="algo-step-num">2</div><div class="algo-step-body"><strong>Зафиксируйте доказательства</strong> — скриншоты переписки, номера телефонов, ссылки, квитанции.</div></div>
+        <div class="algo-step"><div class="algo-step-num">3</div><div class="algo-step-body"><strong>Свяжитесь с банком</strong> — заблокируйте карту, попытайтесь отменить транзакции (первые 24 часа критичны).</div></div>
+        <div class="algo-step"><div class="algo-step-num">4</div><div class="algo-step-body"><strong>Обратитесь в милицию (102)</strong> — напишите заявление, приложите доказательства.</div></div>
+        <div class="algo-step"><div class="algo-step-num">5</div><div class="algo-step-body"><strong>При шантаже</strong> — не платите. Оплата не прекращает угрозы, а усиливает их.</div></div>
+        <div class="algo-step"><div class="algo-step-num">6</div><div class="algo-step-body"><strong>Поддержите ребёнка</strong> — он не виноват в том, что его обманули. Мошенник виноват.</div></div>
+      </div>
+    </div>
+
+    <div class="memo-box">
+      <div class="memo-box-title">Памятка для родителей: что обсудить с ребёнком</div>
+      <div class="memo-grid">
+        <div class="memo-item"><span class="memo-cross">✗</span><div>Не называть коды из SMS — даже другу или «администратору игры»</div></div>
+        <div class="memo-item"><span class="memo-cross">✗</span><div>Не переходить по ссылкам из подозрительных сообщений</div></div>
+        <div class="memo-item"><span class="memo-cross">✗</span><div>Не добавлять незнакомцев в друзья и не переходить с ними в другие мессенджеры</div></div>
+        <div class="memo-item"><span class="memo-cross">✗</span><div>Не отправлять личные фото незнакомым людям</div></div>
+        <div class="memo-item"><span class="memo-check">✓</span><div>При «лёгкой подработке» с переводами — сразу рассказать родителям</div></div>
+        <div class="memo-item"><span class="memo-check">✓</span><div>Если пугают или шантажируют — не молчать, не платить, рассказать взрослым</div></div>
+        <div class="memo-item"><span class="memo-check">✓</span><div>Устанавливать приложения только из официальных магазинов</div></div>
+        <div class="memo-item"><span class="memo-check">✓</span><div>Включить двухфакторную аутентификацию во всех важных аккаунтах</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== РАЗДЕЛ 9: ЗАКОНЫ ===== -->
+  <div class="section" id="law">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2 class="section-title">Юридическая ответственность (УК РБ)</h2>
+    </div>
+
+    <div class="law-grid">
+      <div class="law-card">
+        <div class="law-article">Ст. 209</div>
+        <div class="law-name">Мошенничество (в т.ч. дропперство)</div>
+        <div class="law-penalty">Штраф до 1000 БВ · Ограничение свободы до 5 лет · Лишение свободы до <strong>10 лет</strong></div>
+        <div class="law-age">⚠️ Ответственность с 14 лет</div>
+      </div>
+      <div class="law-card">
+        <div class="law-article">Ст. 212</div>
+        <div class="law-name">Кража с использованием компьютерной техники (фишинг)</div>
+        <div class="law-penalty">Лишение свободы до <strong>7 лет</strong> (крупный размер — до <strong>9 лет</strong>)</div>
+        <div class="law-age">⚠️ Ответственность с 14 лет</div>
+      </div>
+      <div class="law-card">
+        <div class="law-article">Ст. 208</div>
+        <div class="law-name">Вымогательство / шантаж</div>
+        <div class="law-penalty">Штраф до 1000 БВ · Арест до 6 мес. · Лишение свободы до <strong>10 лет</strong> с конфискацией</div>
+        <div class="law-age">⚠️ Ответственность с 14 лет</div>
+      </div>
+      <div class="law-card">
+        <div class="law-article">Ст. 210</div>
+        <div class="law-name">Легализация (отмывание) доходов</div>
+        <div class="law-penalty">Лишение свободы до <strong>7 лет</strong> с конфискацией имущества</div>
+        <div class="law-age">⚠️ Ответственность с 16 лет</div>
+      </div>
+    </div>
+
+    <div class="alert alert-danger">
+      <span class="alert-icon">⛔</span>
+      <div class="alert-text"><strong>Важно</strong>Судимость остаётся на всю жизнь и влияет на поступление в вуз, трудоустройство и выезд за рубеж. «Не знал, что это преступление» — НЕ освобождает от ответственности по законодательству РБ.</div>
+    </div>
+  </div>
+
+  <!-- ===== РАЗДЕЛ 10: КОНТАКТЫ ===== -->
+  <div class="section" id="contacts">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2 class="section-title">Куда обращаться: горячие линии и ресурсы</h2>
+    </div>
+
+    <div class="contacts-grid">
+      <div class="contact-card">
+        <div class="contact-icon">🚔</div>
+        <div class="contact-name">Милиция</div>
+        <div class="contact-number">102</div>
+        <div class="contact-sub">Круглосуточно</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">👶</div>
+        <div class="contact-name">Детский телефон доверия</div>
+        <div class="contact-number">8-801-100-1611</div>
+        <div class="contact-sub">Бесплатно, анонимно</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🏦</div>
+        <div class="contact-name">Нацбанк РБ</div>
+        <div class="contact-number">nbrb.by</div>
+        <div class="contact-sub">Реестр лицензий</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🛡️</div>
+        <div class="contact-name">Киберполиция РБ</div>
+        <div class="contact-number">cyberpolice.by</div>
+        <div class="contact-sub">Онлайн-обращения</div>
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      <span class="alert-icon">💡</span>
+      <div class="alert-text"><strong>Проверка инвестиционных компаний</strong>Перед вложением денег в любую инвестиционную платформу проверяйте наличие лицензии Национального банка РБ на сайте <strong>nbrb.by</strong> в разделе «Участники финансового рынка».</div>
+    </div>
+  </div>
+
+  <!-- ===== ФУТЕР ===== -->
+  <footer class="footer">
+    <div class="footer-logo">🔒 Справочник по кибербезопасности</div>
+    <div class="footer-copy">
+      Составитель: <strong>Руденко А.Д.</strong> · Год издания: <strong>2026</strong><br>
+      Республика Беларусь · Образовательное справочно-методическое пособие<br>
+      Адресован педагогам, родителям и учащимся учреждений общего среднего образования
+    </div>
+    <div class="footer-wm">© Руденко А.Д. 2026 · Все права защищены · Несанкционированное копирование запрещено</div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -2,33 +2,32 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0,initial-scale=1.0">
-    <title>#КиберПраво — образовательная платформа по кибербезопасности для детей и подростков</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#КиберПраво: твой щит в сети — «КиберЩит» (конкурсная версия)</title>
     <link rel="stylesheet" href="style.css">
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-    <meta name="description" content="#КиберПраво — бесплатная образовательная платформа по кибербезопасности и цифровой грамотности. Интерактивные тренажёры, сценарии реальных киберугроз, правовая база и методические материалы для детей, подростков, родителей и педагогов Беларуси.">
-    <meta name="keywords" content="кибербезопасность, кибер право, КиберПраво, фишинг, мошенники в сети, цифровая грамотность, обучение, тренажёр, школьники, защита личных данных, Беларусь">
-    <meta name="author" content="КиберПраво">
+    <meta name="description" content="#КиберПраво: твой щит в сети — учебно-методическая платформа «КиберЩит» по кибербезопасности и цифровой гигиене для детей 10–18 лет, родителей и педагогов. Тренажёр, база знаний, КиберТкач, методички и плакаты. Конкурсная версия 2026.">
+    <meta name="keywords" content="КиберПраво, КиберЩит, КиберТкач, кибербезопасность, цифровая гигиена, фишинг, мошенничество, школьники, родители, педагоги, методические материалы, конкурс, Беларусь, Руденко">
+    <meta name="author" content="Руденко А.Д.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://qtrcmmn.github.io/Kiber_pravo/">
-    <meta property="og:title" content="#КиберПраво — твой щит в сети">
-    <meta property="og:description" content="Бесплатная платформа по кибербезопасности для детей и подростков Беларуси. Тренажёры, правовая база, материалы для педагогов.">
-    <meta property="og:url" content="https://qtrcmmn.github.io/Kiber_pravo/">
+    <meta name="theme-color" content="#50a173">
+    <meta name="color-scheme" content="light dark">
+    <meta name="application-name" content="КиберПраво">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <meta property="og:title" content="#КиберПраво: твой щит в сети — «КиберЩит»">
+    <meta property="og:description" content="Учебно-методическая платформа по кибербезопасности и цифровой гигиене для детей 10–18 лет, родителей и педагогов. Конкурсная версия 2026.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="КиберПраво">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="#КиберПраво — твой щит в сети">
-    <meta name="twitter:description" content="Бесплатная платформа по кибербезопасности для детей и подростков Беларуси.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="#КиберПраво: твой щит в сети — «КиберЩит»">
+    <meta name="twitter:description" content="Тренажёр, КиберТкач, база знаний и методические материалы для детей, родителей и педагогов.">
 </head>
-<body id = "body">
+<body id="body">
         <noscript>Без JavaScript тренажёр будет работать некорректно. Включите JavaScript</noscript>
         <header class="header" id="head">
             <div class="header__container">
-                <nav class="header__nav  wow animate__animated animate__backInDown" data-wow-duration="1.2s">
+                <nav class="header__nav">
                     <h1 class="title">#КиберПраво</h1>
                     <label class="theme-toggle" aria-label="Переключить тему">
                             <input type="checkbox" id="theme-checkbox">
@@ -59,10 +58,10 @@
                             <a class="header__list-link" id="base_link" href="#base">База знаний</a>
                         </li>
                         <li class="header__list-item">
-                            <a class="header__list-link" id="met_link" href="#met_mat">Методические материалы</a>
+                            <a class="header__list-link" id="materials_link" href="#materials">Материалы</a>
                         </li>
                         <li class="header__list-item">
-                            <a class="header__list-link" id="sponsors_link" href="#sponsors">Спонсоры</a>
+                            <a class="header__list-link" id="met_link" href="#met_mat">Методика</a>
                         </li>
                     </ul>
                 </nav>
@@ -72,14 +71,100 @@
 
         <main>
             <section id="main">
-                <div class="hero_main">
-                    <div class="main_text wow animate__animated animate__slideInLeft" data-wow-duration="2s" id="hero">
-                        <p class="title_text">#Кибер право: твой щит в сети</p>
-                        <p class="hero_text_sub">КиберЩит — образовательная платформа по кибербезопасности,<br> цифровой грамотности и правовой культуре</p>
-                        <p class="hero_text_ot">Интерактивные модули, сценарии реальных киберугроз,<br> правовая грамотность и полезные материалы для детей,<br> подростков, родителей и педагогов</p>
+                <div class="hero_main hero_main--no-img">
+                    <div class="main_text" id="hero">
+                        <span class="hero_eyebrow">Конкурсная версия · «КиберЩит» · 2026</span>
+                        <h1 class="title_text">#КиберПраво: твой щит в сети</h1>
+                        <p class="hero_text_sub">Учебно-методическая платформа по кибербезопасности и цифровой гигиене для детей 10–18 лет, родителей и педагогов.</p>
+                        <p class="hero_text_ot">«КиберЩит» — рабочее название проекта. В одном месте: интерактивный тренажёр с реальными сценариями угроз, база знаний, аудио-проект «КиберТкач», чек-листы, методички и плакаты.</p>
+                        <div class="hero_actions">
+                            <a class="hero_btn hero_btn--primary" href="#trainer">Пройти тренажёр</a>
+                            <a class="hero_btn hero_btn--ghost" href="#passport">Паспорт проекта</a>
+                            <a class="hero_btn hero_btn--ghost" href="#materials">Материалы</a>
+                        </div>
+                        <p class="hero_copyright">© Руденко А.Д., 2026. «КиберЩит» — рабочее название. Создано в рамках республиканского конкурса #КиберПраво «Твой щит в сети».</p>
                     </div>
+                </div>
             </section>
-            
+
+
+            <section class="road_map" id="roadmap">
+                <div class="road_map__header">
+                    <span class="road_map__eyebrow">Дорожная карта</span>
+                    <h2 class="road_map__title">Этапы развития платформы</h2>
+                    <p class="road_map__desc">Последовательный план развития КиберЩита — от базового тренажёра до полноценной интеграции в образовательные программы.</p>
+                </div>
+                <ol class="road_map__list">
+                    <!-- Фаза 1 — выполнена -->
+                    <li class="road_map__item is-active">
+                        <div class="road_map__point circle_1"></div>
+                        <article class="road_map__card">
+                            <div class="road_map__meta">
+                                <span class="road_map__phase">Этап 1</span>
+                                <span class="road_map__date">05.2026</span>
+                            </div>
+                            <h3 class="road_map__item-title">Базовая модель</h3>
+                            <p class="road_map__text">Запуск основного тренажёра с базовыми сценариями киберугроз, правовой информацией и материалами для детей и педагогов.</p>
+                            <div class="road_map__tags">
+                                <span class="road_map__tag">Тренажёр</span>
+                                <span class="road_map__tag">Правовая база</span>
+                                <span class="road_map__tag">Контент</span>
+                            </div>
+                        </article>
+                    </li>
+                    <!-- Фаза 2 — в процессе -->
+                    <li class="road_map__item is-future">
+                        <div class="road_map__point circle_2"></div>
+                        <article class="road_map__card">
+                            <div class="road_map__meta">
+                                <span class="road_map__phase">Этап 2</span>
+                                <span class="road_map__date">07-08.2026</span>
+                            </div>
+                            <h3 class="road_map__item-title">Больше функций</h3>
+                            <p class="road_map__text">Расширение сценариев угроз, добавление геймификации, интерактивных квизов и системы достижений для мотивации учеников.</p>
+                            <div class="road_map__tags">
+                                <span class="road_map__tag">Геймификация</span>
+                                <span class="road_map__tag">Квизы</span>
+                                <span class="road_map__tag">Достижения</span>
+                            </div>
+                        </article>
+                    </li>
+                    <!-- Фаза 3 — запланирована -->
+                    <li class="road_map__item is-future">
+                        <div class="road_map__point circle_3"></div>
+                        <article class="road_map__card">
+                            <div class="road_map__meta">
+                                <span class="road_map__phase">Этап 3</span>
+                                <span class="road_map__date">09-10.2026</span>
+                            </div>
+                            <h3 class="road_map__item-title">Подключение баз данных</h3>
+                            <p class="road_map__text">Интеграция актуальных кейсов из реальной судебной практики и статистики киберпреступлений Беларуси.</p>
+                            <div class="road_map__tags">
+                                <span class="road_map__tag">База кейсов</span>
+                                <span class="road_map__tag">Статистика</span>
+                                <span class="road_map__tag">API</span>
+                            </div>
+                        </article>
+                    </li>
+                    <!-- Фаза 4 — запланирована -->
+                    <li class="road_map__item is-future">
+                        <div class="road_map__point circle_4"></div>
+                        <article class="road_map__card">
+                            <div class="road_map__meta">
+                                <span class="road_map__phase">Этап 4</span>
+                                <span class="road_map__date">2027</span>
+                            </div>
+                            <h3 class="road_map__item-title">Интеграция в учебные программы</h3>
+                            <p class="road_map__text">Официальное внедрение платформы в школьные программы, разработка методических пособий и сертификация педагогов.</p>
+                            <div class="road_map__tags">
+                                <span class="road_map__tag">Школы</span>
+                                <span class="road_map__tag">Методика</span>
+                                <span class="road_map__tag">Сертификация</span>
+                            </div>
+                        </article>
+                    </li>
+                </ol>
+            </section>
             <section class="passport-section" id="passport" aria-labelledby="passport-title">
                 <div class="section-head">
                     <span class="section-eyebrow">Паспорт проекта</span>
@@ -126,87 +211,269 @@
                 </div>
             </section>
 
-            <section class="road_map" id="roadmap">
-                <div class="road_map__header">
-                    <span class="road_map__eyebrow">Дорожная карта</span>
-                    <h2 class="road_map__title">Этапы развития платформы</h2>
-                    <p class="road_map__desc">Последовательный план развития КиберЩита — от базового тренажёра до полноценной интеграции в образовательные программы.</p>
-                </div>
-                <ol class="road_map__list">
-                    <!-- Фаза 1 — выполнена -->
-                    <li class="road_map__item is-active">
-                        <div class="road_map__point circle_1 wow animate__animated animate__slideInUp" data-wow-duration="0.75s" data-wow-delay="0.6s"></div>
-                        <article class="road_map__card wow animate__animated animate__slideInUp" data-wow-duration="0.75s" data-wow-delay="0.6s">
-                            <div class="road_map__meta">
-                                <span class="road_map__phase">Этап 1</span>
-                                <span class="road_map__date">05.2026</span>
-                            </div>
-                            <h3 class="road_map__item-title">Базовая модель</h3>
-                            <p class="road_map__text">Запуск основного тренажёра с базовыми сценариями киберугроз, правовой информацией и материалами для детей и педагогов.</p>
-                            <div class="road_map__tags">
-                                <span class="road_map__tag">Тренажёр</span>
-                                <span class="road_map__tag">Правовая база</span>
-                                <span class="road_map__tag">Контент</span>
-                            </div>
-                        </article>
-                    </li>
-                    <!-- Фаза 2 — в процессе -->
-                    <li class="road_map__item is-future">
-                        <div class="road_map__point circle_2 wow animate__animated animate__slideInUp" data-wow-duration="0.75s" data-wow-delay="0.6s"></div>
-                        <article class="road_map__card wow animate__animated animate__slideInUp" data-wow-duration="0.75s" data-wow-delay="0.6s">
-                            <div class="road_map__meta">
-                                <span class="road_map__phase">Этап 2</span>
-                                <span class="road_map__date">07-08.2026</span>
-                            </div>
-                            <h3 class="road_map__item-title">Больше функций</h3>
-                            <p class="road_map__text">Расширение сценариев угроз, добавление геймификации, интерактивных квизов и системы достижений для мотивации учеников.</p>
-                            <div class="road_map__tags">
-                                <span class="road_map__tag">Геймификация</span>
-                                <span class="road_map__tag">Квизы</span>
-                                <span class="road_map__tag">Достижения</span>
-                            </div>
-                        </article>
-                    </li>
-                    <!-- Фаза 3 — запланирована -->
-                    <li class="road_map__item is-future">
-                        <div class="road_map__point circle_3 wow animate__animated animate__slideInUp" data-wow-duration="0.75s" data-wow-delay="0.6s"></div>
-                        <article class="road_map__card wow animate__animated animate__slideInUp" data-wow-duration="0.75s" data-wow-delay="0.6s">
-                            <div class="road_map__meta">
-                                <span class="road_map__phase">Этап 3</span>
-                                <span class="road_map__date">09-10.2026</span>
-                            </div>
-                            <h3 class="road_map__item-title">Подключение баз данных</h3>
-                            <p class="road_map__text">Интеграция актуальных кейсов из реальной судебной практики и статистики киберпреступлений Беларуси.</p>
-                            <div class="road_map__tags">
-                                <span class="road_map__tag">База кейсов</span>
-                                <span class="road_map__tag">Статистика</span>
-                                <span class="road_map__tag">API</span>
-                            </div>
-                        </article>
-                    </li>
-                    <!-- Фаза 4 — запланирована -->
-                    <li class="road_map__item is-future">
-                        <div class="road_map__point circle_4 wow animate__animated animate__slideInUp" data-wow-duration="0.75s" data-wow-delay="0.6s"></div>
-                        <article class="road_map__card wow animate__animated animate__slideInUp" data-wow-duration="0.75s" data-wow-delay="0.6s">
-                            <div class="road_map__meta">
-                                <span class="road_map__phase">Этап 4</span>
-                                <span class="road_map__date">2027</span>
-                            </div>
-                            <h3 class="road_map__item-title">Интеграция в учебные программы</h3>
-                            <p class="road_map__text">Официальное внедрение платформы в школьные программы, разработка методических пособий и сертификация педагогов.</p>
-                            <div class="road_map__tags">
-                                <span class="road_map__tag">Школы</span>
-                                <span class="road_map__tag">Методика</span>
-                                <span class="road_map__tag">Сертификация</span>
-                            </div>
-                        </article>
-                    </li>
-                </ol>
-            </section>
-
-            <section id="trainer">
+            <section id="trainer" aria-label="Интерактивный тренажёр">
                 
             </section>
+
+            <section class="kibertkach-section" id="kibertkach" aria-labelledby="tkach-title">
+                <div class="section-head">
+                    <span class="section-eyebrow">КиберТкач · аудио</span>
+                    <h2 class="section-title" id="tkach-title">Рифма как инструмент обучения</h2>
+                    <p class="section-desc">«КиберТкач» — аудио-проект «КиберЩита». Песни и подкаст помогают ребёнку запомнить правила цифровой гигиены через ритм, повтор и рифму. Раздел показывает подход, но не раскрывает полную внутреннюю механику будущих модулей.</p>
+                </div>
+                <div class="tkach-grid">
+                    <article class="tkach-card">
+                        <span class="tkach-num">01</span>
+                        <h3>Трек 1 · Пароли и коды</h3>
+                        <p>О том, почему СМС-код, пароль и push-подтверждение нельзя передавать никому — даже «банку» и «поддержке».</p>
+                        <audio controls preload="none" src="assets/audio/kibertkach-track-1.mp3"></audio>
+                    </article>
+                    <article class="tkach-card">
+                        <span class="tkach-num">02</span>
+                        <h3>Трек 2 · Фишинговые ссылки</h3>
+                        <p>Как распознать поддельный домен, сокращённую ссылку и всплывающую страницу с просьбой ввести данные карты.</p>
+                        <audio controls preload="none" src="assets/audio/kibertkach-track-2.mp3"></audio>
+                    </article>
+                    <article class="tkach-card">
+                        <span class="tkach-num">03</span>
+                        <h3>Трек 3 · Срочность и страх</h3>
+                        <p>О том, как мошенники давят временем и эмоциями. Правило: «Стоп — вдох — проверь».</p>
+                        <audio controls preload="none" src="assets/audio/kibertkach-track-3.mp3"></audio>
+                    </article>
+                    <article class="tkach-card">
+                        <span class="tkach-num">04</span>
+                        <h3>Трек 4 · Маркетплейсы и Kufar</h3>
+                        <p>Безопасные сделки: общение внутри площадки, жалобы на подозрительных покупателей, почему нельзя «оплатить» по внешней форме.</p>
+                        <audio controls preload="none" src="assets/audio/kibertkach-track-4.mp3"></audio>
+                    </article>
+                    <article class="tkach-card">
+                        <span class="tkach-num">05</span>
+                        <h3>Трек 5 · Что делать, если ошибся</h3>
+                        <p>Порядок действий после перехода по фишинговой ссылке или утечки кода: смена пароля, блокировка карты, обращение к взрослым.</p>
+                        <audio controls preload="none" src="assets/audio/kibertkach-track-5.mp3"></audio>
+                    </article>
+                    <article class="tkach-card tkach-card--podcast">
+                        <span class="tkach-num">PC</span>
+                        <h3>Подкаст · Как КиберТкач учит</h3>
+                        <p>Разбор того, как ритм, рифма и истории помогают ребёнку освоить кибербезопасность и цифровую гигиену. Без технических подробностей внутренней механики модулей.</p>
+                        <audio controls preload="none" src="assets/podcast/kibertkach-podcast.m4a"></audio>
+                    </article>
+                    <article class="tkach-card tkach-card--bonus">
+                        <span class="tkach-num">BX</span>
+                        <h3>Бонус · 8-bit гимн «КиберЩита»</h3>
+                        <p>Короткая игровая мелодия в стиле 8-bit для перемен и оффлайн-использования. Необязательный элемент аудио-блока.</p>
+                        <audio controls preload="none" src="assets/audio/kibershield-8bit-hymn.mp3"></audio>
+                    </article>
+                </div>
+            </section>
+
+            <section class="knowledge-section" id="base" aria-labelledby="base-title">
+                <div class="section-head">
+                    <span class="section-eyebrow">База знаний</span>
+                    <h2 class="section-title" id="base-title">Короткие правила, которые спасают деньги и аккаунты</h2>
+                    <p class="section-desc">Этот блок перенесён из базы «КиберНезабудки» и адаптирован под стиль основного проекта: без лишнего шума, с понятными действиями для школьника.</p>
+                </div>
+                <div class="knowledge-grid">
+                    <article class="knowledge-card">
+                        <h3>Коды и пароли</h3>
+                        <p>СМС-код, push-подтверждение, пароль и QR для входа нельзя сообщать никому, даже если звонящий называет себя банком, милицией или поддержкой.</p>
+                        <ul>
+                            <li>Не диктуй коды по телефону.</li>
+                            <li>Не вводи код на сайте из сообщения.</li>
+                            <li>Проверяй вход через официальное приложение.</li>
+                        </ul>
+                    </article>
+                    <article class="knowledge-card">
+                        <h3>Ссылки из сообщений</h3>
+                        <p>Фишинговая ссылка может выглядеть почти как настоящая. Безопаснее открыть сервис вручную через приложение или официальный адрес.</p>
+                        <ul>
+                            <li>Смотри на домен, а не на дизайн страницы.</li>
+                            <li>Не переходи по сокращённым ссылкам.</li>
+                            <li>Закрывай страницу, если требуют карту.</li>
+                        </ul>
+                    </article>
+                    <article class="knowledge-card">
+                        <h3>Срочность и страх</h3>
+                        <p>Мошенники давят временем: «сейчас спишут деньги», «родственник в беде», «будет уголовная ответственность». Это повод остановиться.</p>
+                        <ul>
+                            <li>Положи трубку.</li>
+                            <li>Позвони близкому напрямую.</li>
+                            <li>Попроси взрослого помочь проверить.</li>
+                        </ul>
+                    </article>
+                    <article class="knowledge-card">
+                        <h3>Маркетплейсы и Kufar</h3>
+                        <p>Настоящая сделка не требует переходить в «безопасную оплату» по ссылке из чата и не просит данные карты для получения денег.</p>
+                        <ul>
+                            <li>Общайся внутри площадки.</li>
+                            <li>Не открывай внешние формы доставки.</li>
+                            <li>Жалуйся на подозрительный аккаунт.</li>
+                        </ul>
+                    </article>
+                    <article class="knowledge-card">
+                        <h3>Если близкий «в беде»</h3>
+                        <p>При сообщении о ДТП, похищении или срочной операции не переводи деньги до проверки. Мошенник хочет, чтобы ты боялся и не думал.</p>
+                        <ul>
+                            <li>Позвони родственнику сам.</li>
+                            <li>Свяжись с другим членом семьи.</li>
+                            <li>Не выполняй просьбу «никому не говорить».</li>
+                        </ul>
+                    </article>
+                    <article class="knowledge-card">
+                        <h3>Что делать после атаки</h3>
+                        <p>Если ты уже перешёл по ссылке или сообщил данные, действовать нужно быстро, но спокойно.</p>
+                        <ul>
+                            <li>Смени пароль и включи 2FA.</li>
+                            <li>Заблокируй карту через банк.</li>
+                            <li>Сохрани скриншоты и обратись к взрослым.</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section class="materials-section" id="materials" aria-labelledby="materials-title">
+                <div class="section-head">
+                    <span class="section-eyebrow">Каталог материалов</span>
+                    <h2 class="section-title" id="materials-title">Что можно использовать прямо сейчас</h2>
+                    <p class="section-desc">Веб-страницы и файлы для занятий, родительских встреч и самостоятельного изучения. Все материалы — авторские, без коммерческого использования.</p>
+                </div>
+                <div class="materials-grid">
+                    <a class="material-card material-card--web" href="pages/checklist.html">
+                        <span class="material-tag">Веб</span>
+                        <h3>Чек-лист безопасности ребёнка</h3>
+                        <p>Интерактивный чек-лист для совместного заполнения родителем и ребёнком.</p>
+                        <span class="material-cta">Открыть →</span>
+                    </a>
+                    <a class="material-card material-card--web" href="pages/spravochnik.html">
+                        <span class="material-tag">Веб</span>
+                        <h3>Справочник / база знаний</h3>
+                        <p>Расширенный справочник по цифровой безопасности для самостоятельного чтения и уроков.</p>
+                        <span class="material-cta">Открыть →</span>
+                    </a>
+                    <a class="material-card material-card--web" href="pages/project-passport.html">
+                        <span class="material-tag">Веб</span>
+                        <h3>Паспорт проекта</h3>
+                        <p>Публичный паспорт для жюри и организаторов: цель, аудитория, состав, раскрытие об ИИ.</p>
+                        <span class="material-cta">Открыть →</span>
+                    </a>
+                    <a class="material-card material-card--web" href="pages/privacy.html">
+                        <span class="material-tag">Веб</span>
+                        <h3>Политика конфиденциальности</h3>
+                        <p>Обработка данных в демо-версии платформы. Без слежки, без сбора персональных данных.</p>
+                        <span class="material-cta">Открыть →</span>
+                    </a>
+                    <a class="material-card material-card--doc" href="assets/docs/checklist-parents-kids.docx" download>
+                        <span class="material-tag">DOCX</span>
+                        <h3>Чек-лист «Родители + дети»</h3>
+                        <p>Печатный документ для семейного обсуждения безопасности в сети.</p>
+                        <span class="material-cta">Скачать .docx</span>
+                    </a>
+                    <a class="material-card material-card--doc" href="assets/docs/metodichka-kiberpravo.docx" download>
+                        <span class="material-tag">DOCX</span>
+                        <h3>Методичка «КиберПраво»</h3>
+                        <p>Структура занятия, вопросы для обсуждения и рекомендации педагогу.</p>
+                        <span class="material-cta">Скачать .docx</span>
+                    </a>
+                    <a class="material-card material-card--doc" href="assets/docs/kiberbezopasnost-shkola.docx" download>
+                        <span class="material-tag">DOCX</span>
+                        <h3>Кибербезопасность в школе</h3>
+                        <p>Обзор базовых рисков и правил для учреждения образования.</p>
+                        <span class="material-cta">Скачать .docx</span>
+                    </a>
+                    <a class="material-card material-card--ppt" href="assets/presentations/family-cybershield.pptx" download>
+                        <span class="material-tag">PPTX</span>
+                        <h3>Презентация «Семейный КиберЩит»</h3>
+                        <p>Готовые слайды для родительского собрания или открытого урока.</p>
+                        <span class="material-cta">Скачать .pptx</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="posters-section" id="posters" aria-labelledby="posters-title">
+                <div class="section-head">
+                    <span class="section-eyebrow">Галерея плакатов</span>
+                    <h2 class="section-title" id="posters-title">12 отобранных плакатов для школ и семей</h2>
+                    <p class="section-desc">Плакаты можно распечатать и использовать в классе, коридоре или на семейном разговоре о безопасности в сети.</p>
+                </div>
+                <ul class="poster-grid">
+                    <li><figure class="poster"><img src="assets/posters/poster-03-fake-friend.jpg" alt="Плакат: «Друг» в сети просит перевести деньги — проверь вторым каналом" loading="lazy"><figcaption>Фальшивый друг</figcaption></figure></li>
+                    <li><figure class="poster"><img src="assets/posters/poster-04-sell-phone.jpg" alt="Плакат о безопасной продаже телефона на маркетплейсе без перехода по внешним ссылкам" loading="lazy"><figcaption>Продажа телефона</figcaption></figure></li>
+                    <li><figure class="poster"><img src="assets/posters/poster-05-photo-blackmail.jpg" alt="Плакат: шантаж фотографией в интернете — не плати, обратись к взрослым" loading="lazy"><figcaption>Шантаж фото</figcaption></figure></li>
+                    <li><figure class="poster"><img src="assets/posters/poster-06-bank-call.jpg" alt="Плакат: звонок «из банка» с просьбой назвать код — классическая схема мошенников" loading="lazy"><figcaption>Звонок «из банка»</figcaption></figure></li>
+                    <li><figure class="poster"><img src="assets/posters/poster-09-school-rules.jpg" alt="Плакат: школьные правила безопасного поведения в сети" loading="lazy"><figcaption>Правила в школе</figcaption></figure></li>
+                    <li><figure class="poster"><img src="assets/posters/poster-10-protect-child.jpg" alt="Плакат для родителей о защите ребёнка в интернете" loading="lazy"><figcaption>Защити ребёнка</figcaption></figure></li>
+                    <li><figure class="poster"><img src="assets/posters/poster-11-games-donations.jpg" alt="Плакат: донаты и «бесплатные» бонусы в играх — правила безопасности" loading="lazy"><figcaption>Игры и донаты</figcaption></figure></li>
+                    <li><figure class="poster"><img src="assets/posters/poster-12-digital-blackmail.jpg" alt="Плакат: цифровой шантаж и угрозы в мессенджерах" loading="lazy"><figcaption>Цифровой шантаж</figcaption></figure></li>
+                    <li><figure class="poster"><img src="assets/posters/poster-13-account-hijack.jpg" alt="Плакат: перехват аккаунта в социальных сетях — пароль и 2FA" loading="lazy"><figcaption>Угон аккаунта</figcaption></figure></li>
+                    <li><figure class="poster"><img src="assets/posters/poster-16-phishing-sms-email.jpg" alt="Плакат: фишинговые SMS и письма — как распознать подделку" loading="lazy"><figcaption>Фишинг SMS/email</figcaption></figure></li>
+                    <li><figure class="poster"><img src="assets/posters/poster-17-dangerous-challenges.jpg" alt="Плакат: опасные челленджи в сети и риски для здоровья" loading="lazy"><figcaption>Опасные челленджи</figcaption></figure></li>
+                    <li><figure class="poster"><img src="assets/posters/poster-19-pressure-scenario.jpg" alt="Плакат: сценарии психологического давления в сети — как реагировать" loading="lazy"><figcaption>Давление и изоляция</figcaption></figure></li>
+                </ul>
+            </section>
+
+            <section class="future-section" id="future" aria-labelledby="future-title">
+                <div class="section-head">
+                    <span class="section-eyebrow">Анонс будущих модулей</span>
+                    <h2 class="section-title" id="future-title">Что выйдет после конкурса</h2>
+                    <p class="section-desc">Ниже — общее описание направлений развития. Внутренняя механика модулей и исходные спецификации не публикуются до официальной защиты.</p>
+                </div>
+                <div class="future-grid">
+                    <article class="future-card">
+                        <span class="future-step">Шаг 1</span>
+                        <h3>Расширенный тренажёр</h3>
+                        <p>Дополнительные сценарии по итогам обратной связи от педагогов и семей, с учётом новых видов угроз.</p>
+                    </article>
+                    <article class="future-card">
+                        <span class="future-step">Шаг 2</span>
+                        <h3>Геймификация и прогресс</h3>
+                        <p>Прогресс-бар, бейджи и персональный трек обучения. Детали механики откроются после конкурсной защиты.</p>
+                    </article>
+                    <article class="future-card">
+                        <span class="future-step">Шаг 3</span>
+                        <h3>База кейсов</h3>
+                        <p>Актуальные разборы правоприменительной практики и статистика инцидентов в безопасном формате.</p>
+                    </article>
+                    <article class="future-card">
+                        <span class="future-step">Шаг 4</span>
+                        <h3>Интеграция в учебный процесс</h3>
+                        <p>Подготовленные уроки, сертификация педагогов и возможная связка с программой «Основы безопасности».</p>
+                    </article>
+                </div>
+                <p class="future-note">Открытый релиз этих модулей произойдёт после конкурсной защиты. Полная внутренняя спецификация не входит в публичный релиз версии.</p>
+            </section>
+
+            <section class="methods-section" id="met_mat" aria-labelledby="met-title">
+                <div class="section-head">
+                    <span class="section-eyebrow">Методические материалы</span>
+                    <h2 class="section-title" id="met-title">Готовая структура для классного часа</h2>
+                    <p class="section-desc">Материалы можно использовать на уроке, занятии объединения по интересам или семейном разговоре о цифровой безопасности.</p>
+                </div>
+                <div class="method-layout">
+                    <article class="method-card method-card--wide">
+                        <h3>45 минут: сценарий занятия</h3>
+                        <ol>
+                            <li>5 минут: вводный разговор о том, где школьники сталкиваются с мошенниками.</li>
+                            <li>10 минут: прохождение одного сценария в группе.</li>
+                            <li>15 минут: работа в парах, поиск тревожных признаков в репликах.</li>
+                            <li>10 минут: повторное прохождение с правильной стратегией.</li>
+                            <li>5 минут: чек-лист «что я сделаю, если мне позвонят».</li>
+                        </ol>
+                    </article>
+                    <article class="method-card">
+                        <h3>Чек-лист ученика</h3>
+                        <p>Остановись, не сообщай код, проверь через другой канал, позови взрослого, сохрани доказательства.</p>
+                    </article>
+                    <article class="method-card">
+                        <h3>Для родителей</h3>
+                        <p>Договоритесь о семейном кодовом слове, проверочных звонках и правиле: сначала безопасность, потом деньги.</p>
+                    </article>
+                    <article class="method-card">
+                        <h3>Для педагога</h3>
+                        <p>Разберите не только «правильный ответ», но и манипуляцию: срочность, авторитет, страх, изоляцию, обещание выгоды.</p>
+                    </article>
+                </div>
+            </section>
+
             <section class="sponsors" id="sponsors">
                 <div class="section-head">
                     <span class="section-eyebrow">Партнёры и источники</span>
@@ -229,6 +496,9 @@
                 </div>
 
             </section>
+            <div id="loader_body">
+                <span class="loader"></span>
+            </div>
         </main>
 
         <footer class="site-footer">
@@ -318,7 +588,7 @@
       
           <!-- Нижняя полоса -->
           <div class="footer-bottom">
-            <span>© 2026 КиберЩит</span>
+            <span>© Руденко А.Д., 2026. «КиберЩит» — рабочее название. Конкурс #КиберПраво «Твой щит в сети».</span>
             <div class="footer-bottom__shield">
               <svg width="12" height="12" viewBox="0 0 32 32" fill="none"><path d="M16 3L4 8v8c0 6.627 5.149 11.843 12 13 6.851-1.157 12-6.373 12-13V8L16 3z" stroke="var(--green)" stroke-width="2.5" stroke-linejoin="round"/><path d="M11 16l3.5 3.5L21 12" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Для безопасного интернета
@@ -327,9 +597,5 @@
         </footer>
 
         <script src="js/code.js"></script>
-        <script src="wow.min.js"></script>
-        <script>
-        new WOW().init();
-        </script>
 </body>
 </html>

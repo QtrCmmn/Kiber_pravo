@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Чек-лист кибербезопасности ребёнка — демо</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; background:#020617; color:#e5e7eb; margin:0; padding:16px; }
+    .wrap { max-width:900px; margin:0 auto; background:#0f172a; border-radius:16px; padding:18px 20px 22px; box-shadow:0 14px 30px rgba(0,0,0,0.5); }
+    h1 { font-size:1.4rem; margin:0 0 4px; }
+    h2 { font-size:1.1rem; margin:18px 0 6px; }
+    .small { font-size:0.85rem; color:#9ca3af; margin-bottom:10px; }
+    .block { border-top:1px solid #1f2937; padding-top:10px; margin-top:10px; }
+    .item { padding:6px 0; border-radius:8px; }
+    .item:nth-child(odd) { background:#020617; }
+    .item-header { display:flex; justify-content:space-between; gap:8px; align-items:flex-start; }
+    .item-text { font-size:0.9rem; }
+    .answers { white-space:nowrap; font-size:0.8rem; }
+    .answers label { margin-left:6px; margin-right:6px; cursor:pointer; }
+    .hint { font-size:0.8rem; color:#9ca3af; margin-top:2px; }
+    .btn { border-radius:999px; border:none; padding:8px 16px; font-size:0.9rem; cursor:pointer; font-weight:600; }
+    .btn-primary { background:#22c55e; color:#022c22; }
+    .btn-primary:hover { background:#16a34a; }
+    .result { margin-top:14px; padding:10px 12px; border-radius:12px; background:#020617; border:1px solid #1f2937; font-size:0.9rem; display:none; }
+    .badge { display:inline-block; padding:2px 8px; border-radius:999px; font-size:0.75rem; font-weight:600; margin-bottom:4px; }
+    .badge-high { background:#22c55e; color:#022c22; }
+    .badge-good { background:#84cc16; color:#022c22; }
+    .badge-medium { background:#eab308; color:#422006; }
+    .badge-low { background:#b91c1c; color:#fee2e2; }
+    :root{
+      --color-primary: #003f6b;
+      --color-primary-light: #e8f0f7;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      background: var(--color-primary);
+      color: #0a3b28;
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .back-link:hover {
+      background: var(--color-primary-light);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Чек-лист кибербезопасности ребёнка</h1>
+  <p class="small">
+    Демо-версия для совместного заполнения родителем и ребёнком.
+    Отмечайте ответы и нажмите «Посчитать результат».
+  </p>
+  
+  <div id="blocks"></div>
+  
+  <div style="margin-top:12px;">
+    <button class="btn btn-primary" id="btn-calc">Посчитать результат</button>
+    <a class="back-link" href="../index.html">← На главную</a>
+  </div>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+  // JSON чек-лист (сокращённая версия демо)
+  const checklist = {
+    checklist_id: "child_cyber_safety_v1",
+    title: "Чек-лист по кибербезопасности ребёнка",
+    scoring: {
+      yes: 1,
+      unknown: 0.5,
+      no: 0,
+      levels: [
+        { min: 0.85, max: 1.0, id: "high",   label: "Высокий уровень защиты" },
+        { min: 0.65, max: 0.84, id: "good",  label: "Хороший уровень" },
+        { min: 0.40, max: 0.64, id: "medium",label: "Средний уровень" },
+        { min: 0.0,  max: 0.39, id: "low",   label: "Критический уровень" }
+      ]
+    },
+    blocks: [
+      {
+        id: "tech",
+        title: "Технические настройки и контроль",
+        items: [
+          {
+            id: "tech_device_lock",
+            text: "На телефоне/планшете ребёнка установлен пароль или биометрическая защита",
+            hint: "Защита от несанкционированного доступа к личным данным и приложениям.",
+            weight: 1.0
+          },
+          {
+            id: "tech_parental_control",
+            text: "Установлен родительский контроль (семейный профиль, лимит времени, фильтрация контента)",
+            hint: "Ограничение доступа к опасному контенту и контроль времени использования устройств.",
+            weight: 1.0
+          },
+          {
+            id: "tech_official_stores",
+            text: "Установка приложений возможна только из официальных магазинов (App Store, Google Play)",
+            hint: "Приложения из неизвестных источников могут содержать вредоносный код.",
+            weight: 1.0
+          }
+        ]
+      },
+      {
+        id: "rules",
+        title: "Правила безопасности и договорённости",
+        items: [
+          {
+            id: "rules_personal_data",
+            text: "Ребёнок знает, что нельзя сообщать коды из SMS, данные карт, логины/пароли, адрес, школу, фото документов незнакомым людям",
+            hint: "Базовая защита от большинства схем.",
+            weight: 1.0
+          },
+          {
+            id: "rules_fake_officials",
+            text: "Ребёнок понимает, что «сотрудники банка/милиции/МЧС» по телефону не просят коды из SMS и данные карт",
+            hint: "Защита от звонков «из банка» и «службы безопасности».",
+            weight: 1.0
+          },
+          {
+            id: "rules_no_meetings_without_consent",
+            text: "Ребёнок не уходит из дома и не встречается с незнакомыми людьми без согласия родителей",
+            hint: "Защита от схем «мини-похищения» и опасных встреч.",
+            weight: 1.0
+          }
+        ]
+      },
+      {
+        id: "trust",
+        title: "Доверительное общение и поддержка",
+        items: [
+          {
+            id: "trust_regular_talks",
+            text: "Мы регулярно разговариваем с ребёнком о том, что происходит в его жизни онлайн",
+            hint: "Поддержка доверия важнее жёсткого контроля.",
+            weight: 1.0
+          },
+          {
+            id: "trust_no_punishment_for_honesty",
+            text: "Ребёнок знает, что за честный рассказ о проблеме в интернете его не накажут, а помогут",
+            hint: "Снижает страх и скрытность.",
+            weight: 1.0
+          }
+        ]
+      }
+    ]
+  };
+
+  const recommendations = {
+    high: {
+      title: "Высокий уровень защиты",
+      text: "Вы хорошо обеспечиваете кибербезопасность ребёнка. Поддерживайте доверие и периодически обновляйте знания о новых схемах мошенничества."
+    },
+    good: {
+      title: "Хороший уровень",
+      text: "Основные меры безопасности есть, но есть пункты, которые стоит подтянуть. Обратите внимание на ответы «Нет» и «Не знаю» и обсудите их вместе."
+    },
+    medium: {
+      title: "Средний уровень",
+      text: "Есть заметные пробелы. Рекомендуется настроить техническую защиту, пройти вместе обучающий тренажёр и подробнее обсудить правила безопасности."
+    },
+    low: {
+      title: "Критический уровень",
+      text: "Ребёнок в зоне высокого риска. Начните с базовых настроек защиты, серьёзного разговора о киберугрозах и при необходимости обратитесь к специалистам."
+    }
+  };
+
+  function renderChecklist() {
+    const container = document.getElementById('blocks');
+    container.innerHTML = '';
+
+    checklist.blocks.forEach(block => {
+      const blockDiv = document.createElement('div');
+      blockDiv.className = 'block';
+
+      const h2 = document.createElement('h2');
+      h2.textContent = block.title;
+      blockDiv.appendChild(h2);
+
+      block.items.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'item';
+
+        const header = document.createElement('div');
+        header.className = 'item-header';
+
+        const textDiv = document.createElement('div');
+        textDiv.className = 'item-text';
+        textDiv.textContent = item.text;
+
+        const answersDiv = document.createElement('div');
+        answersDiv.className = 'answers';
+
+        ['yes','unknown','no'].forEach(val => {
+          const id = item.id + '_' + val;
+          const radio = document.createElement('input');
+          radio.type = 'radio';
+          radio.name = item.id;
+          radio.value = val;
+          radio.id = id;
+
+          const label = document.createElement('label');
+          label.setAttribute('for', id);
+          label.textContent = val === 'yes' ? 'Да' : (val === 'unknown' ? 'Не знаю' : 'Нет');
+
+          answersDiv.appendChild(radio);
+          answersDiv.appendChild(label);
+        });
+
+        header.appendChild(textDiv);
+        header.appendChild(answersDiv);
+        itemDiv.appendChild(header);
+
+        if (item.hint) {
+          const hintDiv = document.createElement('div');
+          hintDiv.className = 'hint';
+          hintDiv.textContent = item.hint;
+          itemDiv.appendChild(hintDiv);
+        }
+
+        blockDiv.appendChild(itemDiv);
+      });
+
+      container.appendChild(blockDiv);
+    });
+  }
+
+  function collectAnswers() {
+    const answers = {};
+    checklist.blocks.forEach(block => {
+      block.items.forEach(item => {
+        const radios = document.getElementsByName(item.id);
+        let value = null;
+        radios.forEach(r => { if (r.checked) value = r.value; });
+        answers[item.id] = value; // "yes" | "no" | "unknown" | null
+      });
+    });
+    return answers;
+  }
+
+  function calculateScore(answers) {
+    let totalWeight = 0;
+    let gained = 0;
+    checklist.blocks.forEach(block => {
+      block.items.forEach(item => {
+        const w = item.weight || 1;
+        totalWeight += w;
+        const v = answers[item.id];
+        if (!v) return;
+        const coef = checklist.scoring[v];
+        if (typeof coef === 'number') {
+          gained += coef * w;
+        }
+      });
+    });
+    if (totalWeight === 0) return { ratio: 0, level: null };
+    const ratio = gained / totalWeight;
+    const level = checklist.scoring.levels.find(l => ratio >= l.min && ratio <= l.max) || null;
+    return { ratio, level };
+  }
+
+  function levelBadge(levelId, label) {
+    if (!levelId) return '';
+    let cls = 'badge-low';
+    if (levelId === 'high') cls = 'badge-high';
+    else if (levelId === 'good') cls = 'badge-good';
+    else if (levelId === 'medium') cls = 'badge-medium';
+    return `<span class="badge ${cls}">${label}</span>`;
+  }
+
+  document.getElementById('btn-calc').onclick = () => {
+    const answers = collectAnswers();
+    const res = calculateScore(answers);
+    const box = document.getElementById('result');
+
+    if (!res.level) {
+      box.style.display = 'block';
+      box.innerHTML = "Пожалуйста, ответьте хотя бы на несколько вопросов.";
+      return;
+    }
+
+    const percent = Math.round(res.ratio * 100);
+    const rec = recommendations[res.level.id] || { title: '', text: '' };
+
+    box.style.display = 'block';
+    box.innerHTML =
+      levelBadge(res.level.id, res.level.label) +
+      `<div><strong>Ваш результат:</strong> ${percent}% выполненных мер безопасности.</div>` +
+      `<div style="margin-top:6px; font-weight:600;">${rec.title}</div>` +
+      `<div style="margin-top:4px;">${rec.text}</div>` +
+      `<div style="margin-top:6px; font-size:0.8rem; color:#9ca3af;">Это демо. В полной версии будут и детальные рекомендации по каждому блоку.</div>`;
+  };
+
+  renderChecklist();
+</script>
+</body>
+</html>
