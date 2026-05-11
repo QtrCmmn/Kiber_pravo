@@ -13,7 +13,6 @@
     <meta name="color-scheme" content="light dark">
     <meta name="application-name" content="КиберПраво">
     <meta name="format-detection" content="telephone=no">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="/favicon-512.png">
     <meta name="theme-color" content="#151b2b">
@@ -25,8 +24,10 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="#КиберПраво: твой щит в сети — «КиберЩит»">
     <meta name="twitter:description" content="Тренажёр, КиберТкач, база знаний и методические материалы для детей, родителей и педагогов.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body id="body">
+        <body id="body">
         <noscript>Без JavaScript тренажёр будет работать некорректно. Включите JavaScript</noscript>
         <header class="header" id="head">
             <div class="header__container">
@@ -74,32 +75,32 @@
 
         <main>
             <section id="main">
-                <div class="hero_main hero_main--no-img">
+                <div class="hero_main hero_main--no-img wow animate__animated animate__fadeIn" data-wow-duration="1s" data-wow-delay="0s">
                     <div class="main_text" id="hero">
-                        <span class="hero_eyebrow">Конкурсная версия · «КиберЩит» · 2026</span>
-                        <h1 class="title_text">#КиберПраво: твой щит в сети</h1>
-                        <p class="hero_text_sub">Учебно-методическая платформа по кибербезопасности и цифровой гигиене для детей 10–18 лет, родителей и педагогов.</p>
-                        <p class="hero_text_ot">«КиберЩит» — рабочее название проекта. В одном месте: интерактивный тренажёр с реальными сценариями угроз, база знаний, аудио-проект «КиберТкач», чек-листы, методички и плакаты.</p>
-                        <div class="hero_actions">
+                        <span class="hero_eyebrow wow animate__animated animate__fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.1s">Конкурсная версия · «КиберЩит» · 2026</span>
+                        <h1 class="title_text wow animate__animated animate__fadeInUp" data-wow-duration="0.9s" data-wow-delay="0.18s">#КиберПраво: твой щит в сети</h1>
+                        <p class="hero_text_sub wow animate__animated animate__fadeInUp" data-wow-duration="0.9s" data-wow-delay="0.32s">Учебно-методическая платформа по кибербезопасности и цифровой гигиене для детей 10–18 лет, родителей и педагогов.</p>
+                        <p class="hero_text_ot wow animate__animated animate__fadeInUp" data-wow-duration="0.9s" data-wow-delay="0.44s">«КиберЩит» — рабочее название проекта. В одном месте: интерактивный тренажёр с реальными сценариями угроз, база знаний, аудио-проект «КиберТкач», чек-листы, методички и плакаты.</p>
+                        <div class="hero_actions wow animate__animated animate__fadeInUp" data-wow-duration="0.9s" data-wow-delay="0.58s">
                             <a class="hero_btn hero_btn--primary" href="#trainer">Пройти тренажёр</a>
                             <a class="hero_btn hero_btn--ghost" href="#passport">Паспорт проекта</a>
                             <a class="hero_btn hero_btn--ghost" href="#materials">Материалы</a>
                         </div>
-                        <p class="hero_copyright">© Руденко А.Д., 2026. «КиберЩит» — рабочее название. Создано в рамках республиканского конкурса #КиберПраво «Твой щит в сети».</p>
+                        <p class="hero_copyright wow animate__animated animate__fadeIn" data-wow-duration="1.1s" data-wow-delay="0.72s">© Руденко А.Д., 2026. «КиберЩит» — рабочее название. Создано в рамках республиканского конкурса #КиберПраво «Твой щит в сети».</p>
                     </div>
                 </div>
             </section>
 
 
             <section class="road_map" id="roadmap">
-                <div class="road_map__header">
+                <div class="road_map__header wow animate__animated animate__fadeInLeft" data-wow-duration="0.85s" data-wow-delay="0s">
                     <span class="road_map__eyebrow">Дорожная карта</span>
                     <h2 class="road_map__title">Этапы развития платформы</h2>
                     <p class="road_map__desc">Последовательный план развития КиберЩита — от базового тренажёра до полноценной интеграции в образовательные программы.</p>
                 </div>
                 <ol class="road_map__list">
                     <!-- Фаза 1 — выполнена -->
-                    <li class="road_map__item is-active">
+                    <li class="road_map__item is-active" data-rm-delay="0">
                         <div class="road_map__point circle_1"></div>
                         <article class="road_map__card">
                             <div class="road_map__meta">
@@ -116,7 +117,7 @@
                         </article>
                     </li>
                     <!-- Фаза 2 — в процессе -->
-                    <li class="road_map__item is-future">
+                    <li class="road_map__item is-future" data-rm-delay="0.1">
                         <div class="road_map__point circle_2"></div>
                         <article class="road_map__card">
                             <div class="road_map__meta">
@@ -133,7 +134,7 @@
                         </article>
                     </li>
                     <!-- Фаза 3 — запланирована -->
-                    <li class="road_map__item is-future">
+                    <li class="road_map__item is-future" data-rm-delay="0.2">
                         <div class="road_map__point circle_3"></div>
                         <article class="road_map__card">
                             <div class="road_map__meta">
@@ -150,7 +151,7 @@
                         </article>
                     </li>
                     <!-- Фаза 4 — запланирована -->
-                    <li class="road_map__item is-future">
+                    <li class="road_map__item is-future" data-rm-delay="0.3">
                         <div class="road_map__point circle_4"></div>
                         <article class="road_map__card">
                             <div class="road_map__meta">
@@ -168,22 +169,22 @@
                     </li>
                 </ol>
             </section>
-            <section class="passport-section" id="passport" aria-labelledby="passport-title">
-                <div class="section-head">
+            <section class="passport-section wow animate__animated animate__fadeIn" data-wow-duration="0.9s" data-wow-delay="0s" id="passport" aria-labelledby="passport-title">
+                <div class="section-head wow animate__animated animate__fadeInLeft" data-wow-duration="0.85s" data-wow-delay="0s">
                     <span class="section-eyebrow">Паспорт проекта</span>
                     <h2 class="section-title" id="passport-title">О конкурсной версии «КиберЩита»</h2>
                     <p class="section-desc">Краткая публичная выписка о проекте для жюри, педагогов и организаторов. Полная версия с внутренней механикой модулей не публикуется до конкурсной защиты.</p>
                 </div>
                 <div class="passport-grid">
-                    <article class="passport-card">
+                    <article class="passport-card wow animate__animated animate__fadeInUp" data-wow-duration="0.75s" data-wow-delay="0s">
                         <h3>Цель</h3>
                         <p>Сформировать у детей и подростков устойчивые навыки кибербезопасности и цифровой гигиены через интерактивный тренажёр, тематическую базу знаний и методические материалы.</p>
                     </article>
-                    <article class="passport-card">
+                    <article class="passport-card wow animate__animated animate__fadeInUp" data-wow-duration="0.75s" data-wow-delay="0.12s">
                         <h3>Аудитория</h3>
                         <p>Дети и подростки 10–18 лет, их родители, классные руководители, педагоги-организаторы и руководители объединений по интересам.</p>
                     </article>
-                    <article class="passport-card">
+                    <article class="passport-card wow animate__animated animate__fadeInUp" data-wow-duration="0.75s" data-wow-delay="0.24s">
                         <h3>Публичные модули</h3>
                         <ul>
                             <li>Интерактивный тренажёр с реальными сценариями угроз.</li>
@@ -192,7 +193,7 @@
                             <li>Чек-листы, методички, плакаты.</li>
                         </ul>
                     </article>
-                    <article class="passport-card">
+                    <article class="passport-card wow animate__animated animate__fadeInUp" data-wow-duration="0.75s" data-wow-delay="0.36s">
                         <h3>Соответствие критериям конкурса</h3>
                         <ul>
                             <li>Актуальность темы: онлайн-мошенничество и безопасность детей.</li>
@@ -214,12 +215,12 @@
                 </div>
             </section>
 
-            <section id="trainer" aria-label="Интерактивный тренажёр">
+            <section id="trainer" class="wow animate__animated animate__fadeIn" data-wow-duration="0.9s" data-wow-delay="0s" aria-label="Интерактивный тренажёр">
                 
             </section>
 
-            <section class="kibertkach-section" id="kibertkach" aria-labelledby="tkach-title">
-                <div class="section-head">
+            <section class="kibertkach-section wow animate__animated animate__fadeIn" data-wow-duration="0.9s" data-wow-delay="0s" id="kibertkach" aria-labelledby="tkach-title">
+                <div class="section-head wow animate__animated animate__fadeInLeft" data-wow-duration="0.85s" data-wow-delay="0s">
                     <span class="section-eyebrow">КиберТкач · аудио</span>
                     <h2 class="section-title" id="tkach-title">Рифма как инструмент обучения</h2>
                     <p class="section-desc">«КиберТкач» — аудио-проект «КиберЩита». Песни и подкаст помогают ребёнку запомнить правила цифровой гигиены через ритм, повтор и рифму. Раздел показывает подход, но не раскрывает полную внутреннюю механику будущих модулей.</p>
@@ -271,13 +272,13 @@
             </section>
 
             <section class="knowledge-section" id="base" aria-labelledby="base-title">
-                <div class="section-head">
+                <div class="section-head wow animate__animated animate__fadeInLeft" data-wow-duration="0.85s" data-wow-delay="0s">
                     <span class="section-eyebrow">База знаний</span>
                     <h2 class="section-title" id="base-title">Короткие правила, которые спасают деньги и аккаунты</h2>
                     <p class="section-desc">Этот блок перенесён из базы «КиберНезабудки» и адаптирован под стиль основного проекта: без лишнего шума, с понятными действиями для школьника.</p>
                 </div>
                 <div class="knowledge-grid">
-                    <article class="knowledge-card">
+                    <article class="knowledge-card wow animate__animated animate__fadeInUp" data-wow-duration="0.75s" data-wow-delay="0s">
                         <h3>Коды и пароли</h3>
                         <p>СМС-код, push-подтверждение, пароль и QR для входа нельзя сообщать никому, даже если звонящий называет себя банком, милицией или поддержкой.</p>
                         <ul>
@@ -286,7 +287,7 @@
                             <li>Проверяй вход через официальное приложение.</li>
                         </ul>
                     </article>
-                    <article class="knowledge-card">
+                    <article class="knowledge-card wow animate__animated animate__fadeInUp" data-wow-duration="0.75s" data-wow-delay="0.12s">
                         <h3>Ссылки из сообщений</h3>
                         <p>Фишинговая ссылка может выглядеть почти как настоящая. Безопаснее открыть сервис вручную через приложение или официальный адрес.</p>
                         <ul>
@@ -295,7 +296,7 @@
                             <li>Закрывай страницу, если требуют карту.</li>
                         </ul>
                     </article>
-                    <article class="knowledge-card">
+                    <article class="knowledge-card wow animate__animated animate__fadeInUp" data-wow-duration="0.75s" data-wow-delay="0.24s">
                         <h3>Срочность и страх</h3>
                         <p>Мошенники давят временем: «сейчас спишут деньги», «родственник в беде», «будет уголовная ответственность». Это повод остановиться.</p>
                         <ul>
@@ -304,7 +305,7 @@
                             <li>Попроси взрослого помочь проверить.</li>
                         </ul>
                     </article>
-                    <article class="knowledge-card">
+                    <article class="knowledge-card wow animate__animated animate__fadeInUp" data-wow-duration="0.75s" data-wow-delay="0s">
                         <h3>Маркетплейсы и Kufar</h3>
                         <p>Настоящая сделка не требует переходить в «безопасную оплату» по ссылке из чата и не просит данные карты для получения денег.</p>
                         <ul>
@@ -313,7 +314,7 @@
                             <li>Жалуйся на подозрительный аккаунт.</li>
                         </ul>
                     </article>
-                    <article class="knowledge-card">
+                    <article class="knowledge-card wow animate__animated animate__fadeInUp" data-wow-duration="0.75s" data-wow-delay="0.12s">
                         <h3>Если близкий «в беде»</h3>
                         <p>При сообщении о ДТП, похищении или срочной операции не переводи деньги до проверки. Мошенник хочет, чтобы ты боялся и не думал.</p>
                         <ul>
@@ -322,7 +323,7 @@
                             <li>Не выполняй просьбу «никому не говорить».</li>
                         </ul>
                     </article>
-                    <article class="knowledge-card">
+                    <article class="knowledge-card wow animate__animated animate__fadeInUp" data-wow-duration="0.75s" data-wow-delay="0.24s">
                         <h3>Что делать после атаки</h3>
                         <p>Если ты уже перешёл по ссылке или сообщил данные, действовать нужно быстро, но спокойно.</p>
                         <ul>
@@ -334,8 +335,8 @@
                 </div>
             </section>
 
-            <section class="materials-section" id="materials" aria-labelledby="materials-title">
-                <div class="section-head">
+            <section class="materials-section wow animate__animated animate__fadeIn" data-wow-duration="0.9s" data-wow-delay="0s" id="materials" aria-labelledby="materials-title">
+                <div class="section-head wow animate__animated animate__fadeInLeft" data-wow-duration="0.85s" data-wow-delay="0s">
                     <span class="section-eyebrow">Каталог материалов</span>
                     <h2 class="section-title" id="materials-title">Что можно использовать прямо сейчас</h2>
                     <p class="section-desc">Веб-страницы и файлы для занятий, родительских встреч и самостоятельного изучения. Все материалы — авторские, без коммерческого использования.</p>
@@ -392,8 +393,8 @@
                 </div>
             </section>
 
-            <section class="posters-section" id="posters" aria-labelledby="posters-title">
-                <div class="section-head">
+            <section class="posters-section wow animate__animated animate__fadeIn" data-wow-duration="0.9s" data-wow-delay="0s" id="posters" aria-labelledby="posters-title">
+                <div class="section-head wow animate__animated animate__fadeInLeft" data-wow-duration="0.85s" data-wow-delay="0s">
                     <span class="section-eyebrow">Галерея плакатов</span>
                     <h2 class="section-title" id="posters-title">12 отобранных плакатов для школ и семей</h2>
                     <p class="section-desc">Плакаты можно распечатать и использовать в классе, коридоре или на семейном разговоре о безопасности в сети.</p>
@@ -414,8 +415,8 @@
                 </ul>
             </section>
 
-            <section class="future-section" id="future" aria-labelledby="future-title">
-                <div class="section-head">
+            <section class="future-section wow animate__animated animate__fadeIn" data-wow-duration="0.9s" data-wow-delay="0s" id="future" aria-labelledby="future-title">
+                <div class="section-head wow animate__animated animate__fadeInLeft" data-wow-duration="0.85s" data-wow-delay="0s">
                     <span class="section-eyebrow">Анонс будущих модулей</span>
                     <h2 class="section-title" id="future-title">Что выйдет после конкурса</h2>
                     <p class="section-desc">Ниже — общее описание направлений развития. Внутренняя механика модулей и исходные спецификации не публикуются до официальной защиты.</p>
@@ -446,13 +447,13 @@
             </section>
 
             <section class="methods-section" id="met_mat" aria-labelledby="met-title">
-                <div class="section-head">
+                <div class="section-head wow animate__animated animate__fadeInLeft" data-wow-duration="0.85s" data-wow-delay="0s">
                     <span class="section-eyebrow">Методические материалы</span>
                     <h2 class="section-title" id="met-title">Готовая структура для классного часа</h2>
                     <p class="section-desc">Материалы можно использовать на уроке, занятии объединения по интересам или семейном разговоре о цифровой безопасности.</p>
                 </div>
                 <div class="method-layout">
-                    <article class="method-card method-card--wide">
+                    <article class="method-card method-card--wide wow animate__animated animate__zoomIn" data-wow-duration="0.75s" data-wow-delay="0s">
                         <h3>45 минут: сценарий занятия</h3>
                         <ol>
                             <li>5 минут: вводный разговор о том, где школьники сталкиваются с мошенниками.</li>
@@ -462,15 +463,15 @@
                             <li>5 минут: чек-лист «что я сделаю, если мне позвонят».</li>
                         </ol>
                     </article>
-                    <article class="method-card">
+                    <article class="method-card wow animate__animated animate__zoomIn" data-wow-duration="0.75s" data-wow-delay="0s">
                         <h3>Чек-лист ученика</h3>
                         <p>Остановись, не сообщай код, проверь через другой канал, позови взрослого, сохрани доказательства.</p>
                     </article>
-                    <article class="method-card">
+                    <article class="method-card wow animate__animated animate__zoomIn" data-wow-duration="0.75s" data-wow-delay="0.12s">
                         <h3>Для родителей</h3>
                         <p>Договоритесь о семейном кодовом слове, проверочных звонках и правиле: сначала безопасность, потом деньги.</p>
                     </article>
-                    <article class="method-card">
+                    <article class="method-card wow animate__animated animate__zoomIn" data-wow-duration="0.75s" data-wow-delay="0.24s">
                         <h3>Для педагога</h3>
                         <p>Разберите не только «правильный ответ», но и манипуляцию: срочность, авторитет, страх, изоляцию, обещание выгоды.</p>
                     </article>
@@ -478,21 +479,21 @@
             </section>
 
             <section class="sponsors" id="sponsors">
-                <div class="section-head">
+                <div class="section-head wow animate__animated animate__fadeInLeft" data-wow-duration="0.85s" data-wow-delay="0s">
                     <span class="section-eyebrow">Партнёры и источники</span>
                     <h2 class="section-title">К кому обращаться за официальной информацией</h2>
                     <p class="section-desc">Раздел оставлен в стиле основного проекта и заполнен полезными направлениями вместо пустых блоков.</p>
                 </div>
                 <div class="sponsor-grid">
-                    <a class="sponsor-card" href="https://www.kaspersky.ru/resource-center" target="_blank" rel="noopener noreferrer">
+                    <a class="sponsor-card wow animate__animated animate__fadeInUp" data-wow-duration="0.75s" data-wow-delay="0s" href="https://www.kaspersky.ru/resource-center" target="_blank" rel="noopener noreferrer">
                         <strong>Kaspersky Resource Center</strong>
                         <span>Практические материалы о фишинге, паролях и защите устройств.</span>
                     </a>
-                    <a class="sponsor-card" href="https://etalonline.by/" target="_blank" rel="noopener noreferrer">
+                    <a class="sponsor-card wow animate__animated animate__fadeInUp" data-wow-duration="0.75s" data-wow-delay="0.15s" href="https://etalonline.by/" target="_blank" rel="noopener noreferrer">
                         <strong>ЭТАЛОН-ONLINE</strong>
                         <span>Правовая информация и официальные тексты нормативных актов Беларуси.</span>
                     </a>
-                    <a class="sponsor-card" href="https://www.a1.by/" target="_blank" rel="noopener noreferrer">
+                    <a class="sponsor-card wow animate__animated animate__fadeInUp" data-wow-duration="0.75s" data-wow-delay="0.3s" href="https://www.a1.by/" target="_blank" rel="noopener noreferrer">
                         <strong>A1 Беларусь</strong>
                         <span>Телеком-инфраструктура, цифровые сервисы и просветительские инициативы.</span>
                     </a>
@@ -505,7 +506,7 @@
         </main>
 
         <footer class="site-footer">
-            <div class="footer-inner">
+            <div class="footer-inner wow animate__animated animate__fadeInUp" data-wow-duration="0.85s" data-wow-delay="0s">
         
         
             <div class="footer-brand">
@@ -600,5 +601,15 @@
         </footer>
 
         <script src="js/code.js"></script>
+
+    <!-- WOW.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+      new WOW({
+        offset: 60,
+        mobile: true,
+        live: true
+      }).init();
+    </script>
 </body>
 </html>

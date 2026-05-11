@@ -118,7 +118,7 @@ const scenarioBlueprints = [
     title: 'Звонок из банка',
     tagline: '«На счёте странная активность, срочно спасаем деньги»',
     difficulty: 'medium',
-    icon: 'Б',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFF55"><path d="M336-120q-91 0-153.5-62.5T120-336q0-38 13-74t37-65l142-171-97-194h530l-97 194 142 171q24 29 37 65t13 74q0 91-63 153.5T624-120H336Zm144-200q-33 0-56.5-23.5T400-400q0-33 23.5-56.5T480-480q33 0 56.5 23.5T560-400q0 33-23.5 56.5T480-320Zm-95-360h190l40-80H345l40 80Zm-49 480h288q57 0 96.5-39.5T760-336q0-24-8.5-46.5T728-423L581-600H380L232-424q-15 18-23.5 41t-8.5 47q0 57 39.5 96.5T336-200Z"/></svg>',
     attacker: { name: 'Служба безопасности банка', status: 'звонок активен' },
     intro: 'Вам звонит неизвестный и уверенно говорит, что с банковским счётом происходит подозрительная операция. Ваша задача — не спорить, а безопасно проверить ситуацию.',
     steps: [
@@ -137,7 +137,7 @@ const scenarioBlueprints = [
     title: 'Фейковые покупатели на Kufar',
     tagline: '«Я оплатил доставку, получите деньги по ссылке»',
     difficulty: 'medium',
-    icon: 'K',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M841-518v318q0 33-23.5 56.5T761-120H201q-33 0-56.5-23.5T121-200v-318q-23-21-35.5-54t-.5-72l42-136q8-26 28.5-43t47.5-17h556q27 0 47 16.5t29 43.5l42 136q12 39-.5 71T841-518Zm-272-42q27 0 41-18.5t11-41.5l-22-140h-78v148q0 21 14 36.5t34 15.5Zm-180 0q23 0 37.5-15.5T441-612v-148h-78l-22 140q-4 24 10.5 42t37.5 18Zm-178 0q18 0 31.5-13t16.5-33l22-154h-78l-40 134q-6 20 6.5 43t41.5 23Zm540 0q29 0 42-23t6-43l-42-134h-76l22 154q3 20 16.5 33t31.5 13ZM201-200h560v-282q-5 2-6.5 2H751q-27 0-47.5-9T663-518q-18 18-41 28t-49 10q-27 0-50.5-10T481-518q-17 18-39.5 28T393-480q-29 0-52.5-10T299-518q-21 21-41.5 29.5T211-480h-4.5q-2.5 0-5.5-2v282Zm560 0H201h560Z"/></svg>',
     attacker: { name: 'Покупатель Kufar', status: 'печатает' },
     intro: 'Вы продаёте вещь на Kufar. Покупатель торопит, предлагает доставку и присылает ссылку для «получения оплаты».',
     steps: [
@@ -156,7 +156,7 @@ const scenarioBlueprints = [
     title: 'Сообщение от друга',
     tagline: '«Глянь ссылку, это про тебя?»',
     difficulty: 'easy',
-    icon: 'Д',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M360-80v-529q-91-24-145.5-100.5T160-880h80q0 83 53.5 141.5T430-680h100q30 0 56 11t47 32l181 181-56 56-158-158v478h-80v-240h-80v240h-80Zm63.5-663.5Q400-767 400-800t23.5-56.5Q447-880 480-880t56.5 23.5Q560-833 560-800t-23.5 56.5Q513-720 480-720t-56.5-23.5Z"/></svg>',
     attacker: { name: 'Друг в мессенджере', status: 'в сети' },
     intro: 'Пишет знакомый, но стиль сообщений странный. Он просит перейти по ссылке, проголосовать или подтвердить аккаунт.',
     steps: [
@@ -175,7 +175,7 @@ const scenarioBlueprints = [
     title: 'Родственник попал в ДТП',
     tagline: '«Нужна срочная дорогая операция»',
     difficulty: 'hard',
-    icon: 'ДТП',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M200-160v-80h64l79-263q8-26 29.5-41.5T420-560h120q26 0 47.5 15.5T617-503l79 263h64v80H200Zm148-80h264l-72-240H420l-72 240Zm92-400v-200h80v200h-80Zm238 99-57-57 142-141 56 56-141 142Zm42 181v-80h200v80H720ZM282-541 141-683l56-56 142 141-57 57ZM40-360v-80h200v80H40Zm440 120Z"/></svg>',
     attacker: { name: 'Незнакомый номер', status: 'срочный звонок' },
     intro: 'Вам звонят и говорят, что близкий родственник попал в аварию. Деньги якобы нужны немедленно, иначе операция не состоится.',
     steps: [
@@ -194,7 +194,7 @@ const scenarioBlueprints = [
     title: 'Счётчик, домофон и «следователь»',
     tagline: 'Сначала бытовой звонок, затем угрозы уголовным делом',
     difficulty: 'hard',
-    icon: 'С',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m368-336 112-84 110 84-42-136 112-88H524l-44-136-44 136H300l110 88-42 136ZM480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"/></svg>',
     attacker: { name: 'Абонентский отдел / Следователь', status: 'линия удерживается' },
     intro: 'Сначала звонят по бытовому вопросу: счётчик, домофон, замена оборудования. Потом почти сразу перезванивает «следователь» и угрожает ответственностью.',
     steps: [
@@ -213,7 +213,7 @@ const scenarioBlueprints = [
     title: 'Шантаж родителей похищением',
     tagline: '«Ваш ребёнок у нас, переводите деньги»',
     difficulty: 'hard',
-    icon: 'Р',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M270-190q-70-70-70-170v-240l200 200-56 57-64-64v47q0 66 47 113t113 47q66 0 113-47t47-113v-127q-36-14-58-44.5T520-600q0-38 22-68.5t58-44.5v-167h80v167q36 14 58 44.5t22 68.5q0 38-22 69t-58 44v127q0 100-70 170t-170 70q-100 0-170-70Zm398.5-381.5Q680-583 680-600t-11.5-28.5Q657-640 640-640t-28.5 11.5Q600-617 600-600t11.5 28.5Q623-560 640-560t28.5-11.5ZM640-600Z"/></svg>',
     attacker: { name: 'Скрытый номер', status: 'угрожает' },
     intro: 'Сценарий для семейного разбора: мошенники звонят родителям и имитируют похищение ребёнка, используя крики, шум и запрет на проверку.',
     steps: [
@@ -232,7 +232,7 @@ const scenarioBlueprints = [
     title: 'SMS о взломе аккаунта',
     tagline: '«Ваш аккаунт взломан, восстановите доступ по ссылке»',
     difficulty: 'medium',
-    icon: 'SMS',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M320-400h320v-22q0-44-44-71t-116-27q-72 0-116 27t-44 71v22Zm216.5-183.5Q560-607 560-640t-23.5-56.5Q513-720 480-720t-56.5 23.5Q400-673 400-640t23.5 56.5Q447-560 480-560t56.5-23.5ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>',
     attacker: { name: 'Security Alert', status: 'SMS' },
     intro: 'Приходит SMS или сообщение в мессенджере: аккаунт якобы взломан, нужно срочно перейти по ссылке и восстановить доступ.',
     steps: [
@@ -468,3 +468,75 @@ const SCENARIOS = scenarioBlueprints.map((scenario) => {
   );
   observer.observe(bar.closest('.footer-progress'));
 })();
+(function () {
+      const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ── Плавающие пузырьки в герое ── */
+      const hero = document.querySelector('.hero_main');
+      if (hero && !noMotion) {
+        hero.style.position = 'relative';
+        hero.style.overflow = 'hidden';
+        const count = window.innerWidth < 600 ? 5 : 9;
+        for (let i = 0; i < count; i++) {
+          const p = document.createElement('div');
+          p.className = 'hero-particle';
+          const size = 5 + Math.random() * 12;
+          p.style.cssText =
+            'width:' + size + 'px;' +
+            'height:' + size + 'px;' +
+            'left:' + (6 + Math.random() * 88) + '%;' +
+            'bottom:' + (2 + Math.random() * 38) + '%;' +
+            'animation-duration:' + (3.5 + Math.random() * 5) + 's;' +
+            'animation-delay:' + (Math.random() * 5) + 's;';
+          hero.appendChild(p);
+        }
+      }
+
+      /* ── Bounce на section-eyebrow при скролле ── */
+      if (!noMotion) {
+        const ebObs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting && !e.target._popped) {
+              e.target._popped = true;
+              e.target.classList.add('animate__animated', 'animate__bounceIn');
+              e.target.style.setProperty('--animate-duration', '0.5s');
+              ebObs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.9 });
+        document.querySelectorAll('.section-eyebrow').forEach(function(el) {
+          ebObs.observe(el);
+        });
+      }
+
+      /* ── Плавное появление снизу для роадмапа ── */
+      const rmItems = document.querySelectorAll('[data-rm-delay]');
+      if (rmItems.length && !noMotion) {
+        // Скрываем до появления в зоне видимости
+        rmItems.forEach(function(el) {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(36px)';
+          el.style.transition = 'none';
+        });
+
+        const rmObs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting && !e.target._revealed) {
+              e.target._revealed = true;
+              const delay = parseFloat(e.target.dataset.rmDelay || 0) * 1000;
+              setTimeout(function() {
+                e.target.style.transition =
+                  'opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), ' +
+                  'transform 0.75s cubic-bezier(0.22, 1, 0.36, 1)';
+                e.target.style.opacity = '1';
+                e.target.style.transform = 'translateY(0)';
+              }, delay);
+              rmObs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        rmItems.forEach(function(el) { rmObs.observe(el); });
+      }
+
+    })();

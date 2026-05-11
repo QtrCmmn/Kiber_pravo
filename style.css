@@ -9,6 +9,7 @@
     --road_mp:#2e7a46;
     --toggle-bg:#00000000;
     --chat: #58709d;
+    --icon:#000000;
     --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:18px;
     --s6:24px; --s8:36px; --s10:40px; --s12:48px; --s16:64px; --s24:96px;
     
@@ -24,6 +25,7 @@
     --road_mp:#54b572;
     --toggle-bg:#00000000;
     --chat: #9cbfff;
+    --icon:#54b572;
     
 }
 .theme-toggle {
@@ -139,13 +141,13 @@ a{
     transition:700ms 150ms;
 }
 .header{
-    /*margin: 0px 3vw;*/
-    padding: 20px 4vw;
-    top: 0;
-    z-index: 4000;
-    backdrop-filter: blur(7px); 
-    position: sticky; 
-    border-bottom: 1.3px solid var(--gray);
+  position: fixed !important;
+  width: 100%;
+  z-index: 9999;
+  padding: 20px 4vw;
+  backdrop-filter: blur(7px);
+  border-bottom: 1.3px solid var(--gray);
+  background: color-mix(in srgb, var(--lig-gr) 82%, transparent);
 }
 .header__container{
     margin-inline: auto;
@@ -187,7 +189,7 @@ a{
     gap: clamp(var(--s6), 5vw, var(--s16));
     align-items: center;
     margin-inline: auto;
-    margin-top: var(--s6);
+    margin-top: 104px;
     border: 1px solid rgba(80, 161, 115, 0.18);
     border-radius: clamp(var(--s5), 3vw, var(--s8));
     background:
@@ -1296,7 +1298,6 @@ footer { display: block; }
         grid-template-columns: 1fr;
         gap: var(--s6);
         padding: var(--s6) var(--s5);
-        margin-top: var(--s4);
         border-radius: var(--s5);
     }
     .hero_main::after{ display: none; content: ""; }
@@ -1839,4 +1840,74 @@ img { max-width: 100%; height: auto; }
 [data-theme="dark"] .tr_desc,
 [data-theme="dark"] .road_map__desc {
   color: #c0ccc5;
+}
+.wow { visibility: hidden; } @media (prefers-reduced-motion: reduce) { .wow { visibility: visible !important; animation: none !important; } }
+/* Плавающие пузырьки */
+      .hero-particle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(80, 161, 115, 0.24);
+        pointer-events: none;
+        animation: float-particle linear infinite;
+      }
+     @keyframes float-particle {
+        0%   { transform: translateY(0) rotate(0deg); opacity: 0.75; }
+        50%  { opacity: 0.25; }
+        100% { transform: translateY(-140px) rotate(360deg); opacity: 0; }
+     }
+      /* Свечение логотипа */
+      .brand-mark {
+        animation: shield-glow 3.5s ease-in-out infinite;
+      }
+      @keyframes shield-glow {
+        0%, 100% { filter: drop-shadow(0 0 0px rgba(80,161,115,0)); }
+        50%       { filter: drop-shadow(0 0 8px rgba(80,161,115,0.5)); }
+      }
+
+      /* Пульсирующая точка у eyebrow */
+      .section-eyebrow::before {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--green);
+        margin-right: 7px;
+        animation: dot-blink 2.6s ease-in-out infinite;
+        vertical-align: middle;
+      }
+      @keyframes dot-blink {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50%       { opacity: 0.35; transform: scale(0.6); }
+      }
+
+      /* Плавное появление снизу для роадмапа */
+      @keyframes fadeInUpSmooth {
+        from {
+          opacity: 0;
+          transform: translateY(36px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .roadmap-reveal {
+        opacity: 0;
+        animation: fadeInUpSmooth 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-particle, .brand-mark, .section-eyebrow::before { animation: none !important; }
+        .roadmap-reveal { opacity: 1 !important; animation: none !important; }
+      }
+html[data-theme="dark"] {
+    .tr_card__icon svg{
+    fill: var(--icon);
+    }
+}
+html {
+    .tr_card__icon svg{
+    fill: var(--icon);
+    }
 }
