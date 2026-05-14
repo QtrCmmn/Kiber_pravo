@@ -511,10 +511,49 @@
         
             <div class="footer-brand">
             <div class="footer-brand__logo">
-                <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-label="КиберЩит">
-                <path d="M16 3L4 8v8c0 6.627 5.149 11.843 12 13 6.851-1.157 12-6.373 12-13V8L16 3z" fill="var(--green)" opacity="0.15"/>
-                <path d="M16 3L4 8v8c0 6.627 5.149 11.843 12 13 6.851-1.157 12-6.373 12-13V8L16 3z" stroke="var(--green)" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M11 16l3.5 3.5L21 12" stroke="var(--green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg viewBox="0 0 100 100" width="35" height="35" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">Анимированный логотип КиберЩит</title>
+  <desc id="logoDesc">Минималистичный щит с анимированной галочкой и светящимися узлами в стиле кибербезопасности.</desc>
+
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="50%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+
+    <radialGradient id="bg" cx="50%" cy="30%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity=".95"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity=".98"/>
+    </radialGradient>
+
+    <filter id="glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <path id="shieldPath" d="M50 10 85 22V55C85 78 50 92 50 92S15 78 15 55V22Z"/>
+  </defs>
+
+
+  <use href="#shieldPath" class="shield-base" filter="url(#glow)"/>
+  <use href="#shieldPath" class="shield-energy" filter="url(#glow)"/>
+
+  <path d="M50 15 80 24V54C80 74 50 86 50 86S20 74 20 54V24Z"
+        fill="none" stroke="url(#g)" stroke-width="1" opacity=".22"/>
+
+  <path class="check" d="M33 51 46 64 70 36" filter="url(#glow)"/>
+
+  <circle class="node n1" cx="33" cy="51" r="4" fill="#06b6d4"/>
+  <circle class="node n2" cx="46" cy="64" r="4" fill="#3b82f6"/>
+  <circle class="node n3" cx="70" cy="36" r="4" fill="#8b5cf6"/>
+
+  <g class="ui" stroke="url(#g)" stroke-width="2" fill="none">
+    <path d="M22 28H18V32M22 72H18V68M78 28H82V32M78 72H82V68"/>
+  </g>
                 </svg>
                 <h3 class="footer-brand__name">КиберПраво</h3>
             </div>
