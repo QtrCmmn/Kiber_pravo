@@ -1987,4 +1987,15 @@ html {
         animation: none;
       }
     }
+.footer-visits {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #cfd6e4;
+}
 
+.footer-visits #gc-visits {
+  color: #ffffff;
+  font-weight: 700;
+}

@@ -388,7 +388,7 @@
             <section class="posters-section wow animate__animated animate__fadeIn" data-wow-duration="0.9s" data-wow-delay="0s" id="posters" aria-labelledby="posters-title">
                 <div class="section-head wow animate__animated animate__fadeInLeft" data-wow-duration="0.85s" data-wow-delay="0s">
                     <span class="section-eyebrow">Галерея плакатов</span>
-                    <h2 class="section-title" id="posters-title">12 отобранных плакатов для школ и семей</h2>
+                    <h2 class="section-title" id="posters-title">12 плакатов для школ и семей</h2>
                     <p class="section-desc">Плакаты можно распечатать и использовать в классе, коридоре или на семейном разговоре о безопасности в сети.</p>
                 </div>
                 <ul class="poster-grid">
@@ -547,6 +547,7 @@
                 <h3 class="footer-brand__name">КиберПраво</h3>
             </div>
             <h2 class="footer-brand__desc">Образовательная платформа по кибербезопасности для детей, подростков и педагогов Беларуси.</h2>
+            <div class="footer-visits">Посетителей: <span id="gc-visits"></span></div>
             <span class="footer-badge">🇧🇾 Беларусь · 2026</span>
             </div>
         
@@ -637,5 +638,39 @@
       }).init();
         </script>
         <script data-goatcounter="https://quatar.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+        <script>
+  (function () {
+    const target = document.querySelector('#gc-visits');
+
+    function renderCounter() {
+      if (!window.goatcounter || !window.goatcounter.visit_count || !target) return false;
+
+      window.goatcounter.visit_count({
+        append: '#gc-visits',
+        type: 'html',
+        no_branding: true,
+        style: `
+          div {
+            display: inline;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            font: inherit;
+          }
+        `
+      });
+
+      return true;
+    }
+
+    if (renderCounter()) return;
+
+    const timer = setInterval(() => {
+      if (renderCounter()) clearInterval(timer);
+    }, 120);
+  })();
+        </script>
 </body>
 </html>
