@@ -118,7 +118,7 @@ const scenarioBlueprints = [
     title: 'Звонок из банка',
     tagline: '«На счёте странная активность, срочно спасаем деньги»',
     difficulty: 'medium',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFF55"><path d="M336-120q-91 0-153.5-62.5T120-336q0-38 13-74t37-65l142-171-97-194h530l-97 194 142 171q24 29 37 65t13 74q0 91-63 153.5T624-120H336Zm144-200q-33 0-56.5-23.5T400-400q0-33 23.5-56.5T480-480q33 0 56.5 23.5T560-400q0 33-23.5 56.5T480-320Zm-95-360h190l40-80H345l40 80Zm-49 480h288q57 0 96.5-39.5T760-336q0-24-8.5-46.5T728-423L581-600H380L232-424q-15 18-23.5 41t-8.5 47q0 57 39.5 96.5T336-200Z"/></svg>',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M336-120q-91 0-153.5-62.5T120-336q0-38 13-74t37-65l142-171-97-194h530l-97 194 142 171q24 29 37 65t13 74q0 91-63 153.5T624-120H336Zm144-200q-33 0-56.5-23.5T400-400q0-33 23.5-56.5T480-480q33 0 56.5 23.5T560-400q0 33-23.5 56.5T480-320Zm-95-360h190l40-80H345l40 80Zm-49 480h288q57 0 96.5-39.5T760-336q0-24-8.5-46.5T728-423L581-600H380L232-424q-15 18-23.5 41t-8.5 47q0 57 39.5 96.5T336-200Z"/></svg>',
     attacker: { name: 'Служба безопасности банка', status: 'звонок активен' },
     intro: 'Вам звонит неизвестный и уверенно говорит, что с банковским счётом происходит подозрительная операция. Ваша задача — не спорить, а безопасно проверить ситуацию.',
     steps: [
@@ -326,10 +326,10 @@ const SCENARIOS = scenarioBlueprints.map((scenario) => {
     const sc = state.scenario;
     const wrap = el('div', 'tr_chat');
     const head = el('div', 'tr_chat__head');
-    head.innerHTML = `<button class="tr_chat__back" type="button" aria-label="Назад">←</button><div class="tr_chat__avatar">${sc.icon||'⚠️'}</div><div class="tr_chat__who"><div class="tr_chat__name"></div><div class="tr_chat__status"><span class="tr_chat__dot"></span><span class="tr_chat__status-text"></span></div></div><div class="tr_chat__timer" aria-label="Время на ответ"><svg viewBox="0 0 36 36" class="tr_ring"><circle class="tr_ring__bg" cx="18" cy="18" r="15.9155"/><circle class="tr_ring__fg" cx="18" cy="18" r="15.9155"/></svg><span class="tr_ring__num">--</span></div>`;
+    head.innerHTML = `<a class="tr_chat__back" href="#trainer" aria-label="Назад">←</a><div class="tr_chat__avatar">${sc.icon||'⚠️'}</div><div class="tr_chat__who"><div class="tr_chat__name"></div><div class="tr_chat__status"><span class="tr_chat__dot"></span><span class="tr_chat__status-text"></span></div></div><div class="tr_chat__timer" aria-label="Время на ответ"><svg viewBox="0 0 36 36" class="tr_ring"><circle class="tr_ring__bg" cx="18" cy="18" r="15.9155"/><circle class="tr_ring__fg" cx="18" cy="18" r="15.9155"/></svg><span class="tr_ring__num">--</span></div>`;
     head.querySelector('.tr_chat__name').textContent = sc.attacker?.name || 'Неизвестный';
     head.querySelector('.tr_chat__status-text').textContent = sc.attacker?.status || 'в сети';
-    head.querySelector('.tr_chat__back').addEventListener('click', () => { if (confirm('Прервать тренировку и вернуться к выбору?')) renderMenu(); });
+    const backBtn = head.querySelector('.tr_chat__back');backBtn.addEventListener('click', () => {clearAllTimers();window.location.hash = 'trainer';renderMenu();});    
     wrap.appendChild(head);
     if (sc.intro) { const intro = el('div', 'tr_chat__intro'); intro.textContent = sc.intro; wrap.appendChild(intro); }
     const feed = el('div', 'tr_feed'); feed.id = 'tr_feed_w'; wrap.appendChild(feed);
@@ -431,8 +431,8 @@ const SCENARIOS = scenarioBlueprints.map((scenario) => {
     });
     wrap.appendChild(log);
     const actions = el('div', 'tr_result__actions');
-    const retry = el('button', 'tr_btn tr_btn--primary', 'Повторить'); retry.type = 'button'; retry.addEventListener('click', () => startScenario(sc));
-    const back = el('button', 'tr_btn', 'Все сценарии'); back.type = 'button'; back.addEventListener('click', renderMenu);
+    const retry = el('a', 'tr_btn tr_btn--primary', 'Повторить');retry.href = '#trainer';retry.addEventListener('click', () => startScenario(sc));
+    const back = el('a', 'tr_btn', 'Все сценарии!'); back.href = '#trainer'; back.addEventListener('click', () => { renderMenu();});    
     actions.appendChild(retry); actions.appendChild(back); wrap.appendChild(actions);
     root.appendChild(wrap);
   }
