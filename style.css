@@ -1637,6 +1637,18 @@ footer { display: block; }
     max-width: 100%;
     margin-top: auto;
 }
+.tkach-video {
+    margin-top: auto;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+}
+.tkach-video video {
+    display: block;
+    width: 100%;
+    max-height: 320px;
+    object-fit: contain;
+}
 .tkach-card--podcast { border-color: rgba(80,161,115,0.45); }
 .tkach-card--podcast .tkach-num { background: var(--green); color: var(--white); }
 .tkach-card--bonus .tkach-num { background: rgba(255,61,0,0.18); color: #ff3d00; }

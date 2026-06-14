@@ -1,0 +1,353 @@
+/*
+ * pages.css — стили вторичных страниц (checklist, privacy)
+ * Подключается после style.css; переопределяет шрифт и добавляет компоненты.
+ * CSS-переменные (--dark, --green, --lig-gr) берутся из style.css каскадом.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --green-light: rgba(80, 161, 115, 0.10);
+  --green-border: rgba(80, 161, 115, 0.25);
+  --bg: var(--lig-gr);
+  --surface: #ffffff;
+}
+[data-theme="dark"] {
+  --surface: #2a2a2d;
+}
+
+/* --- БАЗА --- */
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+  line-height: 1.65;
+}
+html {
+  scroll-padding-top: 0;
+}
+ul {
+  list-style: disc;
+}
+a {
+  color: var(--green);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* --- КОНТЕЙНЕР --- */
+.page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 64px) 20px;
+}
+
+/* --- КНОПКА «НА ГЛАВНУЮ» --- */
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--green);
+  font-weight: 600;
+  margin-bottom: 24px;
+  font-size: 15px;
+}
+.back:hover {
+  text-decoration: underline;
+}
+
+/* --- ТЕГИ --- */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 24px;
+}
+.meta span {
+  background: var(--green-light);
+  color: var(--green);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* --- ЗАГОЛОВКИ --- */
+h1 {
+  font-size: clamp(28px, 5vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 12px;
+  color: var(--dark);
+  font-weight: 700;
+}
+.lead {
+  color: var(--dark);
+  font-size: 17px;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin: 0 0 32px;
+}
+h2 {
+  font-size: clamp(18px, 2.5vw, 24px);
+  margin: 36px 0 12px;
+  color: var(--dark);
+  border-left: 4px solid var(--green);
+  padding-left: 12px;
+  font-weight: 600;
+}
+h3 {
+  font-size: 17px;
+  margin: 18px 0 8px;
+  color: var(--dark);
+  font-weight: 600;
+}
+
+/* --- ТЕКСТ --- */
+p {
+  color: var(--dark);
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+ol {
+  padding-left: 22px;
+  margin: 8px 0 16px;
+}
+li {
+  color: var(--dark);
+  line-height: 1.65;
+  margin-bottom: 6px;
+}
+
+/* --- CALLOUT --- */
+.callout {
+  background: var(--green-light);
+  border: 1px solid var(--green-border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin: 16px 0;
+  color: var(--dark);
+}
+.callout.warn {
+  background: rgba(251, 191, 36, 0.08);
+  border-color: rgba(251, 191, 36, 0.3);
+}
+
+/* --- ТАБЛИЦА --- */
+.table-wrap {
+  overflow-x: auto;
+  margin: 16px 0;
+  border-radius: 12px;
+  border: 1px solid rgba(80, 161, 115, 0.18);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+thead th {
+  background: var(--green-light);
+  color: var(--dark);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  border-bottom: 2px solid var(--green-border);
+}
+tbody td {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(80, 161, 115, 0.12);
+  color: var(--dark);
+  vertical-align: top;
+}
+tbody tr:last-child td {
+  border-bottom: none;
+}
+tbody tr:hover td {
+  background: var(--green-light);
+}
+
+/* --- РЕЗУЛЬТАТ ЧЕК-ЛИСТА --- */
+.result-box {
+  background: var(--surface);
+  border: 1px solid var(--green-border);
+  border-radius: 14px;
+  padding: 24px;
+  text-align: center;
+  margin-top: 24px;
+  display: none;
+}
+.result-score {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+/* --- КНОПКИ --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s;
+  font-family: inherit;
+  text-decoration: none;
+}
+.btn:hover {
+  background: #3d8a5f;
+  text-decoration: none;
+  color: #fff;
+}
+.btn.secondary {
+  background: #fff;
+  color: var(--green);
+  border: 1.5px solid var(--green);
+}
+.btn.secondary:hover {
+  background: var(--green-light);
+}
+[data-theme="dark"] .btn.secondary {
+  background: var(--surface);
+}
+
+/* --- ЧЕК-АЙТЕМЫ --- */
+.check-group {
+  margin-bottom: 12px;
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+  margin-bottom: 6px;
+}
+.check-item:hover {
+  background: var(--green-light);
+  border-color: var(--green-border);
+}
+.check-item input[type=checkbox] {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--green);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.check-item label {
+  color: var(--dark);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.check-item.checked label {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+.check-item .hint {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+  display: block;
+}
+
+/* --- АККОРДЕОН --- */
+details {
+  border: 1px solid var(--green-border);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+summary {
+  padding: 14px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--dark);
+  list-style: none;
+  background: var(--green-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before {
+  content: '\25B6';
+  font-size: .65rem;
+  color: var(--green);
+  transition: transform .2s;
+}
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+.details-body {
+  padding: 16px 18px;
+  color: var(--dark);
+  font-size: 15px;
+}
+.details-body p {
+  margin-bottom: 10px;
+}
+
+/* --- ВКЛАДКИ --- */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  background: #fff;
+  border: 1.5px solid var(--green-border);
+  border-radius: 999px;
+  padding: 8px 18px;
+  color: var(--dark);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: inherit;
+  font-weight: 500;
+}
+.tab-btn.active,
+.tab-btn:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+[data-theme="dark"] .tab-btn {
+  background: var(--surface);
+}
+.tab-pane {
+  display: none;
+}
+.tab-pane.active {
+  display: block;
+}
+
+/* --- FOOTER --- */
+footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(80, 161, 115, 0.18);
+  color: var(--dark);
+  opacity: 0.65;
+  font-size: 14px;
+}
+
+/* --- АДАПТИВ --- */
+@media (max-width: 600px) {
+  .page { padding: 20px 14px; }
+  h1 { font-size: 26px; }
+}
